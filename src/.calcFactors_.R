@@ -1,7 +1,7 @@
 #
-#   dbproc: CAIHUI DataBase Processing 
+#   dtproc: Data Processing Based on CAIHUI Database
 #
-#   Copyright (C) 2016  Hsiao-nan Cheung zxn@hffunds.cn
+#   Copyright (C) 2016-2017  Hsiao-nan Cheung zxn@hffunds.cn
 #
 #   This program is free software: you can redistribute it and/or modify
 #   it under the terms of the GNU General Public License as published by
@@ -30,7 +30,7 @@ source(".SupFun.R")
 		end <- as.Date(as.character(end), "%Y%m%d")
 	}
 #	start <- paste0(as.numeric(strtrim(format(end, "%Y%m%d"), 4)) - 1, "01", "01")
-	start <- firstof(as.numeric(strtrim(format(end, "%Y%m%d"), 4)) - 1)
+	start <- firstof(as.numeric(strtrim(format(end, "%Y%m%d"), 4)) - 2)
 	val.inc.q <- paste0("SELECT DECLAREDATE, REPORTYEAR, REPORTDATETYPE, 
 		REPORTTYPE, DILUTEDEPS, PARENETP, BIZINCO FROM TQ_FIN_PROINCSTATEMENTNEW 
 		WHERE COMPCODE = (SELECT COMPCODE FROM TQ_OA_STCODE WHERE 
@@ -81,42 +81,10 @@ source(".SupFun.R")
 	val.cf.d[index(val.cf.d0), ] <- val.cf.d0
 	val.rep.d <- merge(val.inc.d, val.bal.d, val.cf.d)
 	val.rep.d <- val.rep.d[paste0(start, "/"), ]
-#	for (i in 1:NROW(val.rep.d)) {
-#		if (is.na(val.rep.d[i, "DILUTEDEPS"])) {
-#			newd <- dbGetQuery(channel, paste0("SELECT DILUTEDEPS, PARENETP, BIZINCO 
-#				FROM TQ_FIN_PROINCSTATEMENTNEW 
-#				WHERE COMPCODE = (SELECT COMPCODE FROM TQ_OA_STCODE WHERE 
-#				SYMBOL = '", as.character(symbol), "' AND SETYPE = '101') 
-#				AND REPORTTYPE = '1' AND REPORTYEAR = '", format(index(val.rep.d[i, ]), "%Y"), 
-#				"' AND REPORTDATETYPE = '", format(index(val.rep.d[i, ]), "%q"), "'"))
-#			if (NROW(newd) != 0)
-#				coredata(val.rep.d[i, c("DILUTEDEPS", "PARENETP", "BIZINCO")]) <- newd
-#		}
-#		if (is.na(val.rep.d[i, "PARESHARRIGH"])) {
-#			newd <- dbGetQuery(channel, paste0("SELECT PARESHARRIGH, TOTALNONCLIAB, CURFDS 
-#				FROM TQ_FIN_PROBALSHEETNEW 
-#				WHERE COMPCODE = (SELECT COMPCODE FROM TQ_OA_STCODE WHERE 
-#				SYMBOL = '", as.character(symbol), "' AND SETYPE = '101') 
-#				AND REPORTTYPE = '1' AND REPORTYEAR = '", format(index(val.rep.d[i, ]), "%Y"), 
-#				"' AND REPORTDATETYPE = '", format(index(val.rep.d[i, ]), "%q"), "'"))
-#			if (NROW(newd) != 0)
-#				coredata(val.rep.d[i, c("PARESHARRIGH", "TOTALNONCLIAB", "CURFDS")]) <- newd
-#		}
-#		if (is.na(val.rep.d[i, "MANANETR"])) {
-#			newd <- dbGetQuery(channel, paste0("SELECT MANANETR, ACQUASSETCASH 
-#				FROM TQ_FIN_PROCFSTATEMENTNEW 
-#				WHERE COMPCODE = (SELECT COMPCODE FROM TQ_OA_STCODE WHERE 
-#				SYMBOL = '", as.character(symbol), "' AND SETYPE = '101') 
-#				AND REPORTTYPE = '1' AND REPORTYEAR = '", format(index(val.rep.d[i, ]), "%Y"), 
-#				"' AND REPORTDATETYPE = '", format(index(val.rep.d[i, ]), "%q"), "'"))
-#			if (NROW(newd) != 0)
-#				coredata(val.rep.d[i, c("MANANETR", "ACQUASSETCASH")]) <- newd
-#		}
-#	}
 	val.rep.d <- .report.na.fill(val.rep.d, seasonal = c(rep(TRUE, 3), rep(FALSE, 3), rep(TRUE, 2)))
 	val.rep.ttm <- .report.calc.ttm(val.rep.d[, c("PARENETP", "BIZINCO", "MANANETR", "ACQUASSETCASH")])
-	val.rep.lyr <- as.data.frame(.report.get.lyr(val.rep.d[, c("DILUTEDEPS", "PARENETP", "MANANETR")]))
-	val.rep.lr <- as.data.frame(last(val.rep.d[, c("PARESHARRIGH", "TOTALNONCLIAB", "CURFDS")]))
+	val.rep.lyr <- .report.get.lyr(val.rep.d[, c("DILUTEDEPS", "PARENETP", "MANANETR")])
+	val.rep.lr <- last(val.rep.d[, c("PARESHARRIGH", "TOTALNONCLIAB", "CURFDS")])
 	val.p.q <- paste0("SELECT TRADEDATE, LCLOSE, TCLOSE, TOTMKTCAP FROM TQ_QT_SKDAILYPRICE 
 		WHERE SECODE = (SELECT SECODE FROM TQ_OA_STCODE 
 			WHERE SYMBOL = '", as.character(symbol), "' AND SETYPE = '101') 
@@ -130,22 +98,22 @@ source(".SupFun.R")
 	val <- vector()
 	val["DividendYield_FY0"] <- NA / val.p["TCLOSE"]
 	val["DividendYield_FY1"] <- NA / val.p["TCLOSE"]
-	val["Price2EPS_LYR"] <- val.p["TCLOSE"] / val.rep.lyr["DILUTEDEPS"]
-	val["EP_LYR"] <- val.rep.lyr["PARENETP"] / val.p["TOTMKTCAP"]
+	val["Price2EPS_LYR"] <- val.p["TCLOSE"] / val.rep.lyr[, "DILUTEDEPS"]
+	val["EP_LYR"] <- val.rep.lyr[, "PARENETP"] / val.p["TOTMKTCAP"]
 	val["EP_TTM"] <- val.rep.ttm["PARENETP"] / val.p["TOTMKTCAP"]
 	val["EP_Fwd12M"] <- NA / val.p["TOTMKTCAP"]
 	val["EP_FY0"] <- NA / val.p["TOTMKTCAP"]
 	val["EP_FY1"] <- NA / val.p["TOTMKTCAP"]
 	val["SP_TTM"] <- val.rep.ttm["BIZINCO"] / val.p["TOTMKTCAP"]
-	val["CashFlowYield_LYR"] <- val.rep.lyr["MANANETR"] / val.p["TOTMKTCAP"]
+	val["CashFlowYield_LYR"] <- val.rep.lyr[, "MANANETR"] / val.p["TOTMKTCAP"]
 	val["CashFlowYield_FY0"] <- NA / val.p["TCLOSE"]
 	val["CashFlowYield_TTM"] <- val.rep.ttm["MANANETR"] / val.p["TOTMKTCAP"]
 	val["FreeCashFlowYield_TTM"] <- (val.rep.ttm["MANANETR"] - val.rep.ttm["ACQUASSETCASH"]) / 
 		val.p["TOTMKTCAP"]
-	val["BP_LR"] <- val.rep.lr["PARESHARRIGH"] / val.p["TOTMKTCAP"]
+	val["BP_LR"] <- val.rep.lr[, "PARESHARRIGH"] / val.p["TOTMKTCAP"]
 	val["BP_FY0_Median"] <- NA / val.p["TCLOSE"]
 	val["Sales2EV"] <- val.rep.ttm["BIZINCO"] / 
-		(val.p["TOTMKTCAP"] + val.rep.lr["TOTALNONCLIAB"] - val.rep.lr["CURFDS"])
+		(val.p["TOTMKTCAP"] + val.rep.lr[, "TOTALNONCLIAB"] - val.rep.lr[, "CURFDS"])
 	xts(t(unlist(val)), end)
 }
 
@@ -228,7 +196,7 @@ source(".SupFun.R")
 		end <- as.Date(as.character(end), "%Y%m%d")
 	}
 #	start <- paste0(as.numeric(strtrim(format(end, "%Y%m%d"), 4)) - 1, "01", "01")
-	start <- firstof(as.numeric(strtrim(format(end, "%Y%m%d"), 4)) - 1)
+	start <- firstof(as.numeric(strtrim(format(end, "%Y%m%d"), 4)) - 2)
 	qua.inc.q <- paste0("SELECT DECLAREDATE, REPORTYEAR, REPORTDATETYPE, 
 		REPORTTYPE, PARENETP, BIZINCO, BIZCOST, SALESEXPE FROM TQ_FIN_PROINCSTATEMENTNEW 
 		WHERE COMPCODE = (SELECT COMPCODE FROM TQ_OA_STCODE WHERE 
@@ -264,43 +232,20 @@ source(".SupFun.R")
 	qua.bal.d[index(qua.bal.d0), ] <- qua.bal.d0
 	qua.rep.d <- merge(qua.inc.d, qua.bal.d)
 	qua.rep.d <- qua.rep.d[paste0(start, "/"), ]
-#	for (i in 1:NROW(qua.rep.d)) {
-#		if (is.na(qua.rep.d[i, "PARENETP"])) {
-#			newd <- dbGetQuery(channel, paste0("SELECT PARENETP, BIZINCO, BIZCOST, SALESEXPE 
-#				FROM TQ_FIN_PROINCSTATEMENTNEW 
-#				WHERE COMPCODE = (SELECT COMPCODE FROM TQ_OA_STCODE WHERE 
-#				SYMBOL = '", as.character(symbol), "' AND SETYPE = '101') 
-#				AND REPORTTYPE = '1' AND REPORTYEAR = '", format(index(qua.rep.d[i, ]), "%Y"), 
-#				"' AND REPORTDATETYPE = '", format(index(qua.rep.d[i, ]), "%q"), "'"))
-#
-#				coredata(qua.rep.d[i, c("PARENETP", "BIZINCO", "BIZCOST", "SALESEXPE")]) <- newd
-#		}
-#		if (is.na(qua.rep.d[i, "PARESHARRIGH"])) {
-#			newd <- dbGetQuery(channel, paste0("SELECT PARESHARRIGH, TOTASSET, TOTCURRASSET, 
-#				TOTALCURRLIAB, TOTALNONCLIAB FROM TQ_FIN_PROBALSHEETNEW 
-#				WHERE COMPCODE = (SELECT COMPCODE FROM TQ_OA_STCODE WHERE 
-#				SYMBOL = '", as.character(symbol), "' AND SETYPE = '101') 
-#				AND REPORTTYPE = '1' AND REPORTYEAR = '", format(index(qua.rep.d[i, ]), "%Y"), 
-#				"' AND REPORTDATETYPE = '", format(index(qua.rep.d[i, ]), "%q"), "'"))
-#			if (NROW(newd) != 0)
-#				coredata(qua.rep.d[i, c("PARESHARRIGH", "TOTASSET", "TOTCURRASSET", 
-#					"TOTALCURRLIAB", "TOTALNONCLIAB")]) <- newd
-#		}
-#	}
 	qua.rep.d <- .report.na.fill(qua.rep.d, seasonal = c(rep(TRUE, 4), rep(FALSE, 5)))
 	qua.rep.ttm <- .report.calc.ttm(qua.rep.d[, c("PARENETP", "BIZINCO", "BIZCOST", "SALESEXPE")])
-	qua.rep.lr <- as.data.frame(last(qua.rep.d[, c("PARESHARRIGH", "TOTASSET", 
-		"TOTCURRASSET", "TOTALCURRLIAB", "TOTALNONCLIAB")]))
+	qua.rep.lr <- last(qua.rep.d[, c("PARESHARRIGH", "TOTASSET", 
+		"TOTCURRASSET", "TOTALCURRLIAB", "TOTALNONCLIAB")])
 	qua <- vector()
-	qua["ROE_LR"] <- qua.rep.ttm["PARENETP"] / qua.rep.lr["PARESHARRIGH"]
-	qua["ROA_LR"] <- qua.rep.ttm["PARENETP"] / qua.rep.lr["TOTASSET"]
+	qua["ROE_LR"] <- qua.rep.ttm["PARENETP"] / qua.rep.lr[, "PARESHARRIGH"]
+	qua["ROA_LR"] <- qua.rep.ttm["PARENETP"] / qua.rep.lr[, "TOTASSET"]
 	qua["GrossMargin_TTM"] <- (qua.rep.ttm["BIZINCO"] - qua.rep.ttm["BIZCOST"]) / 
 		qua.rep.ttm["BIZINCO"] - 1
-	qua["LTD2Equity_LR"] <- qua.rep.lr["TOTALNONCLIAB"] / qua.rep.lr["PARESHARRIGH"]
+	qua["LTD2Equity_LR"] <- qua.rep.lr[, "TOTALNONCLIAB"] / qua.rep.lr[, "PARESHARRIGH"]
 	qua["BerryRatio"] <- (qua.rep.ttm["BIZINCO"] - qua.rep.ttm["BIZCOST"]) / 
 		qua.rep.ttm["SALESEXPE"]
-	qua["AssetTurnover"] <- qua.rep.ttm["BIZINCO"] / qua.rep.lr["TOTASSET"]
-	qua["CurrentRatio"] <- qua.rep.lr["TOTCURRASSET"] / qua.rep.lr["TOTALCURRLIAB"]
+	qua["AssetTurnover"] <- qua.rep.ttm["BIZINCO"] / qua.rep.lr[, "TOTASSET"]
+	qua["CurrentRatio"] <- qua.rep.lr[, "TOTCURRASSET"] / qua.rep.lr[, "TOTALCURRLIAB"]
 	qua["EPS_FY0_Dispersion"] <- NA
 	xts(t(unlist(qua)), end)
 }
@@ -331,8 +276,6 @@ source(".SupFun.R")
 
 # Calculate Technical Factors
 .calcTech_ <- function (symbol, channel, end) {
-	if(!require(moments))
-		install.packages("moments")
 	if (missing(end)) {
 		end <- Sys.Date()
 	}

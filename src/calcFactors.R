@@ -1,7 +1,7 @@
 #
-#   dbproc: CAIHUI DataBase Processing 
+#   dtproc: Data Processing Based on CAIHUI Database
 #
-#   Copyright (C) 2016  Hsiao-nan Cheung zxn@hffunds.cn
+#   Copyright (C) 2016-2017  Hsiao-nan Cheung zxn@hffunds.cn
 #
 #   This program is free software: you can redistribute it and/or modify
 #   it under the terms of the GNU General Public License as published by
@@ -21,7 +21,7 @@
 source(".calcFactors.R")
 source(".calcFactors_.R")
 
-calcFactors <- function (symbol, channel, end, period = "1 year", 
+calcSingleFactor <- function (symbol, channel, end, period = "1 year", 
 	vars = "EPS", type = "LYR")
 {
 	if (missing(end)) {
@@ -46,19 +46,60 @@ calcFactors <- function (symbol, channel, end, period = "1 year",
 	
 }
 
-calcFactors_ <- function (symbol.list, channel, end) {
+calcFactors <- function (symbol.list, channel, end) {
+	if (NROW(symbol.list) == 1) {
+		return(cat("symbol.list only accept string vector! For one symbol, use .calcFactors_() instead.\n"))
+	}
 	symbol.name <- getName(symbol.list, channel)
 	facs <- .calcFactors_(symbol.list[1], channel, end)
-	cat("(", 1, "/", NROW(symbol.list), ") ", fixCode(symbol.list[1]), " ", symbol.name[1], "\n", sep = "")
+	cat("(", 1, "/", NROW(symbol.list), ") ", fixCode(symbol.list[1]), " ", symbol.name[1], " is done.\n", sep = "")
 	for (i in 2:NROW(symbol.list)) {
 		facs <- rbind(facs, .calcFactors_(symbol.list[i], channel, end))
-		cat("(", i, "/", NROW(symbol.list), ") ", fixCode(symbol.list[i]), " ", symbol.name[i], "\n", sep = "")
+		cat("(", i, "/", NROW(symbol.list), ") ", fixCode(symbol.list[i]), " ", symbol.name[i], " is done.\n", sep = "")
+	}
+	as.data.frame(facs, row.names = symbol.list)
+}
+
+
+.calcFactors <- function (symbol, channel, end) {
+	symbol <- sapply(symbol, strtrim, 6)
+	val <- tryCatch(.calcValue(symbol, channel, end), error = function(e) {cat(format(Sys.time()), fixCode(symbol), "Value Calc Error!\n", file = "factorErrors.log", append = TRUE); matrix(, nrow = 1, ncol = 16)})
+	gro <- tryCatch(.calcGrowth(symbol, channel, end), error = function(e) {cat(format(Sys.time()), fixCode(symbol), "Growth Calc Error!\n", file = "factorErrors.log", append = TRUE); matrix(, nrow = 1, ncol = 12)})
+	qua <- tryCatch(.calcQuality(symbol, channel, end), error = function(e) {cat(format(Sys.time()), fixCode(symbol), "Quality Calc Error!\n", file = "factorErrors.log", append = TRUE); matrix(, nrow = 1, ncol = 8)})
+	mom <- tryCatch(.calcMomentum(symbol, channel, end), error = function(e) {cat(format(Sys.time()), fixCode(symbol), "Momentem Calc Error!\n", file = "factorErrors.log", append = TRUE); matrix(, nrow = 1, ncol = 5)})
+	tech <- tryCatch(.calcTech(symbol, channel, end), error = function(e) {cat(format(Sys.time()), fixCode(symbol), "Tech Calc Error!\n", file = "factorErrors.log", append = TRUE); matrix(, nrow = 1, ncol = 11)})
+	fac <- merge(val, gro, qua, mom, tech)
+	# colnames(fac) <- c("DividendYield_FY0", "DividendYield_FY1", "Price2EPS_LYR", 
+		# "EP_LYR", "EP_TTM", "EP_Fwd12M", "EP_FY0", "EP_FY1", "SP_TTM",
+		# "CashFlowYield_LYR", "CashFlowYield_FY0", "CashFlowYield_TTM", 
+		# "FreeCashFlowYield_TTM", "BP_LR", "BP_FY0_Median", "Sales2EV", 
+		# "SaleEarnings_SQ_YoY", "Earnings_SQ_YoY", "Sales_SQ_YoY", 
+		# "Earnings_LTG", "Sales_LTG", "Earnings_STG", "Sales_STG", "Earnings_LFG", 
+		# "Sales_LFG", "Earnings_SFG", "Sales_SFG", "Asset_STG", "ROE_LR", "ROA_LR", 
+		# "GrossMargin_TTM", "LTD2Equity_LR", "BerryRatio", "AssetTurnover", 
+		# "CurrentRatio", "EPS_FY0_Dispersion", "Momentum_1M", "Momentum_3M", "Momentum_12M", 
+		# "Momentum_12M_1M", "Momentum_60M", "LnFloatCap", "AmountAvg_1M", "NormalizedAbormalVolume", 
+		# "TurnoverAvg_1M", "TurnoverAvg_3M", "TurnoverAvg_1M_3M", "TSKEW", "ILLIQ", 
+		# "SmallTradeFlow", "MACrossover", "RealizedVolatility_1Y")
+}
+
+calcFactors_ <- function (symbol.list, channel, end) {
+	if (NROW(symbol.list) == 1) {
+		return(cat("symbol.list only accept string vector! For one symbol, use .calcFactors_() instead.\n"))
+	}
+	symbol.name <- getName(symbol.list, channel)
+	facs <- .calcFactors_(symbol.list[1], channel, end)
+	cat("(", 1, "/", NROW(symbol.list), ") ", fixCode(symbol.list[1]), " ", symbol.name[1], " is done.\n", sep = "")
+	for (i in 2:NROW(symbol.list)) {
+		facs <- rbind(facs, .calcFactors_(symbol.list[i], channel, end))
+		cat("(", i, "/", NROW(symbol.list), ") ", fixCode(symbol.list[i]), " ", symbol.name[i], " is done.\n", sep = "")
 	}
 	as.data.frame(facs, row.names = symbol.list)
 }
 
 
 .calcFactors_ <- function (symbol, channel, end) {
+	symbol <- sapply(symbol, strtrim, 6)
 	val <- tryCatch(.calcValue_(symbol, channel, end), error = function(e) {cat(format(Sys.time()), fixCode(symbol), "Value Calc Error!\n", file = "factorErrors.log", append = TRUE); matrix(, nrow = 1, ncol = 16)})
 	gro <- tryCatch(.calcGrowth_(symbol, channel, end), error = function(e) {cat(format(Sys.time()), fixCode(symbol), "Growth Calc Error!\n", file = "factorErrors.log", append = TRUE); matrix(, nrow = 1, ncol = 12)})
 	qua <- tryCatch(.calcQuality_(symbol, channel, end), error = function(e) {cat(format(Sys.time()), fixCode(symbol), "Quality Calc Error!\n", file = "factorErrors.log", append = TRUE); matrix(, nrow = 1, ncol = 8)})

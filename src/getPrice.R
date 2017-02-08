@@ -1,7 +1,7 @@
 #
-#   dbproc: CAIHUI DataBase Processing 
+#   dtproc: Data Processing Based on CAIHUI Database
 #
-#   Copyright (C) 2016  Hsiao-nan Cheung zxn@hffunds.cn
+#   Copyright (C) 2016-2017  Hsiao-nan Cheung zxn@hffunds.cn
 #
 #   This program is free software: you can redistribute it and/or modify
 #   it under the terms of the GNU General Public License as published by

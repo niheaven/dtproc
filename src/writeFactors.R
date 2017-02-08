@@ -16,21 +16,5 @@
 #   You should have received a copy of the GNU General Public License
 #   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-#   main: Main Source File
+#   writeFactors: Write Stock Factors to Database
 
-if(!require(DBI))
-	install.packages("DBI")
-if(!require(quantmod))
-	install.packages("quantmod")
-if(!requireNamespace("moments"))
-	install.packages("moments")
-
-# source("getPrice.R", encoding = 'UTF-8')
-source("src/calcFactors.R", chdir = TRUE, encoding = 'UTF-8')
-
-if (!tryCatch(dbIsValid(ch_data), error = function(e) FALSE))
-	ch_data = dbConnect(RSQLServer::SQLServer(), "CAIHUI", file = "dbi/sql.yaml", database = "CAIHUI")
-if (!tryCatch(dbIsValid(ch_factors), error = function(e) FALSE))
-	ch_factors = dbConnect(RMySQL::MySQL(), dbname = "factors", default.file = "dbi/.my.cnf")
-
-source("test/test.R", encoding = "UTF-8")
