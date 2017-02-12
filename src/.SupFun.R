@@ -18,16 +18,39 @@
 #
 #   .SupFun: Supplementary Functions
 
+# Fill NAs for NaN or Inf
+.fill.na <- function (x) {
+	x[is.infinite(x)] <- NA
+	x[is.nan(x)] <- NA
+	x
+}
+
+# Last Day of Months
+# Forked from vignette of package:lubridate
+last.day <- function (date) {
+	ceiling_date(date, "month") - days(1)
+}
+
+# NA or Value?
+na.or.value <- function (na.trigger, value) {
+	if (na.trigger)
+		return(NA)
+	else
+		return(value)
+}
+
 # Rolling Period Apply, e.g. Period 1 Year for Rolling 1 Month
+# Forked and Modified from xts::period.apply()
 .roll.period.apply <- function (x, INDEX, n, FUN, ...) {
+	if (length(INDEX) < n + 1)
+		return(NA)
 	x <- try.xts(x, error = FALSE)
 	FUN <- match.fun(FUN)
 	xx <- sapply(n:(length(INDEX) - 1), function(y) {
 		FUN(x[(INDEX[y - n + 1] + 1):INDEX[y + 1]], ...)
 	})
-	if (is.vector(xx)) 
+	if (!is.vector(xx)) 
 		xx <- t(xx)
-	xx <- t(xx)
 	if (is.null(colnames(xx)) && NCOL(x) == (NCOL(xx) + n - 1)) 
 		colnames(xx) <- colnames(x)
 	reclass(xx, x[INDEX[(n + 1):length(INDEX)]])
@@ -208,7 +231,7 @@
 	return(x.ttm)
 }
 
-# Calculate LYR
+# Get LYR
 .report.get.lyr <- function (x) {
 	x <- try.xts(x, error = FALSE)
 	return(last(x[(index(x) %% 1) == 0.75]))

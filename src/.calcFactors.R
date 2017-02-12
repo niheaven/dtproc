@@ -1,5 +1,5 @@
 #
-#   dtproc: Data Processing Based on CAIHUI Database
+#   pproc: Data Processing Based on CAIHUI Database
 #
 #   Copyright (C) 2016-2017  Hsiao-nan Cheung zxn@hffunds.cn
 #
@@ -18,16 +18,19 @@
 #
 #   .calcFactors: Calculate Stock Factors (Implementation)
 
+# Global Variable
+START <- ymd("19941231")
+
 # Load Supplementary Functions
 source(".SupFun.R")
 
 # Calculate Value Factors
 .calcValue <- function (symbol, channel, end) {
 	if (missing(end)) {
-		end <- Sys.Date()
+		end <- rollback(today())
 	}
 	else {
-		end <- as.Date(as.character(end), "%Y%m%d")
+		end <- ymd(end)
 	}
 	val.inc.q <- paste0("SELECT DECLAREDATE, REPORTYEAR, REPORTDATETYPE, 
 		REPORTTYPE, DILUTEDEPS, PARENETP, BIZINCO FROM TQ_FIN_PROINCSTATEMENTNEW 
@@ -55,20 +58,19 @@ source(".SupFun.R")
 			WHERE SYMBOL = '", as.character(symbol), "' AND SETYPE = '101') 
 		AND TRADEDATE <= '", format(end, "%Y%m%d"), "' ORDER BY TRADEDATE")
 	val.p.d_ <- dbGetQuery(channel, val.p.q)
-	val.p.d_ <- xts(val.p.d_[, -1], as.Date(as.character(val.p.d_[, 1]), "%Y%m%d"))
-	end.ep <- endpoints(val.p.d_)
-	val <- xts(matrix(, nrow = length(end.ep) - 1, ncol = 16), index(val.p.d_)[end.ep])
-	for (i in 1:(length(end.ep) - 1)) {
-		end.i <- index(val.p.d_)[end.ep[i + 1]]
-		start.i <- firstof(as.numeric(strtrim(format(end.i, "%Y%m%d"), 4)) - 2)
-		val.inc.d <- val.inc.d_[as.Date(as.character(val.inc.d_[, 1]), "%Y%m%d") 
-			<= end.i, -1]
+	val.p.d_ <- xts(val.p.d_[, -1], ymd(val.p.d_[, 1]))
+	val.ep <- endpoints(val.p.d_)
+	val.idx <- last.day(index(val.p.d_)[val.ep])
+	val.idx <- val.idx[val.idx >= START]
+	val <- xts(matrix(, nrow = length(val.idx), ncol = 16), val.idx)
+	for (i in 1:length(val.idx)) {
+		end.i <- val.idx[i]
+		start.i <- firstof(year(end.i) - 2)
+		val.inc.d <- val.inc.d_[ymd(val.inc.d_[, 1]) <= end.i, -1]
 		if (NROW(val.inc.d) == 0) next
-		val.bal.d <- val.bal.d_[as.Date(as.character(val.bal.d_[, 1]), "%Y%m%d") 
-			<= end.i, -1]
+		val.bal.d <- val.bal.d_[ymd(val.bal.d_[, 1]) <= end.i, -1]
 		if (NROW(val.bal.d) == 0) next
-		val.cf.d <- val.cf.d_[as.Date(as.character(val.cf.d_[, 1]), "%Y%m%d") 
-			<= end.i, -1]
+		val.cf.d <- val.cf.d_[ymd(val.cf.d_[, 1]) <= end.i, -1]
 		if (NROW(val.cf.d) == 0) next
 		val.inc.d0 <- xts(val.inc.d[val.inc.d["REPORTTYPE"] == 3, -1:-3], 
 			as.yearqtr(paste0(t(val.inc.d[val.inc.d["REPORTTYPE"] == 3, "REPORTYEAR"]), 
@@ -127,16 +129,16 @@ source(".SupFun.R")
 		"EP_LYR", "EP_TTM", "EP_Fwd12M", "EP_FY0", "EP_FY1", "SP_TTM",
 		"CashFlowYield_LYR", "CashFlowYield_FY0", "CashFlowYield_TTM", 
 		"FreeCashFlowYield_TTM", "BP_LR", "BP_FY0_Median", "Sales2EV")
-	val
+	.fill.na(val)
 }
 
 # Calculate Growth Factors
 .calcGrowth <- function (symbol, channel, end) {
 	if (missing(end)) {
-		end <- Sys.Date()
+		end <- rollback(today())
 	}
 	else {
-		end <- as.Date(as.character(end), "%Y%m%d")
+		end <- ymd(end)
 	}
 	gro.inc.q <- paste0("SELECT DECLAREDATE, REPORTYEAR, REPORTDATETYPE, 
 		REPORTTYPE, PERPROFIT, NETPROFIT, BIZINCO FROM TQ_FIN_PROINCSTATEMENTNEW 
@@ -155,12 +157,18 @@ source(".SupFun.R")
 	gro.dt.q <- paste0("SELECT TRADEDATE FROM TQ_SK_DQUOTEINDIC 
 		WHERE SYMBOL = '", as.character(symbol), "' AND TRADEDATE <= '", 
 		format(end, "%Y%m%d"), "' ORDER BY TRADEDATE")
-	gro.dt.d <- as.Date(as.character(dbGetQuery(channel, gro.dt.q)[, 1]), "%Y%m%d")
-	end.ep <- endpoints(gro.dt.d)
-	gro <- xts(matrix(, nrow = length(end.ep) - 1, ncol = 12), gro.dt.d[end.ep])
-	for (i in 1:(length(end.ep) - 1)) {
-		gro.inc.d <- gro.inc.d_[as.Date(as.character(gro.inc.d_[, 1]), "%Y%m%d") 
-			<= gro.dt.d[end.ep[i + 1]], -1]
+	gro.dt.d <- ymd(dbGetQuery(channel, gro.dt.q)[, 1])
+	gro.ep <- endpoints(gro.dt.d)
+	gro.idx <- last.day(gro.dt.d[gro.ep])
+	gro.idx <- gro.idx[gro.idx >= START]
+	gro <- xts(matrix(, nrow = length(gro.idx), ncol = 12), gro.idx)
+	for (i in 1:length(gro.idx)) {
+		end.i <- gro.idx[i]
+		start.i <- firstof(year(end.i) - 2)
+		gro.inc.d <- gro.inc.d_[ymd(gro.inc.d_[, 1]) <= end.i, -1]
+		if (NROW(gro.inc.d) == 0) next
+		gro.bal.d <- gro.bal.d_[ymd(gro.bal.d_[, 1]) <= end.i, -1]
+		if (NROW(gro.bal.d) == 0) next
 		gro.inc.d0 <- xts(gro.inc.d[gro.inc.d["REPORTTYPE"] == 3, -1:-3], 
 			as.yearqtr(paste0(t(gro.inc.d[gro.inc.d["REPORTTYPE"] == 3, "REPORTYEAR"]), 
 			"-", t(gro.inc.d[gro.inc.d["REPORTTYPE"] == 3, "REPORTDATETYPE"]))))
@@ -169,8 +177,6 @@ source(".SupFun.R")
 			"-", t(gro.inc.d[gro.inc.d["REPORTTYPE"] == 1, "REPORTDATETYPE"]))))
 		gro.inc.d <- merge(gro.inc.d, xts(, index(gro.inc.d0)))
 		gro.inc.d[index(gro.inc.d0), ] <- gro.inc.d0
-		gro.bal.d <- gro.bal.d_[as.Date(as.character(gro.bal.d_[, 1]), "%Y%m%d") 
-			<= gro.dt.d[end.ep[i + 1]], -1]
 		gro.bal.d0 <- xts(gro.bal.d[gro.bal.d["REPORTTYPE"] == 3, -1:-3], 
 			as.yearqtr(paste0(t(gro.bal.d[gro.bal.d["REPORTTYPE"] == 3, "REPORTYEAR"]), 
 			"-", t(gro.bal.d[gro.bal.d["REPORTTYPE"] == 3, "REPORTDATETYPE"]))))
@@ -180,44 +186,43 @@ source(".SupFun.R")
 		gro.bal.d <- merge(gro.bal.d, xts(, index(gro.bal.d0)))
 		gro.bal.d[index(gro.bal.d0), ] <- gro.bal.d0
 		names(gro.bal.d) <- "TOTASSET"
-		gro.d <- merge(gro.inc.d, gro.bal.d)
-		gro.d <- .report.na.fill(gro.d, seasonal = c(rep(TRUE, 3), FALSE))
-		gro.d.us <- .report.unseasonal(gro.d, seasonal = c(rep(TRUE, 3), FALSE))
-		gro[i, 1] <- last(gro.d.us)[, "PERPROFIT"][[1]] / 
-			gro.d.us[index(last(gro.d.us)) - 1, "PERPROFIT"][[1]] - 1
-		gro[i, 2] <- last(gro.d.us)[, "NETPROFIT"][[1]] / 
-			gro.d.us[index(last(gro.d.us)) - 1, "NETPROFIT"][[1]] - 1
-		gro[i, 3] <- last(gro.d.us)[, "BIZINCO"][[1]] / 
-			gro.d.us[index(last(gro.d.us)) - 1, "BIZINCO"][[1]] - 1
-		gro[i, 4] <- ifelse((index(last(gro.d)) - 5) < index(gro.d[1]), 
-			NA, last(gro.d)[, "NETPROFIT"][[1]] / 
-			gro.d[index(last(gro.d)) - 5, "NETPROFIT"][[1]] - 1)
-		gro[i, 5] <- ifelse((index(last(gro.d)) - 5) < index(gro.d[1]), 
-			NA, last(gro.d)[, "BIZINCO"][[1]] / 
-			gro.d[index(last(gro.d)) - 5, "BIZINCO"][[1]] - 1)
-		gro[i, 6] <- last(gro.d)[, "NETPROFIT"][[1]] / 
-			gro.d[index(last(gro.d)) - 1, "NETPROFIT"][[1]] - 1
-		gro[i, 7] <- last(gro.d)[, "BIZINCO"][[1]] / 
-			gro.d[index(last(gro.d)) - 1, "BIZINCO"][[1]] - 1
+		gro.rep.d <- merge(gro.inc.d, gro.bal.d)
+		gro.rep.d <- .report.na.fill(gro.rep.d, seasonal = c(rep(TRUE, 3), FALSE))
+		gro.rep.us <- .report.unseasonal(gro.rep.d, seasonal = c(rep(TRUE, 3), FALSE))
+		gro.na <- (index(last(gro.rep.d)) - c(1, 5)) < index(gro.rep.d[1])
+		gro[i, 1] <- na.or.value(gro.na[1], last(gro.rep.us)[, "PERPROFIT"][[1]] / 
+			gro.rep.us[index(last(gro.rep.us)) - 1, "PERPROFIT"][[1]] - 1)
+		gro[i, 2] <- na.or.value(gro.na[1], last(gro.rep.us)[, "NETPROFIT"][[1]] / 
+			gro.rep.us[index(last(gro.rep.us)) - 1, "NETPROFIT"][[1]] - 1)
+		gro[i, 3] <- na.or.value(gro.na[1], last(gro.rep.us)[, "BIZINCO"][[1]] / 
+			gro.rep.us[index(last(gro.rep.us)) - 1, "BIZINCO"][[1]] - 1)
+		gro[i, 4] <- na.or.value(gro.na[2], last(gro.rep.d)[, "NETPROFIT"][[1]] / 
+			gro.rep.d[index(last(gro.rep.d)) - 5, "NETPROFIT"][[1]] - 1)
+		gro[i, 5] <- na.or.value(gro.na[2], last(gro.rep.d)[, "BIZINCO"][[1]] / 
+			gro.rep.d[index(last(gro.rep.d)) - 5, "BIZINCO"][[1]] - 1)
+		gro[i, 6] <- na.or.value(gro.na[1], last(gro.rep.d)[, "NETPROFIT"][[1]] / 
+			gro.rep.d[index(last(gro.rep.d)) - 1, "NETPROFIT"][[1]] - 1)
+		gro[i, 7] <- na.or.value(gro.na[1], last(gro.rep.d)[, "BIZINCO"][[1]] / 
+			gro.rep.d[index(last(gro.rep.d)) - 1, "BIZINCO"][[1]] - 1)
 		gro[i, 8] <- NA
 		gro[i, 9] <- NA
 		gro[i, 10] <- NA
 		gro[i, 11] <- NA
-		gro[i, 12] <- last(gro.d)[, "TOTASSET"][[1]] / 
-			gro.d[index(last(gro.d)) - 1, "TOTASSET"][[1]] - 1
+		gro[i, 12] <- na.or.value(gro.na[1], last(gro.rep.d)[, "TOTASSET"][[1]] / 
+			gro.rep.d[index(last(gro.rep.d)) - 1, "TOTASSET"][[1]] - 1)
 	}
 	colnames(gro) <- c("SaleEarnings_SQ_YoY", "Earnings_SQ_YoY", "Sales_SQ_YoY", 
 		"Earnings_LTG", "Sales_LTG", "Earnings_STG", "Sales_STG", "Earnings_LFG", 
 		"Sales_LFG", "Earnings_SFG", "Sales_SFG", "Asset_STG")
-	gro
+	.fill.na(gro)
 }
 # Calculate Quality Factors
 .calcQuality <- function (symbol, channel, end) {
 	if (missing(end)) {
-		end <- Sys.Date()
+		end <- rollback(today())
 	}
 	else {
-		end <- as.Date(as.character(end), "%Y%m%d")
+		end <- ymd(end)
 	}
 	qua.inc.q <- paste0("SELECT DECLAREDATE, REPORTYEAR, REPORTDATETYPE, 
 		REPORTTYPE, PARENETP, BIZINCO, BIZCOST, SALESEXPE FROM TQ_FIN_PROINCSTATEMENTNEW 
@@ -234,22 +239,20 @@ source(".SupFun.R")
 		AND REPORTTYPE IN ('1', '3') AND DECLAREDATE <= '", format(end, "%Y%m%d"), 
 		"' ORDER BY DECLAREDATE")
 	qua.bal.d_ <- dbGetQuery(channel, qua.bal.q)
-	qua.p.q <- paste0("SELECT TRADEDATE, LCLOSE FROM TQ_QT_SKDAILYPRICE 
-		WHERE SECODE = (SELECT SECODE FROM TQ_OA_STCODE 
-			WHERE SYMBOL = '", as.character(symbol), "' AND SETYPE = '101') 
-		AND TRADEDATE <= '", format(end, "%Y%m%d"), "' ORDER BY TRADEDATE")
-	qua.p.d_ <- dbGetQuery(channel, qua.p.q)
-	qua.p.d_ <- xts(qua.p.d_[, -1], as.Date(as.character(qua.p.d_[, 1]), "%Y%m%d"))
-	end.ep <- endpoints(qua.p.d_)
-	qua <- xts(matrix(, nrow = length(end.ep) - 1, ncol = 8), index(qua.p.d_)[end.ep])
-	for (i in 1:(length(end.ep) - 1)) {
-		end.i <- index(qua.p.d_)[end.ep[i + 1]]
-		start.i <- firstof(as.numeric(strtrim(format(end.i, "%Y%m%d"), 4)) - 2)
-		qua.inc.d <- qua.inc.d_[as.Date(as.character(qua.inc.d_[, 1]), "%Y%m%d") 
-			<= end.i, -1]
+	qua.dt.q <- paste0("SELECT TRADEDATE FROM TQ_SK_DQUOTEINDIC 
+		WHERE SYMBOL = '", as.character(symbol), "' AND TRADEDATE <= '", 
+		format(end, "%Y%m%d"), "' ORDER BY TRADEDATE")
+	qua.dt.d <- ymd(dbGetQuery(channel, qua.dt.q)[, 1])
+	qua.ep <- endpoints(qua.dt.d)
+	qua.idx <- last.day(qua.dt.d[qua.ep])
+	qua.idx <- qua.idx[qua.idx >= START]
+	qua <- xts(matrix(, nrow = length(qua.idx), ncol = 8), qua.idx)
+	for (i in 1:length(qua.idx)) {
+		end.i <- qua.idx[i]
+		start.i <- firstof(year(end.i) - 2)
+		qua.inc.d <- qua.inc.d_[ymd(qua.inc.d_[, 1]) <= end.i, -1]
 		if (NROW(qua.inc.d) == 0) next
-		qua.bal.d <- qua.bal.d_[as.Date(as.character(qua.bal.d_[, 1]), "%Y%m%d") 
-			<= end.i, -1]
+		qua.bal.d <- qua.bal.d_[ymd(qua.bal.d_[, 1]) <= end.i, -1]
 		if (NROW(qua.bal.d) == 0) next
 		qua.inc.d0 <- xts(qua.inc.d[qua.inc.d["REPORTTYPE"] == 3, -1:-3], 
 			as.yearqtr(paste0(t(qua.inc.d[qua.inc.d["REPORTTYPE"] == 3, "REPORTYEAR"]), 
@@ -286,68 +289,75 @@ source(".SupFun.R")
 	}
 	colnames(qua) <- c("ROE_LR", "ROA_LR", "GrossMargin_TTM", "LTD2Equity_LR", 
 		"BerryRatio", "AssetTurnover", "CurrentRatio", "EPS_FY0_Dispersion")
-	qua
+	.fill.na(qua)
 }
 
 # Calculate Momentum Factors
 .calcMomentum <- function (symbol, channel, end) {
 	if (missing(end)) {
-		end <- Sys.Date()
+		end <- rollback(today())
 	}
 	else {
-		end <- as.Date(as.character(end), "%Y%m%d")
+		end <- ymd(end)
 	}
-	mom.q <- paste0("SELECT TRADEDATE, TCLOSEAF 
+	mom.p.q <- paste0("SELECT TRADEDATE, TCLOSEAF 
 		FROM TQ_SK_DQUOTEINDIC WHERE SYMBOL = '", as.character(symbol), "' 
 		AND TRADEDATE <= '", format(end, "%Y%m%d"), "' ORDER BY TRADEDATE")
-	mom.d <- dbGetQuery(channel, mom.q)
-	mom.d <- xts(mom.d[, -1], as.Date(as.character(mom.d[, 1]), "%Y%m%d"))
-	end.ep <- endpoints(mom.d)
-	mom <- mom.d[end.ep] / lag(mom.d[end.ep], 1) - 1
-	mom <- merge(mom, mom.d[end.ep] / lag(mom.d[end.ep], 3) - 1)
-	mom <- merge(mom, mom.d[end.ep] / lag(mom.d[end.ep], 12) - 1)
+	mom.p.d <- dbGetQuery(channel, mom.p.q)
+	mom.p.d <- xts(mom.p.d[, -1], ymd(mom.p.d[, 1]))
+	mom.ep <- endpoints(mom.p.d)
+	# If trading days are less then 1, 3, 12, or 60 months, momentum is NAs.
+	mom.na <- (length(mom.ep) < c(3, 5, 14, 62))
+	mom <- mom.p.d[mom.ep] / na.or.value(mom.na[1], lag(mom.p.d[mom.ep], 1)) - 1
+	mom <- merge(mom, mom.p.d[mom.ep] / na.or.value(mom.na[2], lag(mom.p.d[mom.ep], 3)) - 1)
+	mom <- merge(mom, mom.p.d[mom.ep] / na.or.value(mom.na[3], lag(mom.p.d[mom.ep], 12)) - 1)
 	mom <- merge(mom, mom[, 3] - mom[, 1])
-	mom <- merge(mom, mom.d[end.ep] / lag(mom.d[end.ep], 60) - 1)
+	mom <- merge(mom, mom.p.d[mom.ep] / na.or.value(mom.na[4], lag(mom.p.d[mom.ep], 60)) - 1)
 	colnames(mom) <- c("Momentum_1M", "Momentum_3M", "Momentum_12M", 
 		"Momentum_12M_1M", "Momentum_60M")
-	mom
+	index(mom) <- last.day(index(mom))
+	mom <- mom[paste0(START, "/"), ]
+	.fill.na(mom)
 }
 
 # Calculate Technical Factors
 .calcTech <- function (symbol, channel, end) {
 	if (missing(end)) {
-		end <- Sys.Date()
+		end <- rollback(today())
 	}
 	else {
-		end <- as.Date(as.character(end), "%Y%m%d")
+		end <- ymd(end)
 	}
-	tech.q <- paste0("SELECT TRADEDATE, EXTCLOSE, TCLOSE, TCLOSEAF, AMOUNT, VOL, MKTSHARE 
+	tech.p.q <- paste0("SELECT TRADEDATE, EXTCLOSE, TCLOSE, TCLOSEAF, AMOUNT, VOL, MKTSHARE 
 		FROM TQ_SK_DQUOTEINDIC WHERE SYMBOL = '", as.character(symbol), "' 
 		AND TRADEDATE <= '", format(end, "%Y%m%d"), "' ORDER BY TRADEDATE")
-	tech.d <- dbGetQuery(channel, tech.q)
-	tech.d <- xts(tech.d[, -1], as.Date(as.character(tech.d[, 1]), "%Y%m%d"))
-		tech.d.names <- names(tech.d)
-	tech.d <- cbind(tech.d, .EMA(tech.d[, "TCLOSEAF"], 75), .EMA(tech.d[, "TCLOSEAF"], 180))
-	names(tech.d) <- c(tech.d.names, "EMA75", "EMA180")
-	end.ep <- endpoints(tech.d)
-	tech.d[tech.d[, "TCLOSE"] == 0, "TCLOSE"] <- tech.d[tech.d[, "TCLOSE"] == 0, "EXTCLOSE"]
-	tech.d <- cbind(tech.d, tech.d[, "VOL"] / 10^4 / tech.d[, "MKTSHARE"], 
-		tech.d[, "TCLOSE"] / tech.d[, "EXTCLOSE"] - 1)
-	tech <- log(tech.d[end.ep, "TCLOSE"] * tech.d[end.ep, "MKTSHARE"] * 10^4)
-	tech <- merge(tech, apply.monthly(tech.d[, "AMOUNT"], mean, na.rm = TRUE))
-	tech <- merge(tech, apply.monthly(tech.d[, "VOL"], mean, na.rm = TRUE) / 
-		.roll.period.apply(tech.d[, "VOL"], end.ep, 12, mean, na.rm = TRUE))
-	tech <- merge(tech, apply.monthly(tech.d[, "VOL.1"], mean, na.rm = TRUE))
-	tech <- merge(tech, .roll.period.apply(tech.d[, "VOL.1"], end.ep, 3, mean, na.rm = TRUE))
+	tech.p.d <- dbGetQuery(channel, tech.p.q)
+	tech.p.d <- xts(tech.p.d[, -1], ymd(tech.p.d[, 1]))
+	tech.p.d.names <- names(tech.p.d)
+	tech.p.d <- cbind(tech.p.d, .EMA(tech.p.d[, "TCLOSEAF"], 75), .EMA(tech.p.d[, "TCLOSEAF"], 180))
+	names(tech.p.d) <- c(tech.p.d.names, "EMA75", "EMA180")
+	tech.ep <- endpoints(tech.p.d)
+	tech.na <- (length(tech.ep) < 3)
+	tech.p.d[tech.p.d[, "TCLOSE"] == 0, "TCLOSE"] <- tech.p.d[tech.p.d[, "TCLOSE"] == 0, "EXTCLOSE"]
+	tech.p.d <- cbind(tech.p.d, tech.p.d[, "VOL"] / 10^4 / tech.p.d[, "MKTSHARE"], 
+		tech.p.d[, "TCLOSE"] / tech.p.d[, "EXTCLOSE"] - 1)
+	tech <- log(tech.p.d[tech.ep, "TCLOSE"] * tech.p.d[tech.ep, "MKTSHARE"] * 10^4)
+	tech <- merge(tech, na.or.value(tech.na, apply.monthly(tech.p.d[, "AMOUNT"], mean, na.rm = TRUE)))
+	tech <- merge(tech, apply.monthly(tech.p.d[, "VOL"], mean, na.rm = TRUE) / 
+		.roll.period.apply(tech.p.d[, "VOL"], tech.ep, 12, mean, na.rm = TRUE))
+	tech <- merge(tech, na.or.value(tech.na, apply.monthly(tech.p.d[, "VOL.1"], mean, na.rm = TRUE)))
+	tech <- merge(tech, .roll.period.apply(tech.p.d[, "VOL.1"], tech.ep, 3, mean, na.rm = TRUE))
 	tech <- merge(tech, tech[, 4] / tech[, 5])
-	tech <- merge(tech, .roll.period.apply(tech.d[, "TCLOSE.1"], end.ep, 12, moments::skewness))
-	tech <- merge(tech, .roll.period.apply(tech.d, end.ep, 12, function (x) 
+	tech <- merge(tech, .roll.period.apply(tech.p.d[, "TCLOSE.1"], tech.ep, 12, moments::skewness))
+	tech <- merge(tech, .roll.period.apply(tech.p.d, tech.ep, 12, function (x) 
 		mean((x[, "TCLOSE"] - x[, "EXTCLOSE"]) / x[, "AMOUNT"], na.rm = TRUE)))
 	tech <- merge(tech, NA)
-	tech <- merge(tech, (tech.d[end.ep, "EMA75"] - tech.d[end.ep, "EMA180"]) / tech.d[end.ep, "EMA180"])
-	tech <- merge(tech, .roll.period.apply(tech.d[, "TCLOSE.1"], end.ep, 12, sd))
+	tech <- merge(tech, (tech.p.d[tech.ep, "EMA75"] - tech.p.d[tech.ep, "EMA180"]) / tech.p.d[tech.ep, "EMA180"])
+	tech <- merge(tech, .roll.period.apply(tech.p.d[, "TCLOSE.1"], tech.ep, 12, sd))
 	colnames(tech) <- c("LnFloatCap", "AmountAvg_1M", "NormalizedAbormalVolume", 
 		"TurnoverAvg_1M", "TurnoverAvg_3M", "TurnoverAvg_1M_3M", "TSKEW", "ILLIQ", 
 		"SmallTradeFlow", "MACrossover", "RealizedVolatility_1Y")
-	tech
+	index(tech) <- last.day(index(tech))
+	tech <- tech[paste0(START, "/"), ]
+	.fill.na(tech)
 }
