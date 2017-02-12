@@ -98,7 +98,7 @@ calcFactors_ <- function (symbol.list, channel, end) {
 	qua <- tryCatch(.calcQuality_(symbol, channel, end), error = function(e) {cat(format(Sys.time()), symbol.f, "Quality Calc Error!\n", file = "factorErrors.log", append = TRUE); matrix(ncol = 8)})
 	mom <- tryCatch(.calcMomentum_(symbol, channel, end), error = function(e) {cat(format(Sys.time()), symbol.f, "Momentem Calc Error!\n", file = "factorErrors.log", append = TRUE); matrix(ncol = 5)})
 	tech <- tryCatch(.calcTech_(symbol, channel, end), error = function(e) {cat(format(Sys.time()), symbol.f, "Tech Calc Error!\n", file = "factorErrors.log", append = TRUE); matrix(ncol = 11)})
-	fac <- merge(val, gro, qua, mom, tech)
+	fac <- merge.xts(val, gro, qua, mom, tech)
 	colnames(fac) <- c("DividendYield_FY0", "DividendYield_FY1", "Price2EPS_LYR", 
 		"EP_LYR", "EP_TTM", "EP_Fwd12M", "EP_FY0", "EP_FY1", "SP_TTM",
 		"CashFlowYield_LYR", "CashFlowYield_FY0", "CashFlowYield_TTM", 

@@ -276,14 +276,41 @@ fixCode <- function(code) {
 }
 
 # Get Stock Name
-getName <- function(code, channel) {
-	code <- sapply(code, strtrim, 6)
-	name <- dbGetQuery(channel, paste0("SELECT SYMBOL, SESNAME FROM TQ_OA_STCODE 
-		WHERE SYMBOL IN (", toString(paste0("'", code, "'")), ") AND SETYPE = '101' 
-		AND ENDDATE = 19000101"))
-	name <- matrix(name[, 2], dimnames = list(fixCode(name[, 1])))
-	name <- name[fixCode(code), ]
-#	matrix(name, dimnames = list(fixCode(code), "SESNAME"))
+getName <- function(symbol, channel, end = NULL) {
+	symbol <- sapply(symbol, strtrim, 6)
+	name <- dbGetQuery(channel, paste0("SELECT SYMBOL, SESNAME, BEGINDATE, ENDDATE 
+		FROM TQ_OA_STCODE WHERE SYMBOL IN (", 
+		toString(paste0("'", symbol, "'")), ") AND SETYPE = '101'"))
+	name.n <- name[name[, 4] == "19000101", ]
+	name.n <- matrix(name.n[, 2], dimnames = list(name.n[, 1]))
+	if (!is.null(end)) {
+		name[, 3] <- ymd(name[, 3])
+		name[, 4] <- ymd(name[, 4])
+		name.n2 <- name[(name[, 3] <= end) & (name[, 4] >= end), ]
+		name.n2 <- matrix(name.n2[, 2], dimnames = list(name.n2[, 1]))
+		name.n[rownames(name.n2), ] <- name.n2
+	}
+	rownames(name.n) <- fixCode(rownames(name.n))
+	name.n[fixCode(symbol), ]
+}
+
+# Get CompCode and SeCode (for Internal Use)
+.getCode <- function(symbol, channel, end = NULL) {
+	symbol <- sapply(symbol, strtrim, 6)
+	code <- dbGetQuery(channel, paste0("SELECT SYMBOL, COMPCODE, SECODE, 
+		BEGINDATE, ENDDATE FROM TQ_OA_STCODE WHERE SYMBOL IN (", 
+		toString(paste0("'", symbol, "'")), ") AND SETYPE = '101'"))
+	code.n <- code[code[, 5] == "19000101", ]
+	code.n <- data.frame(code.n[, 2:3], row.names = code.n[, 1])
+	if (!is.null(end)) {
+		code[, 4] <- ymd(code[, 4])
+		code[, 5] <- ymd(code[, 5])
+		code.n2 <- code[(code[, 4] <= end) & (code[, 5] >= end), ]
+		code.n2 <- data.frame(code.n2[, 2:3], row.names = code.n2[, 1])
+		code.n[rownames(code.n2), ] <- code.n2
+	}
+	row.names(code.n) <- fixCode(row.names(code.n))
+	code.n[fixCode(symbol), ]
 }
 
 # Get Index Components

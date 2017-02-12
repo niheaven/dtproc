@@ -32,31 +32,25 @@ source(".SupFun.R")
 	else {
 		end <- ymd(end)
 	}
+	code <- .getCode(symbol, channel, end)
 	val.inc.q <- paste0("SELECT DECLAREDATE, REPORTYEAR, REPORTDATETYPE, 
 		REPORTTYPE, DILUTEDEPS, PARENETP, BIZINCO FROM TQ_FIN_PROINCSTATEMENTNEW 
-		WHERE COMPCODE = (SELECT COMPCODE FROM TQ_OA_STCODE WHERE 
-		SYMBOL = '", as.character(symbol), "' AND SETYPE = '101') 
-		AND REPORTTYPE IN ('1', '3') AND DECLAREDATE <= '", format(end, "%Y%m%d"), 
-		"' ORDER BY DECLAREDATE")
+		WHERE COMPCODE = '", code[1], "' AND REPORTTYPE IN ('1', '3') 
+		AND DECLAREDATE <= '", format(end, "%Y%m%d"), "' ORDER BY DECLAREDATE")
 	val.inc.d_ <- dbGetQuery(channel, val.inc.q)
 	val.bal.q <- paste0("SELECT DECLAREDATE, REPORTYEAR, REPORTDATETYPE, 
 		REPORTTYPE, PARESHARRIGH, TOTALNONCLIAB, CURFDS FROM TQ_FIN_PROBALSHEETNEW 
-		WHERE COMPCODE = (SELECT COMPCODE FROM TQ_OA_STCODE WHERE 
-		SYMBOL = '", as.character(symbol), "' AND SETYPE = '101') 
-		AND REPORTTYPE IN ('1', '3') AND DECLAREDATE <= '", format(end, "%Y%m%d"), 
-		"' ORDER BY DECLAREDATE")
+		WHERE COMPCODE = '", code[1], "' AND REPORTTYPE IN ('1', '3') 
+		AND DECLAREDATE <= '", format(end, "%Y%m%d"), "' ORDER BY DECLAREDATE")
 	val.bal.d_ <- dbGetQuery(channel, val.bal.q)
 	val.cf.q <- paste0("SELECT DECLAREDATE, REPORTYEAR, REPORTDATETYPE, 
 		REPORTTYPE, MANANETR, ACQUASSETCASH FROM TQ_FIN_PROCFSTATEMENTNEW 
-		WHERE COMPCODE = (SELECT COMPCODE FROM TQ_OA_STCODE WHERE 
-		SYMBOL = '", as.character(symbol), "' AND SETYPE = '101') 
-		AND REPORTTYPE IN ('1', '3') AND DECLAREDATE <= '", format(end, "%Y%m%d"), 
-		"' ORDER BY DECLAREDATE")
+		WHERE COMPCODE = '", code[1], "' AND REPORTTYPE IN ('1', '3') 
+		AND DECLAREDATE <= '", format(end, "%Y%m%d"), "' ORDER BY DECLAREDATE")
 	val.cf.d_ <- dbGetQuery(channel, val.cf.q)
 	val.p.q <- paste0("SELECT TRADEDATE, LCLOSE, TCLOSE, TOTMKTCAP FROM TQ_QT_SKDAILYPRICE 
-		WHERE SECODE = (SELECT SECODE FROM TQ_OA_STCODE 
-			WHERE SYMBOL = '", as.character(symbol), "' AND SETYPE = '101') 
-		AND TRADEDATE <= '", format(end, "%Y%m%d"), "' ORDER BY TRADEDATE")
+		WHERE SECODE = '", code[2], "' AND TRADEDATE <= '", 
+		format(end, "%Y%m%d"), "' ORDER BY TRADEDATE")
 	val.p.d_ <- dbGetQuery(channel, val.p.q)
 	val.p.d_ <- xts(val.p.d_[, -1], ymd(val.p.d_[, 1]))
 	val.ep <- endpoints(val.p.d_)
@@ -140,19 +134,16 @@ source(".SupFun.R")
 	else {
 		end <- ymd(end)
 	}
+	code <- .getCode(symbol, channel, end)
 	gro.inc.q <- paste0("SELECT DECLAREDATE, REPORTYEAR, REPORTDATETYPE, 
 		REPORTTYPE, PERPROFIT, NETPROFIT, BIZINCO FROM TQ_FIN_PROINCSTATEMENTNEW 
-		WHERE COMPCODE = (SELECT COMPCODE FROM TQ_OA_STCODE WHERE 
-		SYMBOL = '", as.character(symbol), "' AND SETYPE = '101') 
-		AND REPORTTYPE IN ('1', '3') AND DECLAREDATE <= '", format(end, "%Y%m%d"), 
-		"'ORDER BY DECLAREDATE")
+		WHERE COMPCODE = '", code[1], "' AND REPORTTYPE IN ('1', '3') 
+		AND DECLAREDATE <= '", format(end, "%Y%m%d"), "' ORDER BY DECLAREDATE")
 	gro.inc.d_ <- dbGetQuery(channel, gro.inc.q)
 	gro.bal.q <- paste0("SELECT DECLAREDATE, REPORTYEAR, REPORTDATETYPE, 
 		REPORTTYPE, TOTASSET FROM TQ_FIN_PROBALSHEETNEW 
-		WHERE COMPCODE = (SELECT COMPCODE FROM TQ_OA_STCODE WHERE 
-		SYMBOL = '", as.character(symbol), "' AND SETYPE = '101') 
-		AND REPORTTYPE IN ('1', '3') AND DECLAREDATE <= '", format(end, "%Y%m%d"), 
-		"'ORDER BY DECLAREDATE")
+		WHERE COMPCODE = '", code[1], "' AND REPORTTYPE IN ('1', '3') 
+		AND DECLAREDATE <= '", format(end, "%Y%m%d"), "' ORDER BY DECLAREDATE")
 	gro.bal.d_ <- dbGetQuery(channel, gro.bal.q)
 	gro.dt.q <- paste0("SELECT TRADEDATE FROM TQ_SK_DQUOTEINDIC 
 		WHERE SYMBOL = '", as.character(symbol), "' AND TRADEDATE <= '", 
@@ -224,20 +215,17 @@ source(".SupFun.R")
 	else {
 		end <- ymd(end)
 	}
+	code <- .getCode(symbol, channel, end)
 	qua.inc.q <- paste0("SELECT DECLAREDATE, REPORTYEAR, REPORTDATETYPE, 
 		REPORTTYPE, PARENETP, BIZINCO, BIZCOST, SALESEXPE FROM TQ_FIN_PROINCSTATEMENTNEW 
-		WHERE COMPCODE = (SELECT COMPCODE FROM TQ_OA_STCODE WHERE 
-		SYMBOL = '", as.character(symbol), "' AND SETYPE = '101') 
-		AND REPORTTYPE IN ('1', '3') AND DECLAREDATE <= '", format(end, "%Y%m%d"), 
-		"' ORDER BY DECLAREDATE")
+		WHERE COMPCODE = '", code[1], "' AND REPORTTYPE IN ('1', '3') 
+		AND DECLAREDATE <= '", format(end, "%Y%m%d"), "' ORDER BY DECLAREDATE")
 	qua.inc.d_ <- dbGetQuery(channel, qua.inc.q)
 	qua.bal.q <- paste0("SELECT DECLAREDATE, REPORTYEAR, REPORTDATETYPE, 
 		REPORTTYPE, PARESHARRIGH, TOTASSET, TOTCURRASSET, 
 		TOTALCURRLIAB, TOTALNONCLIAB FROM TQ_FIN_PROBALSHEETNEW 
-		WHERE COMPCODE = (SELECT COMPCODE FROM TQ_OA_STCODE WHERE 
-		SYMBOL = '", as.character(symbol), "' AND SETYPE = '101') 
-		AND REPORTTYPE IN ('1', '3') AND DECLAREDATE <= '", format(end, "%Y%m%d"), 
-		"' ORDER BY DECLAREDATE")
+		WHERE COMPCODE = '", code[1], "' AND REPORTTYPE IN ('1', '3') 
+		AND DECLAREDATE <= '", format(end, "%Y%m%d"), "' ORDER BY DECLAREDATE")
 	qua.bal.d_ <- dbGetQuery(channel, qua.bal.q)
 	qua.dt.q <- paste0("SELECT TRADEDATE FROM TQ_SK_DQUOTEINDIC 
 		WHERE SYMBOL = '", as.character(symbol), "' AND TRADEDATE <= '", 
