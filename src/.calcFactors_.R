@@ -32,7 +32,7 @@ source(".SupFun.R")
 	start <- firstof(year(end) - 2)
 	code <- .getCode(symbol, channel, end)
 	val.inc.q <- paste0("SELECT DECLAREDATE, REPORTYEAR, REPORTDATETYPE, 
-		REPORTTYPE, DILUTEDEPS, PARENETP, BIZINCO FROM TQ_FIN_PROINCSTATEMENTNEW 
+		REPORTTYPE, BASICEPS, PARENETP, BIZINCO FROM TQ_FIN_PROINCSTATEMENTNEW 
 		WHERE COMPCODE = '", code[1], "' AND REPORTTYPE IN ('1', '3') 
 		AND DECLAREDATE <= '", format(end, "%Y%m%d"), "' AND DECLAREDATE > '", 
 		format(start, "%Y%m%d"), "'ORDER BY DECLAREDATE")
@@ -80,7 +80,7 @@ source(".SupFun.R")
 	val.rep.d <- val.rep.d[paste0(start, "/"), ]
 	val.rep.d <- .report.na.fill(val.rep.d, seasonal = c(rep(TRUE, 3), rep(FALSE, 3), rep(TRUE, 2)))
 	val.rep.ttm <- .report.calc.ttm(val.rep.d[, c("PARENETP", "BIZINCO", "MANANETR", "ACQUASSETCASH")])
-	val.rep.lyr <- .report.get.lyr(val.rep.d[, c("DILUTEDEPS", "PARENETP", "MANANETR")])
+	val.rep.lyr <- .report.get.lyr(val.rep.d[, c("BASICEPS", "PARENETP", "MANANETR")])
 	val.rep.lr <- last(val.rep.d[, c("PARESHARRIGH", "TOTALNONCLIAB", "CURFDS")])
 	val.p.q <- paste0("SELECT TRADEDATE, LCLOSE, TCLOSE, TOTMKTCAP FROM TQ_QT_SKDAILYPRICE 
 		WHERE SECODE = '", code[2], "' AND TRADEDATE <= '", format(end, "%Y%m%d"), 
@@ -93,7 +93,7 @@ source(".SupFun.R")
 	val <- vector()
 	val["DividendYield_FY0"] <- NA / val.p["TCLOSE"]
 	val["DividendYield_FY1"] <- NA / val.p["TCLOSE"]
-	val["Price2EPS_LYR"] <- val.p["TCLOSE"] / val.rep.lyr[, "DILUTEDEPS"]
+	val["Price2EPS_LYR"] <- val.p["TCLOSE"] / val.rep.lyr[, "BASICEPS"]
 	val["EP_LYR"] <- val.rep.lyr[, "PARENETP"] / val.p["TOTMKTCAP"]
 	val["EP_TTM"] <- val.rep.ttm["PARENETP"] / val.p["TOTMKTCAP"]
 	val["EP_Fwd12M"] <- NA / val.p["TOTMKTCAP"]

@@ -74,7 +74,7 @@ calcFactors_ <- function (symbol.list, channel, end) {
 	else {
 		symbol.list.f <- fixCode(symbol.list)
 	}
-	symbol.name <- getName(symbol.list, channel)
+	symbol.name <- getName(symbol.list, channel, end)
 	facs <- .calcFactors_(symbol.list[1], channel, end)
 	cat("(", 1, "/", NROW(symbol.list), ") ", symbol.list.f[1], " ", symbol.name[1], " is done.\n", sep = "")
 	for (i in 2:NROW(symbol.list)) {

@@ -34,7 +34,7 @@ source(".SupFun.R")
 	}
 	code <- .getCode(symbol, channel, end)
 	val.inc.q <- paste0("SELECT DECLAREDATE, REPORTYEAR, REPORTDATETYPE, 
-		REPORTTYPE, DILUTEDEPS, PARENETP, BIZINCO FROM TQ_FIN_PROINCSTATEMENTNEW 
+		REPORTTYPE, BASICEPS, PARENETP, BIZINCO FROM TQ_FIN_PROINCSTATEMENTNEW 
 		WHERE COMPCODE = '", code[1], "' AND REPORTTYPE IN ('1', '3') 
 		AND DECLAREDATE <= '", format(end, "%Y%m%d"), "' ORDER BY DECLAREDATE")
 	val.inc.d_ <- dbGetQuery(channel, val.inc.q)
@@ -94,7 +94,7 @@ source(".SupFun.R")
 		val.rep.d <- val.rep.d[paste0(start.i, "/"), ]
 		val.rep.d <- .report.na.fill(val.rep.d, seasonal = c(rep(TRUE, 3), rep(FALSE, 3), rep(TRUE, 2)))
 		val.rep.ttm <- .report.calc.ttm(val.rep.d[, c("PARENETP", "BIZINCO", "MANANETR", "ACQUASSETCASH")])
-		val.rep.lyr <- .report.get.lyr(val.rep.d[, c("DILUTEDEPS", "PARENETP", "MANANETR")])
+		val.rep.lyr <- .report.get.lyr(val.rep.d[, c("BASICEPS", "PARENETP", "MANANETR")])
 		val.rep.lr <- last(val.rep.d[, c("PARESHARRIGH", "TOTALNONCLIAB", "CURFDS")])
 		val.p.d <- val.p.d_[index(val.p.d_) <= end.i, ]
 		val.p <- vector()
@@ -102,7 +102,7 @@ source(".SupFun.R")
 		val.p["TOTMKTCAP"] <- last(val.p.d[, "TOTMKTCAP"]) * 10 ^ 4
 		val[i, 1] <- NA / val.p["TCLOSE"]
 		val[i, 2] <- NA / val.p["TCLOSE"]
-		val[i, 3] <- val.p["TCLOSE"] / val.rep.lyr[, "DILUTEDEPS"]
+		val[i, 3] <- val.p["TCLOSE"] / val.rep.lyr[, "BASICEPS"]
 		val[i, 4] <- val.rep.lyr[, "PARENETP"] / val.p["TOTMKTCAP"]
 		val[i, 5] <- val.rep.ttm["PARENETP"] / val.p["TOTMKTCAP"]
 		val[i, 6] <- NA / val.p["TOTMKTCAP"]
