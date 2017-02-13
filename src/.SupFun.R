@@ -276,12 +276,12 @@ fixCode <- function(code) {
 }
 
 # Get Stock Name
-getName <- function(symbol, channel, end) {
-	if (missing(end)) {
-		end <- rollback(today())
+getName <- function(symbol, channel, date) {
+	if (missing(date)) {
+		date <- rollback(today())
 	}
 	else {
-		end <- ymd(end)
+		date <- ymd(date)
 	}
 	symbol <- sapply(symbol, strtrim, 6)
 	name <- dbGetQuery(channel, paste0("SELECT SYMBOL, SESNAME, BEGINDATE, ENDDATE 
@@ -290,18 +290,18 @@ getName <- function(symbol, channel, end) {
 	name[name[, 4] == "19000101", 4] <- "20991231"
 	name[, 3] <- ymd(name[, 3])
 	name[, 4] <- ymd(name[, 4])
-	name <- name[(name[, 3] <= end) & (name[, 4] >= end), 1:2]
+	name <- name[(name[, 3] <= date) & (name[, 4] >= date), 1:2]
 	name <- data.frame(name[, 2], row.names = fixCode(name[, 1]))
 	as.character(name[fixCode(symbol), ])
 }
 
 # Get CompCode and SeCode (for Internal Use)
-.getCode <- function(symbol, channel, end) {
-	if (missing(end)) {
-		end <- rollback(today())
+.getCode <- function(symbol, channel, date) {
+	if (missing(date)) {
+		date <- rollback(today())
 	}
 	else {
-		end <- ymd(end)
+		date <- ymd(date)
 	}
 	symbol <- sapply(symbol, strtrim, 6)
 	code <- dbGetQuery(channel, paste0("SELECT SYMBOL, COMPCODE, SECODE, 
@@ -310,7 +310,7 @@ getName <- function(symbol, channel, end) {
 	code[code[, 5] == "19000101", 5] <- "20991231"
 	code[, 4] <- ymd(code[, 4])
 	code[, 5] <- ymd(code[, 5])
-	code <- code[(code[, 4] <= end) & (code[, 5] >= end), 1:3]
+	code <- code[(code[, 4] <= date) & (code[, 5] >= date), 1:3]
 	code <- data.frame(code[, 2:3], row.names = fixCode(code[, 1]))
 	code[fixCode(symbol), ]
 }

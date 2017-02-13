@@ -18,3 +18,32 @@
 #
 #   writeFactors: Write Stock Factors to Database
 
+# Global Variable
+TABLE.NAME <- "FactorsTest"
+
+# Load calcFactors
+source("calcFactors.R")
+
+# Calculate and Write Factors to Dababase
+cwFactors_ <- function (symbol.list, channel, end) {
+	if (nchar(symbol.list[1]) == 9) {
+		symbol.list.f <- symbol.list
+		symbol.list <- sapply(symbol.list, strtrim, 6)
+	}
+	else {
+		symbol.list.f <- fixCode(symbol.list)
+	}
+	symbol.name <- getName(symbol.list, channel, end)
+	facs <- calcFactors_(symbol.list, channel, end)
+	facs.df <- data.frame(Date = end, Symbol = symbol.list.f, facs)
+	if (dbWriteTable(channel, TABLE.NAME, facs.df, row.names = FALSE, append = TRUE))
+		cat(end, "All Factors is writen into database.\n", file = paste0("log/", end, ".log"), append = TRUE)
+	else
+		cat(end, "All Factors is writen into database.\n", file = paste0("log/", end, ".log"), append = TRUE)
+	}
+}
+
+# Write Factors for One Year Data
+.writeFactorsForOneYear <- function (factors, channel) {
+	tableName <- year(index(factors))
+}
