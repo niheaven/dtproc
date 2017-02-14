@@ -18,9 +18,6 @@
 #
 #   .calcFactors: Calculate Stock Factors (Implementation)
 
-# Global Variable
-START <- ymd("19941231")
-
 # Load Supplementary Functions
 source(".SupFun.R")
 
@@ -66,30 +63,9 @@ source(".SupFun.R")
 		if (NROW(val.bal.d) == 0) next
 		val.cf.d <- val.cf.d_[ymd(val.cf.d_[, 1]) <= end.i, -1]
 		if (NROW(val.cf.d) == 0) next
-		val.inc.d0 <- xts(val.inc.d[val.inc.d["REPORTTYPE"] == 3, -1:-3], 
-			as.yearqtr(paste0(t(val.inc.d[val.inc.d["REPORTTYPE"] == 3, "REPORTYEAR"]), 
-			"-", t(val.inc.d[val.inc.d["REPORTTYPE"] == 3, "REPORTDATETYPE"]))))
-		val.inc.d <- xts(val.inc.d[val.inc.d["REPORTTYPE"] == 1, -1:-3], 
-			as.yearqtr(paste0(t(val.inc.d[val.inc.d["REPORTTYPE"] == 1, "REPORTYEAR"]), 
-			"-", t(val.inc.d[val.inc.d["REPORTTYPE"] == 1, "REPORTDATETYPE"]))))
-		val.inc.d <- merge(val.inc.d, xts(, index(val.inc.d0)))
-		val.inc.d[index(val.inc.d0), ] <- val.inc.d0
-		val.bal.d0 <- xts(val.bal.d[val.bal.d["REPORTTYPE"] == 3, -1:-3], 
-			as.yearqtr(paste0(t(val.bal.d[val.bal.d["REPORTTYPE"] == 3, "REPORTYEAR"]), 
-			"-", t(val.bal.d[val.bal.d["REPORTTYPE"] == 3, "REPORTDATETYPE"]))))
-		val.bal.d <- xts(val.bal.d[val.bal.d["REPORTTYPE"] == 1, -1:-3], 
-			as.yearqtr(paste0(t(val.bal.d[val.bal.d["REPORTTYPE"] == 1, "REPORTYEAR"]), 
-			"-", t(val.bal.d[val.bal.d["REPORTTYPE"] == 1, "REPORTDATETYPE"]))))
-		val.bal.d <- merge(val.bal.d, xts(, index(val.bal.d0)))
-		val.bal.d[index(val.bal.d0), ] <- val.bal.d0
-		val.cf.d0 <- xts(val.cf.d[val.cf.d["REPORTTYPE"] == 3, -1:-3], 
-			as.yearqtr(paste0(t(val.cf.d[val.cf.d["REPORTTYPE"] == 3, "REPORTYEAR"]), 
-			"-", t(val.cf.d[val.cf.d["REPORTTYPE"] == 3, "REPORTDATETYPE"]))))
-		val.cf.d <- xts(val.cf.d[val.cf.d["REPORTTYPE"] == 1, -1:-3], 
-			as.yearqtr(paste0(t(val.cf.d[val.cf.d["REPORTTYPE"] == 1, "REPORTYEAR"]), 
-			"-", t(val.cf.d[val.cf.d["REPORTTYPE"] == 1, "REPORTDATETYPE"]))))
-		val.cf.d <- merge(val.cf.d, xts(, index(val.cf.d0)))
-		val.cf.d[index(val.cf.d0), ] <- val.cf.d0
+		val.inc.d <- .newest.report(val.inc.d)
+		val.bal.d <- .newest.report(val.bal.d)
+		val.cf.d <- .newest.report(val.cf.d)
 		val.rep.d <- merge(val.inc.d, val.bal.d, val.cf.d)
 		val.rep.d <- val.rep.d[paste0(start.i, "/"), ]
 		val.rep.d <- .report.na.fill(val.rep.d, seasonal = c(rep(TRUE, 3), rep(FALSE, 3), rep(TRUE, 2)))
@@ -160,46 +136,32 @@ source(".SupFun.R")
 		if (NROW(gro.inc.d) == 0) next
 		gro.bal.d <- gro.bal.d_[ymd(gro.bal.d_[, 1]) <= end.i, -1]
 		if (NROW(gro.bal.d) == 0) next
-		gro.inc.d0 <- xts(gro.inc.d[gro.inc.d["REPORTTYPE"] == 3, -1:-3], 
-			as.yearqtr(paste0(t(gro.inc.d[gro.inc.d["REPORTTYPE"] == 3, "REPORTYEAR"]), 
-			"-", t(gro.inc.d[gro.inc.d["REPORTTYPE"] == 3, "REPORTDATETYPE"]))))
-		gro.inc.d <- xts(gro.inc.d[gro.inc.d["REPORTTYPE"] == 1, -1:-3], 
-			as.yearqtr(paste0(t(gro.inc.d[gro.inc.d["REPORTTYPE"] == 1, "REPORTYEAR"]), 
-			"-", t(gro.inc.d[gro.inc.d["REPORTTYPE"] == 1, "REPORTDATETYPE"]))))
-		gro.inc.d <- merge(gro.inc.d, xts(, index(gro.inc.d0)))
-		gro.inc.d[index(gro.inc.d0), ] <- gro.inc.d0
-		gro.bal.d0 <- xts(gro.bal.d[gro.bal.d["REPORTTYPE"] == 3, -1:-3], 
-			as.yearqtr(paste0(t(gro.bal.d[gro.bal.d["REPORTTYPE"] == 3, "REPORTYEAR"]), 
-			"-", t(gro.bal.d[gro.bal.d["REPORTTYPE"] == 3, "REPORTDATETYPE"]))))
-		gro.bal.d <- xts(gro.bal.d[gro.bal.d["REPORTTYPE"] == 1, -1:-3], 
-			as.yearqtr(paste0(t(gro.bal.d[gro.bal.d["REPORTTYPE"] == 1, "REPORTYEAR"]), 
-			"-", t(gro.bal.d[gro.bal.d["REPORTTYPE"] == 1, "REPORTDATETYPE"]))))
-		gro.bal.d <- merge(gro.bal.d, xts(, index(gro.bal.d0)))
-		gro.bal.d[index(gro.bal.d0), ] <- gro.bal.d0
+		gro.inc.d <- .newest.report(gro.inc.d)
+		gro.bal.d <- .newest.report(gro.bal.d)
 		names(gro.bal.d) <- "TOTASSET"
 		gro.rep.d <- merge(gro.inc.d, gro.bal.d)
 		gro.rep.d <- .report.na.fill(gro.rep.d, seasonal = c(rep(TRUE, 3), FALSE))
 		gro.rep.us <- .report.unseasonal(gro.rep.d, seasonal = c(rep(TRUE, 3), FALSE))
 		gro.na <- (index(last(gro.rep.d)) - c(1, 5)) < index(gro.rep.d[1])
-		gro[i, 1] <- na.or.value(gro.na[1], last(gro.rep.us)[, "PERPROFIT"][[1]] / 
+		gro[i, 1] <- .na.or.value(gro.na[1], last(gro.rep.us)[, "PERPROFIT"][[1]] / 
 			gro.rep.us[index(last(gro.rep.us)) - 1, "PERPROFIT"][[1]] - 1)
-		gro[i, 2] <- na.or.value(gro.na[1], last(gro.rep.us)[, "NETPROFIT"][[1]] / 
+		gro[i, 2] <- .na.or.value(gro.na[1], last(gro.rep.us)[, "NETPROFIT"][[1]] / 
 			gro.rep.us[index(last(gro.rep.us)) - 1, "NETPROFIT"][[1]] - 1)
-		gro[i, 3] <- na.or.value(gro.na[1], last(gro.rep.us)[, "BIZINCO"][[1]] / 
+		gro[i, 3] <- .na.or.value(gro.na[1], last(gro.rep.us)[, "BIZINCO"][[1]] / 
 			gro.rep.us[index(last(gro.rep.us)) - 1, "BIZINCO"][[1]] - 1)
-		gro[i, 4] <- na.or.value(gro.na[2], last(gro.rep.d)[, "NETPROFIT"][[1]] / 
+		gro[i, 4] <- .na.or.value(gro.na[2], last(gro.rep.d)[, "NETPROFIT"][[1]] / 
 			gro.rep.d[index(last(gro.rep.d)) - 5, "NETPROFIT"][[1]] - 1)
-		gro[i, 5] <- na.or.value(gro.na[2], last(gro.rep.d)[, "BIZINCO"][[1]] / 
+		gro[i, 5] <- .na.or.value(gro.na[2], last(gro.rep.d)[, "BIZINCO"][[1]] / 
 			gro.rep.d[index(last(gro.rep.d)) - 5, "BIZINCO"][[1]] - 1)
-		gro[i, 6] <- na.or.value(gro.na[1], last(gro.rep.d)[, "NETPROFIT"][[1]] / 
+		gro[i, 6] <- .na.or.value(gro.na[1], last(gro.rep.d)[, "NETPROFIT"][[1]] / 
 			gro.rep.d[index(last(gro.rep.d)) - 1, "NETPROFIT"][[1]] - 1)
-		gro[i, 7] <- na.or.value(gro.na[1], last(gro.rep.d)[, "BIZINCO"][[1]] / 
+		gro[i, 7] <- .na.or.value(gro.na[1], last(gro.rep.d)[, "BIZINCO"][[1]] / 
 			gro.rep.d[index(last(gro.rep.d)) - 1, "BIZINCO"][[1]] - 1)
 		gro[i, 8] <- NA
 		gro[i, 9] <- NA
 		gro[i, 10] <- NA
 		gro[i, 11] <- NA
-		gro[i, 12] <- na.or.value(gro.na[1], last(gro.rep.d)[, "TOTASSET"][[1]] / 
+		gro[i, 12] <- .na.or.value(gro.na[1], last(gro.rep.d)[, "TOTASSET"][[1]] / 
 			gro.rep.d[index(last(gro.rep.d)) - 1, "TOTASSET"][[1]] - 1)
 	}
 	colnames(gro) <- c("SaleEarnings_SQ_YoY", "Earnings_SQ_YoY", "Sales_SQ_YoY", 
@@ -242,22 +204,8 @@ source(".SupFun.R")
 		if (NROW(qua.inc.d) == 0) next
 		qua.bal.d <- qua.bal.d_[ymd(qua.bal.d_[, 1]) <= end.i, -1]
 		if (NROW(qua.bal.d) == 0) next
-		qua.inc.d0 <- xts(qua.inc.d[qua.inc.d["REPORTTYPE"] == 3, -1:-3], 
-			as.yearqtr(paste0(t(qua.inc.d[qua.inc.d["REPORTTYPE"] == 3, "REPORTYEAR"]), 
-			"-", t(qua.inc.d[qua.inc.d["REPORTTYPE"] == 3, "REPORTDATETYPE"]))))
-		qua.inc.d <- xts(qua.inc.d[qua.inc.d["REPORTTYPE"] == 1, -1:-3], 
-			as.yearqtr(paste0(t(qua.inc.d[qua.inc.d["REPORTTYPE"] == 1, "REPORTYEAR"]), 
-			"-", t(qua.inc.d[qua.inc.d["REPORTTYPE"] == 1, "REPORTDATETYPE"]))))
-		qua.inc.d <- merge(qua.inc.d, xts(, index(qua.inc.d0)))
-		qua.inc.d[index(qua.inc.d0), ] <- qua.inc.d0
-		qua.bal.d0 <- xts(qua.bal.d[qua.bal.d["REPORTTYPE"] == 3, -1:-3], 
-			as.yearqtr(paste0(t(qua.bal.d[qua.bal.d["REPORTTYPE"] == 3, "REPORTYEAR"]), 
-			"-", t(qua.bal.d[qua.bal.d["REPORTTYPE"] == 3, "REPORTDATETYPE"]))))
-		qua.bal.d <- xts(qua.bal.d[qua.bal.d["REPORTTYPE"] == 1, -1:-3], 
-			as.yearqtr(paste0(t(qua.bal.d[qua.bal.d["REPORTTYPE"] == 1, "REPORTYEAR"]), 
-			"-", t(qua.bal.d[qua.bal.d["REPORTTYPE"] == 1, "REPORTDATETYPE"]))))
-		qua.bal.d <- merge(qua.bal.d, xts(, index(qua.bal.d0)))
-		qua.bal.d[index(qua.bal.d0), ] <- qua.bal.d0
+		qua.inc.d <- .newest.report(qua.inc.d)
+		qua.bal.d <- .newest.report(qua.bal.d)
 		qua.rep.d <- merge(qua.inc.d, qua.bal.d)
 		qua.rep.d <- qua.rep.d[paste0(start.i, "/"), ]
 		qua.rep.d <- .report.na.fill(qua.rep.d, seasonal = c(rep(TRUE, 4), rep(FALSE, 5)))
@@ -296,11 +244,11 @@ source(".SupFun.R")
 	mom.ep <- endpoints(mom.p.d)
 	# If trading days are less then 1, 3, 12, or 60 months, momentum is NAs.
 	mom.na <- (length(mom.ep) < c(3, 5, 14, 62))
-	mom <- mom.p.d[mom.ep] / na.or.value(mom.na[1], lag(mom.p.d[mom.ep], 1)) - 1
-	mom <- merge(mom, mom.p.d[mom.ep] / na.or.value(mom.na[2], lag(mom.p.d[mom.ep], 3)) - 1)
-	mom <- merge(mom, mom.p.d[mom.ep] / na.or.value(mom.na[3], lag(mom.p.d[mom.ep], 12)) - 1)
+	mom <- mom.p.d[mom.ep] / .na.or.value(mom.na[1], lag(mom.p.d[mom.ep], 1)) - 1
+	mom <- merge(mom, mom.p.d[mom.ep] / .na.or.value(mom.na[2], lag(mom.p.d[mom.ep], 3)) - 1)
+	mom <- merge(mom, mom.p.d[mom.ep] / .na.or.value(mom.na[3], lag(mom.p.d[mom.ep], 12)) - 1)
 	mom <- merge(mom, mom[, 3] - mom[, 1])
-	mom <- merge(mom, mom.p.d[mom.ep] / na.or.value(mom.na[4], lag(mom.p.d[mom.ep], 60)) - 1)
+	mom <- merge(mom, mom.p.d[mom.ep] / .na.or.value(mom.na[4], lag(mom.p.d[mom.ep], 60)) - 1)
 	colnames(mom) <- c("Momentum_1M", "Momentum_3M", "Momentum_12M", 
 		"Momentum_12M_1M", "Momentum_60M")
 	index(mom) <- last.day(index(mom))
@@ -330,10 +278,10 @@ source(".SupFun.R")
 	tech.p.d <- cbind(tech.p.d, tech.p.d[, "VOL"] / 10^4 / tech.p.d[, "MKTSHARE"], 
 		tech.p.d[, "TCLOSE"] / tech.p.d[, "EXTCLOSE"] - 1)
 	tech <- log(tech.p.d[tech.ep, "TCLOSE"] * tech.p.d[tech.ep, "MKTSHARE"] * 10^4)
-	tech <- merge(tech, na.or.value(tech.na, apply.monthly(tech.p.d[, "AMOUNT"], mean, na.rm = TRUE)))
+	tech <- merge(tech, .na.or.value(tech.na, apply.monthly(tech.p.d[, "AMOUNT"], mean, na.rm = TRUE)))
 	tech <- merge(tech, apply.monthly(tech.p.d[, "VOL"], mean, na.rm = TRUE) / 
 		.roll.period.apply(tech.p.d[, "VOL"], tech.ep, 12, mean, na.rm = TRUE))
-	tech <- merge(tech, na.or.value(tech.na, apply.monthly(tech.p.d[, "VOL.1"], mean, na.rm = TRUE)))
+	tech <- merge(tech, .na.or.value(tech.na, apply.monthly(tech.p.d[, "VOL.1"], mean, na.rm = TRUE)))
 	tech <- merge(tech, .roll.period.apply(tech.p.d[, "VOL.1"], tech.ep, 3, mean, na.rm = TRUE))
 	tech <- merge(tech, tech[, 4] / tech[, 5])
 	tech <- merge(tech, .roll.period.apply(tech.p.d[, "TCLOSE.1"], tech.ep, 12, moments::skewness))

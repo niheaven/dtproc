@@ -49,7 +49,14 @@ source(".calcFactors_.R")
 #	
 #}
 
+# Calculate factors for one stock, multiple periods
 .calcFactors <- function (symbol, channel, end) {
+	if (missing(end)) {
+		end <- rollback(today())
+	}
+	else {
+		end <- ymd(end)
+	}
 	if (nchar(symbol) == 9) {
 		symbol.f <- symbol
 		symbol <- strtrim(symbol, 6)
@@ -57,16 +64,23 @@ source(".calcFactors_.R")
 	else {
 		symbol.f <- fixCode(symbol)
 	}
-	val <- tryCatch(.calcValue(symbol, channel, end), error = function(e) {cat(format(ymd(end)), symbol.f, "Value Factors Calc Error!", format(Sys.time()), "\n\t", e$message, "\n", file = "factorErrors.log", append = TRUE); matrix(ncol = 16)})
-	gro <- tryCatch(.calcGrowth(symbol, channel, end), error = function(e) {cat(format(ymd(end)), symbol.f, "Growth Factors Calc Error!", format(Sys.time()), "\n\t", e$message, "\n", file = "factorErrors.log", append = TRUE); matrix(ncol = 12)})
-	qua <- tryCatch(.calcQuality(symbol, channel, end), error = function(e) {cat(format(ymd(end)), symbol.f, "Quality Factors Calc Error!", format(Sys.time()), "\n\t", e$message, "\n", file = "factorErrors.log", append = TRUE); matrix(ncol = 8)})
-	mom <- tryCatch(.calcMomentum(symbol, channel, end), error = function(e) {cat(format(ymd(end)), symbol.f, "Momentum Factors Calc Error!", format(Sys.time()), "\n\t", e$message, "\n", file = "factorErrors.log", append = TRUE); matrix(ncol = 5)})
-	tech <- tryCatch(.calcTech(symbol, channel, end), error = function(e) {cat(format(ymd(end)), symbol.f, "Tech Factors Calc Error!", format(Sys.time()), "\n\t", e$message, "\n", file = "factorErrors.log", append = TRUE); matrix(ncol = 11)})
+	val <- tryCatch(.calcValue(symbol, channel, end), error = function(e) {cat(format(end), symbol.f, "Value Factors Calc Error!", format(Sys.time()), "\n\t", e$message, "\n", file = "log/factorErrors.log", append = TRUE); matrix(ncol = 16)})
+	gro <- tryCatch(.calcGrowth(symbol, channel, end), error = function(e) {cat(format(end), symbol.f, "Growth Factors Calc Error!", format(Sys.time()), "\n\t", e$message, "\n", file = "log/factorErrors.log", append = TRUE); matrix(ncol = 12)})
+	qua <- tryCatch(.calcQuality(symbol, channel, end), error = function(e) {cat(format(end), symbol.f, "Quality Factors Calc Error!", format(Sys.time()), "\n\t", e$message, "\n", file = "log/factorErrors.log", append = TRUE); matrix(ncol = 8)})
+	mom <- tryCatch(.calcMomentum(symbol, channel, end), error = function(e) {cat(format(end), symbol.f, "Momentum Factors Calc Error!", format(Sys.time()), "\n\t", e$message, "\n", file = "log/factorErrors.log", append = TRUE); matrix(ncol = 5)})
+	tech <- tryCatch(.calcTech(symbol, channel, end), error = function(e) {cat(format(end), symbol.f, "Tech Factors Calc Error!", format(Sys.time()), "\n\t", e$message, "\n", file = "log/factorErrors.log", append = TRUE); matrix(ncol = 11)})
 	facs <- merge(val, gro, qua, mom, tech)
 #	data.frame(Symbol = symbol.f, facs)
 }
 
+# Calculate factors for multiple stocks, one period
 calcFactors_ <- function (symbol.list, channel, end) {
+	if (missing(end)) {
+		end <- rollback(today())
+	}
+	else {
+		end <- ymd(end)
+	}
 	if (nchar(symbol.list[1]) == 9) {
 		symbol.list.f <- symbol.list
 		symbol.list <- sapply(symbol.list, strtrim, 6)
@@ -76,18 +90,24 @@ calcFactors_ <- function (symbol.list, channel, end) {
 	}
 	symbol.name <- getName(symbol.list, channel, end)
 	facs <- .calcFactors_(symbol.list[1], channel, end)
-	cat("(", 1, "/", NROW(symbol.list), ")", symbol.list.f[1], symbol.name[1], "is done.", format(Sys.time()), "\n", file = paste0("log/", end, ".log"), append = TRUE)
+	cat(format(end), "(", 1, "/", NROW(symbol.list), ")", symbol.list.f[1], "Factors calculation is done.", format(Sys.time()), "\n", file = paste0("log/", format(end, "%Y%m%d"), ".log"), append = TRUE)
 	if (NROW(symbol.list) > 1) {
 		for (i in 2:NROW(symbol.list)) {
 			facs <- rbind(facs, .calcFactors_(symbol.list[i], channel, end))
-			cat("(", i, "/", NROW(symbol.list), ") ", symbol.list.f[i], symbol.name[i], "is done.", format(Sys.time()), "\n", file = paste0("log/", end, ".log"), append = TRUE)
+			cat(format(end), "(", i, "/", NROW(symbol.list), ")", symbol.list.f[i], "Factors calculation is done.", format(Sys.time()), "\n", file = paste0("log/", format(end, "%Y%m%d"), ".log"), append = TRUE)
 		}
 	}
 	data.frame(facs, row.names = symbol.list.f)
 }
 
-
+# Calculate factors for one stock, one period
 .calcFactors_ <- function (symbol, channel, end) {
+	if (missing(end)) {
+		end <- rollback(today())
+	}
+	else {
+		end <- ymd(end)
+	}
 	if (nchar(symbol) == 9) {
 		symbol.f <- symbol
 		symbol <- strtrim(symbol, 6)
@@ -95,12 +115,12 @@ calcFactors_ <- function (symbol.list, channel, end) {
 	else {
 		symbol.f <- fixCode(symbol)
 	}
-	val <- tryCatch(.calcValue_(symbol, channel, end), error = function(e) {cat(format(ymd(end)), symbol.f, "Value Factors Calc Error!", format(Sys.time()), "\n\t", e$message, "\n", file = "factorErrors.log", append = TRUE); matrix(ncol = 16)})
-	gro <- tryCatch(.calcGrowth_(symbol, channel, end), error = function(e) {cat(format(ymd(end)), symbol.f, "Growth Factors Calc Error!", format(Sys.time()), "\n\t", e$message, "\n", file = "factorErrors.log", append = TRUE); matrix(ncol = 12)})
-	qua <- tryCatch(.calcQuality_(symbol, channel, end), error = function(e) {cat(format(ymd(end)), symbol.f, "Quality Factors Calc Error!", format(Sys.time()), "\n\t", e$message, "\n", file = "factorErrors.log", append = TRUE); matrix(ncol = 8)})
-	mom <- tryCatch(.calcMomentum_(symbol, channel, end), error = function(e) {cat(format(ymd(end)), symbol.f, "Momentum Factors Calc Error!", format(Sys.time()), "\n\t", e$message, "\n", file = "factorErrors.log", append = TRUE); matrix(ncol = 5)})
-	tech <- tryCatch(.calcTech_(symbol, channel, end), error = function(e) {cat(format(ymd(end)), symbol.f, "Tech Factors Calc Error!", format(Sys.time()), "\n\t", e$message, "\n", file = "factorErrors.log", append = TRUE); matrix(ncol = 11)})
-	fac <- tryCatch(merge.xts(val, gro, qua, mom, tech), error = function(e) {cat(format(ymd(end)), symbol.f, "Factors Merge Error!", format(Sys.time()), "\n\t", e$message, "\n", file = "factorErrors.log", append = TRUE); matrix(ncol = 52)})
+	val <- tryCatch(.calcValue_(symbol, channel, end), error = function(e) {cat(format(end), symbol.f, "Value Factors Calc Error!", format(Sys.time()), "\n\t", e$message, "\n", file = "log/factorErrors.log", append = TRUE); matrix(ncol = 16)})
+	gro <- tryCatch(.calcGrowth_(symbol, channel, end), error = function(e) {cat(format(end), symbol.f, "Growth Factors Calc Error!", format(Sys.time()), "\n\t", e$message, "\n", file = "log/factorErrors.log", append = TRUE); matrix(ncol = 12)})
+	qua <- tryCatch(.calcQuality_(symbol, channel, end), error = function(e) {cat(format(end), symbol.f, "Quality Factors Calc Error!", format(Sys.time()), "\n\t", e$message, "\n", file = "log/factorErrors.log", append = TRUE); matrix(ncol = 8)})
+	mom <- tryCatch(.calcMomentum_(symbol, channel, end), error = function(e) {cat(format(end), symbol.f, "Momentum Factors Calc Error!", format(Sys.time()), "\n\t", e$message, "\n", file = "log/factorErrors.log", append = TRUE); matrix(ncol = 5)})
+	tech <- tryCatch(.calcTech_(symbol, channel, end), error = function(e) {cat(format(end), symbol.f, "Tech Factors Calc Error!", format(Sys.time()), "\n\t", e$message, "\n", file = "log/factorErrors.log", append = TRUE); matrix(ncol = 11)})
+	fac <- tryCatch(merge.xts(val, gro, qua, mom, tech), error = function(e) {cat(format(end), symbol.f, "Factors Merge Error!", format(Sys.time()), "\n\t", e$message, "\n", file = "log/factorErrors.log", append = TRUE); matrix(ncol = 52)})
 	colnames(fac) <- c("DividendYield_FY0", "DividendYield_FY1", "Price2EPS_LYR", 
 		"EP_LYR", "EP_TTM", "EP_Fwd12M", "EP_FY0", "EP_FY1", "SP_TTM",
 		"CashFlowYield_LYR", "CashFlowYield_FY0", "CashFlowYield_TTM", 
@@ -113,5 +133,5 @@ calcFactors_ <- function (symbol.list, channel, end) {
 		"Momentum_12M_1M", "Momentum_60M", "LnFloatCap", "AmountAvg_1M", "NormalizedAbormalVolume", 
 		"TurnoverAvg_1M", "TurnoverAvg_3M", "TurnoverAvg_1M_3M", "TSKEW", "ILLIQ", 
 		"SmallTradeFlow", "MACrossover", "RealizedVolatility_1Y")
-	xts(fac, ymd(end))
+	xts(fac, end)
 }

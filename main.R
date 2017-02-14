@@ -27,12 +27,19 @@ if(!require(lubridate))
 if(!requireNamespace("moments"))
 	install.packages("moments")
 
+
+# Global Variable
+TABLE.NAME <- "FactorsTest"
+START <- ymd("19941231")
+
 # source("getPrice.R", encoding = 'UTF-8')
 source("src/writeFactors.R", chdir = TRUE, encoding = 'UTF-8')
 
 if (!tryCatch(dbIsValid(ch_data), error = function(e) FALSE))
-	ch_data = dbConnect(RSQLServer::SQLServer(), "CAIHUI", file = "dbi/sql.yaml", database = "CAIHUI")
+	ch_data <- dbConnect(RSQLServer::SQLServer(), "DBSERVER", file = "dbi/sql.yaml", database = "CAIHUI")
+if (!tryCatch(dbIsValid(ch_data_w), error = function(e) FALSE))
+	ch_data_w <- dbConnect(RSQLServer::SQLServer(), "DBSERVER", file = "dbi/sql.yaml", database = "WDF")
 if (!tryCatch(dbIsValid(ch_factors), error = function(e) FALSE))
-	ch_factors = dbConnect(RMySQL::MySQL(), dbname = "factors", default.file = "dbi/.my.cnf")
+	ch_factors <- dbConnect(RMySQL::MySQL(), dbname = "factors", default.file = "dbi/.my.cnf")
 
 source("test/test.R", encoding = "UTF-8")

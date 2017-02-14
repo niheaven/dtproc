@@ -32,7 +32,7 @@ last.day <- function (date) {
 }
 
 # NA or Value?
-na.or.value <- function (na.trigger, value) {
+.na.or.value <- function (na.trigger, value) {
 	if (na.trigger)
 		return(NA)
 	else
@@ -106,6 +106,8 @@ na.or.value <- function (na.trigger, value) {
 			xx[na, i] <- unlist(by(xx[na, i], floor(index(xx[na, i])), .na.fill))
 		}
 		else {
+			if (is.na(xx[last(index(xx)), i]))
+				xx[last(index(xx)), i] <- mean(xx[, i], na.rm = TRUE)
 			xx[floor(na1), i] <- xx[na1, i] / ((na1 - floor(na1)) * 4 + 1)
 			xx[na, i] <- na.approx(xx[na, i])
 		}
@@ -200,6 +202,21 @@ na.or.value <- function (na.trigger, value) {
 #	return(rbind(xx, x[index(x) > index(last(xx))]))
 #}
 
+# Get Newest Report
+.newest.report <- function (x) {
+	x0 <- xts(x[x["REPORTTYPE"] == 3, -1:-3], 
+		as.yearqtr(paste0(t(x[x["REPORTTYPE"] == 3, "REPORTYEAR"]), 
+		"-", t(x[x["REPORTTYPE"] == 3, "REPORTDATETYPE"]))))
+	x <- xts(x[x["REPORTTYPE"] == 1, -1:-3], 
+		as.yearqtr(paste0(t(x[x["REPORTTYPE"] == 1, "REPORTYEAR"]), 
+		"-", t(x[x["REPORTTYPE"] == 1, "REPORTDATETYPE"]))))
+	if (NROW(x0) != 0) {
+		x <- merge(x, xts(, index(x0)))
+		x[index(x0), ] <- x0
+	}
+	return(x)
+}
+
 # Calculate Single Season Data from Cumulative Data
 .report.unseasonal <- function (x, seasonal) {
 	x <- try.xts(x, error = FALSE)
@@ -234,7 +251,12 @@ na.or.value <- function (na.trigger, value) {
 # Get LYR
 .report.get.lyr <- function (x) {
 	x <- try.xts(x, error = FALSE)
-	return(last(x[(index(x) %% 1) == 0.75]))
+	xx <- last(x[(index(x) %% 1) == 0.75])
+	if (NROW(xx) == 0) {
+		xx <- xts(t(rep(NA, NCOL(x))), order.by = last(index(x)))
+		colnames(xx) <- colnames(x)
+	}
+	return(xx)
 }
 
 # Modified EMA Function
@@ -248,29 +270,29 @@ na.or.value <- function (na.trigger, value) {
 }
 
 # Fix Stocks Code
-fixCode <- function(code) {
-	if (NROW(code) == 1) {
-		if (nchar(code) == 9) {
-			strtrim(code, width = 6)
+fixCode <- function(symbol) {
+	if (NROW(symbol) == 1) {
+		if (nchar(symbol) == 9) {
+			strtrim(symbol, width = 6)
 		}
 		else {
-			code <- switch(nchar(code), paste0("00000", code), paste0("0000", code), 
-				paste0("000", code), paste0("00", code), paste0("0", code), code)
-			if (strtrim(code, 1) == "6") {
-				code <- paste0(code, ".SH")
+			symbol <- switch(nchar(symbol), paste0("00000", symbol), paste0("0000", symbol), 
+				paste0("000", symbol), paste0("00", symbol), paste0("0", symbol), symbol)
+			if (strtrim(symbol, 1) == "6") {
+				symbol <- paste0(symbol, ".SH")
 			}
 			else {
-				code <- paste0(code, ".SZ")
+				symbol <- paste0(symbol, ".SZ")
 			}
-			code
+			symbol
 		}
 	}
 	else {
-		if (nchar(code[1]) == 9) {
-			sapply(code, strtrim, width = 6)
+		if (nchar(symbol[1]) == 9) {
+			sapply(symbol, strtrim, width = 6)
 		}
 		else {
-			sapply(code, fixCode)
+			sapply(symbol, fixCode)
 		}
 	}
 }
@@ -316,10 +338,32 @@ getName <- function(symbol, channel, date) {
 }
 
 # Get Index Components
-getIndexComp <- function(code, channel, date) {
-	code <- dbGetQuery(channel, paste0("SELECT SAMPLECODE FROM TQ_IX_COMP
-		WHERE SYMBOL = ", toString(paste0("'", code, "'")), " 
-		AND SELECTEDDATE <= '", date, "' AND (OUTDATE > '", date, "'
-		OR USESTATUS = '1') ORDER BY SAMPLECODE"))
-	as.matrix(code)
+getIndexComp <- function(symbol, channel, date) {
+	if (missing(date)) {
+		date <- rollback(today())
+	}
+	else {
+		date <- ymd(date)
+	}
+	symbol <- sapply(symbol, strtrim, 6)
+	symbol <- dbGetQuery(channel, paste0("SELECT SAMPLECODE FROM TQ_IX_COMP
+		WHERE SYMBOL IN (", toString(paste0("'", symbol, "'")), ") 
+		AND SELECTEDDATE <= '", format(date, "%Y%m%d"), "' AND (OUTDATE > '", 
+		format(date, "%Y%m%d"), "' OR USESTATUS = '1') ORDER BY SAMPLECODE"))
+	as.matrix(symbol)
+}
+
+# Get Index Components from Wind DB
+getIndexComp.W <- function(symbol, channel, date) {
+	if (missing(date)) {
+		date <- rollback(today())
+	}
+	else {
+		date <- ymd(date)
+	}
+	symbol <- dbGetQuery(channel, paste0("SELECT S_CON_WINDCODE FROM AINDEXMEMBERS
+		WHERE S_INFO_WINDCODE IN (", toString(paste0("'", symbol, "'")), ") 
+		AND S_CON_INDATE <= '", format(date, "%Y%m%d"), "' AND (S_CON_OUTDATE > '", 
+		format(date, "%Y%m%d"), "' OR CUR_SIGN = '1') ORDER BY S_CON_WINDCODE"))
+	as.matrix(symbol)
 }

@@ -37,45 +37,27 @@ source(".SupFun.R")
 		AND DECLAREDATE <= '", format(end, "%Y%m%d"), "' AND DECLAREDATE > '", 
 		format(start, "%Y%m%d"), "'ORDER BY DECLAREDATE")
 	val.inc.d <- dbGetQuery(channel, val.inc.q)
-	val.inc.d <- val.inc.d[, -1]
-	val.inc.d0 <- xts(val.inc.d[val.inc.d["REPORTTYPE"] == 3, -1:-3], 
-		as.yearqtr(paste0(t(val.inc.d[val.inc.d["REPORTTYPE"] == 3, "REPORTYEAR"]), 
-		"-", t(val.inc.d[val.inc.d["REPORTTYPE"] == 3, "REPORTDATETYPE"]))))
-	val.inc.d <- xts(val.inc.d[val.inc.d["REPORTTYPE"] == 1, -1:-3], 
-		as.yearqtr(paste0(t(val.inc.d[val.inc.d["REPORTTYPE"] == 1, "REPORTYEAR"]), 
-		"-", t(val.inc.d[val.inc.d["REPORTTYPE"] == 1, "REPORTDATETYPE"]))))
-	val.inc.d <- merge(val.inc.d, xts(, index(val.inc.d0)))
-	val.inc.d[index(val.inc.d0), ] <- val.inc.d0
+	val.inc.d <- .newest.report(val.inc.d[, -1])
 	val.bal.q <- paste0("SELECT DECLAREDATE, REPORTYEAR, REPORTDATETYPE, 
 		REPORTTYPE, PARESHARRIGH, TOTALNONCLIAB, CURFDS FROM TQ_FIN_PROBALSHEETNEW 
 		WHERE COMPCODE = '", code[1], "' AND REPORTTYPE IN ('1', '3') 
 		AND DECLAREDATE <= '", format(end, "%Y%m%d"), "' AND DECLAREDATE > '", 
 		format(start, "%Y%m%d"), "'ORDER BY DECLAREDATE")
 	val.bal.d <- dbGetQuery(channel, val.bal.q)
-	val.bal.d <- val.bal.d[, -1]
-	val.bal.d0 <- xts(val.bal.d[val.bal.d["REPORTTYPE"] == 3, -1:-3], 
-		as.yearqtr(paste0(t(val.bal.d[val.bal.d["REPORTTYPE"] == 3, "REPORTYEAR"]), 
-		"-", t(val.bal.d[val.bal.d["REPORTTYPE"] == 3, "REPORTDATETYPE"]))))
-	val.bal.d <- xts(val.bal.d[val.bal.d["REPORTTYPE"] == 1, -1:-3], 
-		as.yearqtr(paste0(t(val.bal.d[val.bal.d["REPORTTYPE"] == 1, "REPORTYEAR"]), 
-		"-", t(val.bal.d[val.bal.d["REPORTTYPE"] == 1, "REPORTDATETYPE"]))))
-	val.bal.d <- merge(val.bal.d, xts(, index(val.bal.d0)))
-	val.bal.d[index(val.bal.d0), ] <- val.bal.d0
+	val.bal.d <- .newest.report(val.bal.d[, -1])
 	val.cf.q <- paste0("SELECT DECLAREDATE, REPORTYEAR, REPORTDATETYPE, 
 		REPORTTYPE, MANANETR, ACQUASSETCASH FROM TQ_FIN_PROCFSTATEMENTNEW 
 		WHERE COMPCODE = '", code[1], "' AND REPORTTYPE IN ('1', '3') 
 		AND DECLAREDATE <= '", format(end, "%Y%m%d"), "' AND DECLAREDATE > '", 
 		format(start, "%Y%m%d"), "'ORDER BY DECLAREDATE")
 	val.cf.d <- dbGetQuery(channel, val.cf.q)
-	val.cf.d <- val.cf.d[, -1]
-	val.cf.d0 <- xts(val.cf.d[val.cf.d["REPORTTYPE"] == 3, -1:-3], 
-		as.yearqtr(paste0(t(val.cf.d[val.cf.d["REPORTTYPE"] == 3, "REPORTYEAR"]), 
-		"-", t(val.cf.d[val.cf.d["REPORTTYPE"] == 3, "REPORTDATETYPE"]))))
-	val.cf.d <- xts(val.cf.d[val.cf.d["REPORTTYPE"] == 1, -1:-3], 
-		as.yearqtr(paste0(t(val.cf.d[val.cf.d["REPORTTYPE"] == 1, "REPORTYEAR"]), 
-		"-", t(val.cf.d[val.cf.d["REPORTTYPE"] == 1, "REPORTDATETYPE"]))))
-	val.cf.d <- merge(val.cf.d, xts(, index(val.cf.d0)))
-	val.cf.d[index(val.cf.d0), ] <- val.cf.d0
+	if (NROW(val.cf.d) == 0) {
+		val.cf.d[1, ] <- NA
+		val.cf.d <- xts(val.cf.d[-1:-4], last(index(val.inc.d)))
+	}
+	else {
+		val.cf.d <- .newest.report(val.cf.d[, -1])
+	}
 	val.rep.d <- merge(val.inc.d, val.bal.d, val.cf.d)
 	val.rep.d <- val.rep.d[paste0(start, "/"), ]
 	val.rep.d <- .report.na.fill(val.rep.d, seasonal = c(rep(TRUE, 3), rep(FALSE, 3), rep(TRUE, 2)))
@@ -128,55 +110,39 @@ source(".SupFun.R")
 		AND DECLAREDATE <= '", format(end, "%Y%m%d"), "' AND DECLAREDATE > '", 
 		format(start, "%Y%m%d"), "'ORDER BY DECLAREDATE")
 	gro.inc.d <- dbGetQuery(channel, gro.inc.q)
-	gro.inc.d <- gro.inc.d[, -1]
-	gro.inc.d0 <- xts(gro.inc.d[gro.inc.d["REPORTTYPE"] == 3, -1:-3], 
-		as.yearqtr(paste0(t(gro.inc.d[gro.inc.d["REPORTTYPE"] == 3, "REPORTYEAR"]), 
-		"-", t(gro.inc.d[gro.inc.d["REPORTTYPE"] == 3, "REPORTDATETYPE"]))))
-	gro.inc.d <- xts(gro.inc.d[gro.inc.d["REPORTTYPE"] == 1, -1:-3], 
-		as.yearqtr(paste0(t(gro.inc.d[gro.inc.d["REPORTTYPE"] == 1, "REPORTYEAR"]), 
-		"-", t(gro.inc.d[gro.inc.d["REPORTTYPE"] == 1, "REPORTDATETYPE"]))))
-	gro.inc.d <- merge(gro.inc.d, xts(, index(gro.inc.d0)))
-	gro.inc.d[index(gro.inc.d0), ] <- gro.inc.d0
+	gro.inc.d <- .newest.report(gro.inc.d[, -1])
 	gro.bal.q <- paste0("SELECT DECLAREDATE, REPORTYEAR, REPORTDATETYPE, 
 		REPORTTYPE, TOTASSET FROM TQ_FIN_PROBALSHEETNEW 
 		WHERE COMPCODE = '", code[1], "' AND REPORTTYPE IN ('1', '3') 
 		AND DECLAREDATE <= '", format(end, "%Y%m%d"), "' AND DECLAREDATE > '", 
 		format(start, "%Y%m%d"), "'ORDER BY DECLAREDATE")
 	gro.bal.d <- dbGetQuery(channel, gro.bal.q)
-	gro.bal.d <- gro.bal.d[, -1]
-	gro.bal.d0 <- xts(gro.bal.d[gro.bal.d["REPORTTYPE"] == 3, -1:-3], 
-		as.yearqtr(paste0(t(gro.bal.d[gro.bal.d["REPORTTYPE"] == 3, "REPORTYEAR"]), 
-		"-", t(gro.bal.d[gro.bal.d["REPORTTYPE"] == 3, "REPORTDATETYPE"]))))
-	gro.bal.d <- xts(gro.bal.d[gro.bal.d["REPORTTYPE"] == 1, -1:-3], 
-		as.yearqtr(paste0(t(gro.bal.d[gro.bal.d["REPORTTYPE"] == 1, "REPORTYEAR"]), 
-		"-", t(gro.bal.d[gro.bal.d["REPORTTYPE"] == 1, "REPORTDATETYPE"]))))
-	gro.bal.d <- merge(gro.bal.d, xts(, index(gro.bal.d0)))
-	gro.bal.d[index(gro.bal.d0), ] <- gro.bal.d0
+	gro.bal.d <- .newest.report(gro.bal.d[, -1])
 	names(gro.bal.d) <- "TOTASSET"
 	gro.rep.d <- merge(gro.inc.d, gro.bal.d)
 	gro.rep.d <- .report.na.fill(gro.rep.d, seasonal = c(rep(TRUE, 3), FALSE))
 	gro.rep.us <- .report.unseasonal(gro.rep.d, seasonal = c(rep(TRUE, 3), FALSE))
 	gro.na <- (index(last(gro.rep.d)) - c(1, 5)) < index(gro.rep.d[1])
 	gro <- vector()
-	gro["SaleEarnings_SQ_YoY"] <- na.or.value(gro.na[1], last(gro.rep.us)[, "PERPROFIT"][[1]] / 
+	gro["SaleEarnings_SQ_YoY"] <- .na.or.value(gro.na[1], last(gro.rep.us)[, "PERPROFIT"][[1]] / 
 		gro.rep.us[index(last(gro.rep.us)) - 1, "PERPROFIT"][[1]] - 1)
-	gro["Earnings_SQ_YoY"] <- na.or.value(gro.na[1], last(gro.rep.us)[, "NETPROFIT"][[1]] / 
+	gro["Earnings_SQ_YoY"] <- .na.or.value(gro.na[1], last(gro.rep.us)[, "NETPROFIT"][[1]] / 
 		gro.rep.us[index(last(gro.rep.us)) - 1, "NETPROFIT"][[1]] - 1)
-	gro["Sales_SQ_YoY"] <- na.or.value(gro.na[1], last(gro.rep.us)[, "BIZINCO"][[1]] / 
+	gro["Sales_SQ_YoY"] <- .na.or.value(gro.na[1], last(gro.rep.us)[, "BIZINCO"][[1]] / 
 		gro.rep.us[index(last(gro.rep.us)) - 1, "BIZINCO"][[1]] - 1)
-	gro["Earnings_LTG"] <- na.or.value(gro.na[2], last(gro.rep.d)[, "NETPROFIT"][[1]] / 
+	gro["Earnings_LTG"] <- .na.or.value(gro.na[2], last(gro.rep.d)[, "NETPROFIT"][[1]] / 
 		gro.rep.d[index(last(gro.rep.d)) - 5, "NETPROFIT"][[1]] - 1)
-	gro["Sales_LTG"] <- na.or.value(gro.na[2], last(gro.rep.d)[, "BIZINCO"][[1]] / 
+	gro["Sales_LTG"] <- .na.or.value(gro.na[2], last(gro.rep.d)[, "BIZINCO"][[1]] / 
 		gro.rep.d[index(last(gro.rep.d)) - 5, "BIZINCO"][[1]] - 1)
-	gro["Earnings_STG"] <- na.or.value(gro.na[1], last(gro.rep.d)[, "NETPROFIT"][[1]] / 
+	gro["Earnings_STG"] <- .na.or.value(gro.na[1], last(gro.rep.d)[, "NETPROFIT"][[1]] / 
 		gro.rep.d[index(last(gro.rep.d)) - 1, "NETPROFIT"][[1]] - 1)
-	gro["Sales_STG"] <- na.or.value(gro.na[1], last(gro.rep.d)[, "BIZINCO"][[1]] / 
+	gro["Sales_STG"] <- .na.or.value(gro.na[1], last(gro.rep.d)[, "BIZINCO"][[1]] / 
 		gro.rep.d[index(last(gro.rep.d)) - 1, "BIZINCO"][[1]] - 1)
 	gro["Earnings_LFG"] <- NA
 	gro["Sales_LFG"] <- NA
 	gro["Earnings_SFG"] <- NA
 	gro["Sales_SFG"] <- NA
-	gro["Asset_STG"] <- na.or.value(gro.na[1], last(gro.rep.d)[, "TOTASSET"][[1]] / 
+	gro["Asset_STG"] <- .na.or.value(gro.na[1], last(gro.rep.d)[, "TOTASSET"][[1]] / 
 		gro.rep.d[index(last(gro.rep.d)) - 1, "TOTASSET"][[1]] - 1)
 	xts(t(gro), end)
 }
@@ -197,15 +163,7 @@ source(".SupFun.R")
 		AND DECLAREDATE <= '", format(end, "%Y%m%d"), "' AND DECLAREDATE > '", 
 		format(start, "%Y%m%d"), "'ORDER BY DECLAREDATE")
 	qua.inc.d <- dbGetQuery(channel, qua.inc.q)
-	qua.inc.d <- qua.inc.d[, -1]
-	qua.inc.d0 <- xts(qua.inc.d[qua.inc.d["REPORTTYPE"] == 3, -1:-3], 
-		as.yearqtr(paste0(t(qua.inc.d[qua.inc.d["REPORTTYPE"] == 3, "REPORTYEAR"]), 
-		"-", t(qua.inc.d[qua.inc.d["REPORTTYPE"] == 3, "REPORTDATETYPE"]))))
-	qua.inc.d <- xts(qua.inc.d[qua.inc.d["REPORTTYPE"] == 1, -1:-3], 
-		as.yearqtr(paste0(t(qua.inc.d[qua.inc.d["REPORTTYPE"] == 1, "REPORTYEAR"]), 
-		"-", t(qua.inc.d[qua.inc.d["REPORTTYPE"] == 1, "REPORTDATETYPE"]))))
-	qua.inc.d <- merge(qua.inc.d, xts(, index(qua.inc.d0)))
-	qua.inc.d[index(qua.inc.d0), ] <- qua.inc.d0
+	qua.inc.d <- .newest.report(qua.inc.d[, -1])
 	qua.bal.q <- paste0("SELECT DECLAREDATE, REPORTYEAR, REPORTDATETYPE, 
 		REPORTTYPE, PARESHARRIGH, TOTASSET, TOTCURRASSET, 
 		TOTALCURRLIAB, TOTALNONCLIAB FROM TQ_FIN_PROBALSHEETNEW 
@@ -213,15 +171,7 @@ source(".SupFun.R")
 		AND DECLAREDATE <= '", format(end, "%Y%m%d"), "' AND DECLAREDATE > '", 
 		format(start, "%Y%m%d"), "'ORDER BY DECLAREDATE")
 	qua.bal.d <- dbGetQuery(channel, qua.bal.q)
-	qua.bal.d <- qua.bal.d[, -1]
-	qua.bal.d0 <- xts(qua.bal.d[qua.bal.d["REPORTTYPE"] == 3, -1:-3], 
-		as.yearqtr(paste0(t(qua.bal.d[qua.bal.d["REPORTTYPE"] == 3, "REPORTYEAR"]), 
-		"-", t(qua.bal.d[qua.bal.d["REPORTTYPE"] == 3, "REPORTDATETYPE"]))))
-	qua.bal.d <- xts(qua.bal.d[qua.bal.d["REPORTTYPE"] == 1, -1:-3], 
-		as.yearqtr(paste0(t(qua.bal.d[qua.bal.d["REPORTTYPE"] == 1, "REPORTYEAR"]), 
-		"-", t(qua.bal.d[qua.bal.d["REPORTTYPE"] == 1, "REPORTDATETYPE"]))))
-	qua.bal.d <- merge(qua.bal.d, xts(, index(qua.bal.d0)))
-	qua.bal.d[index(qua.bal.d0), ] <- qua.bal.d0
+	qua.bal.d <- .newest.report(qua.bal.d[, -1])
 	qua.rep.d <- merge(qua.inc.d, qua.bal.d)
 	qua.rep.d <- qua.rep.d[paste0(start, "/"), ]
 	qua.rep.d <- .report.na.fill(qua.rep.d, seasonal = c(rep(TRUE, 4), rep(FALSE, 5)))
@@ -261,14 +211,14 @@ source(".SupFun.R")
 	# If trading days are less then 1, 3, 12, or 60 months, momentum is NAs.
 	mom.na <- (length(mom.ep) < c(3, 5, 14, 62))
 	mom <- vector()
-	mom["Momentum_1M"] <- na.or.value(mom.na[1], 
+	mom["Momentum_1M"] <- .na.or.value(mom.na[1], 
 		last(mom.p.d)[[1]] / last(mom.p.d[mom.ep], 2)[1][[1]] - 1)
-	mom["Momentum_3M"] <- na.or.value(mom.na[2], 
+	mom["Momentum_3M"] <- .na.or.value(mom.na[2], 
 		last(mom.p.d)[[1]] / last(mom.p.d[mom.ep], 4)[1][[1]] - 1)
-	mom["Momentum_12M"] <- na.or.value(mom.na[3], 
+	mom["Momentum_12M"] <- .na.or.value(mom.na[3], 
 		last(mom.p.d)[[1]] / last(mom.p.d[mom.ep], 13)[1][[1]] - 1)
 	mom["Momentum_12M_1M"] <- mom["Momentum_12M"] - mom["Momentum_1M"]
-	mom["Momentum_60M"] <- na.or.value(mom.na[4], 
+	mom["Momentum_60M"] <- .na.or.value(mom.na[4], 
 		last(mom.p.d)[[1]] / mom.p.d[mom.ep][1][[1]] - 1)
 	xts(t(mom), end)
 }
@@ -298,20 +248,20 @@ source(".SupFun.R")
 	tech.na <- (length(endpoints(tech.p.d)) < c(3, 5, 13))
 	tech <- vector()
 	tech["LnFloatCap"] <- log(last(tech.p.d)[, "TCLOSE"] * last(tech.p.d)[, "MKTSHARE"] * 10^4)
-	tech["AmountAvg_1M"] <- na.or.value(tech.na[1], 
+	tech["AmountAvg_1M"] <- .na.or.value(tech.na[1], 
 		mean(tech.p.d[index(tech.p.d) >= as.Date(as.yearmon(end)), "AMOUNT"], na.rm = TRUE))
 	tech["NormalizedAbormalVolume"] <- mean(tech.p.d[index(tech.p.d) >= as.Date(as.yearmon(end)), 
-		"VOL"], na.rm = TRUE) / na.or.value(tech.na[3], mean(tech.p.d[, "VOL"], na.rm = TRUE))
-	tech["TurnoverAvg_1M"] <- na.or.value(tech.na[1], 
+		"VOL"], na.rm = TRUE) / .na.or.value(tech.na[3], mean(tech.p.d[, "VOL"], na.rm = TRUE))
+	tech["TurnoverAvg_1M"] <- .na.or.value(tech.na[1], 
 		mean(tech.p.d[index(tech.p.d) >= as.Date(as.yearmon(end)), "VOL.1"], na.rm = TRUE))
-	tech["TurnoverAvg_3M"] <- na.or.value(tech.na[2], 
+	tech["TurnoverAvg_3M"] <- .na.or.value(tech.na[2], 
 		mean(tech.p.d[index(tech.p.d) >= as.Date(as.yearmon(end) - 2 / 12), "VOL.1"], na.rm = TRUE))
 	tech["TurnoverAvg_1M_3M"] <- tech["TurnoverAvg_1M"] / tech["TurnoverAvg_3M"]
-	tech["TSKEW"] <- na.or.value(tech.na[3], moments::skewness(tech.p.d[, "TCLOSE.1"]))
-	tech["ILLIQ"] <- na.or.value(tech.na[3], 
+	tech["TSKEW"] <- .na.or.value(tech.na[3], moments::skewness(tech.p.d[, "TCLOSE.1"]))
+	tech["ILLIQ"] <- .na.or.value(tech.na[3], 
 		mean((tech.p.d[, "TCLOSE"] - tech.p.d[, "EXTCLOSE"]) / tech.p.d[, "AMOUNT"], na.rm = TRUE))
 	tech["SmallTradeFlow"] <- NA
 	tech["MACrossover"] <- (last(tech.p.d)[, "EMA75"] - last(tech.p.d)[, "EMA180"]) / last(tech.p.d)[, "EMA180"]
-	tech["RealizedVolatility_1Y"] <- na.or.value(tech.na[3], sd(tech.p.d[, "TCLOSE.1"]))
+	tech["RealizedVolatility_1Y"] <- .na.or.value(tech.na[3], sd(tech.p.d[, "TCLOSE.1"]))
 	xts(t(tech), end)
 }
