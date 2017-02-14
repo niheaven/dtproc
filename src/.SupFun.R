@@ -317,7 +317,7 @@ getName <- function(symbol, channel, date) {
 	as.character(name[fixCode(symbol), ])
 }
 
-# Get COMPCODE and SECODE (for Internal Use)
+# Get CompCode and SeCode (for Internal Use)
 .getCode <- function(symbol, channel, date) {
 	if (missing(date)) {
 		date <- rollback(today())
@@ -325,10 +325,10 @@ getName <- function(symbol, channel, date) {
 	else {
 		date <- ymd(date)
 	}
-	symbol <- strtrim(symbol, width = 6)
+	symbol <- sapply(symbol, strtrim, 6)
 	code <- dbGetQuery(channel, paste0("SELECT SYMBOL, COMPCODE, SECODE, 
-		BEGINDATE, ENDDATE FROM TQ_OA_STCODE WHERE SYMBOL = '", 
-		as.character(symbol), "' AND SETYPE = '101'"))
+		BEGINDATE, ENDDATE FROM TQ_OA_STCODE WHERE SYMBOL IN (", 
+		toString(paste0("'", symbol, "'")), ") AND SETYPE = '101'"))
 	code[code[, 5] == "19000101", 5] <- "20991231"
 	code[, 4] <- ymd(code[, 4])
 	code[, 5] <- ymd(code[, 5])
@@ -349,12 +349,11 @@ getIndexComp <- function(symbol, channel, date) {
 	symbol <- dbGetQuery(channel, paste0("SELECT SAMPLECODE FROM TQ_IX_COMP
 		WHERE SYMBOL IN (", toString(paste0("'", symbol, "'")), ") 
 		AND SELECTEDDATE <= '", format(date, "%Y%m%d"), "' AND (OUTDATE > '", 
-		format(date, "%Y%m%d"), "' OR USESTATUS = '1')"))
-	sort(as.matrix(symbol))
+		format(date, "%Y%m%d"), "' OR USESTATUS = '1') ORDER BY SAMPLECODE"))
+	as.matrix(symbol)
 }
 
 # Get Index Components from Wind DB
-# symbol Must Be *.SH/*.SZ
 getIndexComp.W <- function(symbol, channel, date) {
 	if (missing(date)) {
 		date <- rollback(today())
@@ -365,8 +364,6 @@ getIndexComp.W <- function(symbol, channel, date) {
 	symbol <- dbGetQuery(channel, paste0("SELECT S_CON_WINDCODE FROM AINDEXMEMBERS
 		WHERE S_INFO_WINDCODE IN (", toString(paste0("'", symbol, "'")), ") 
 		AND S_CON_INDATE <= '", format(date, "%Y%m%d"), "' AND (S_CON_OUTDATE > '", 
-		format(date, "%Y%m%d"), "' OR CUR_SIGN = '1')"))
-	if (date < ymd("20100305"))
-		symbol[symbol == "601607.SH"] <- "600849.SH"
-	sort(as.matrix(symbol))
+		format(date, "%Y%m%d"), "' OR CUR_SIGN = '1') ORDER BY S_CON_WINDCODE"))
+	as.matrix(symbol)
 }
