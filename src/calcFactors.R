@@ -69,7 +69,13 @@ source(".calcFactors_.R")
 	qua <- tryCatch(.calcQuality(symbol, channel, end), error = function(e) {cat(format(end), symbol.f, "Quality Factors Calc Error!", format(Sys.time()), "\n\t", e$message, "\n", file = "log/factorErrors.log", append = TRUE); matrix(ncol = 8)})
 	mom <- tryCatch(.calcMomentum(symbol, channel, end), error = function(e) {cat(format(end), symbol.f, "Momentum Factors Calc Error!", format(Sys.time()), "\n\t", e$message, "\n", file = "log/factorErrors.log", append = TRUE); matrix(ncol = 5)})
 	tech <- tryCatch(.calcTech(symbol, channel, end), error = function(e) {cat(format(end), symbol.f, "Tech Factors Calc Error!", format(Sys.time()), "\n\t", e$message, "\n", file = "log/factorErrors.log", append = TRUE); matrix(ncol = 11)})
-	facs <- merge(val, gro, qua, mom, tech)
+	facs <- tryCatch(merge.xts(val, gro, qua, mom, tech), error = function(e) {cat(format(end), symbol.f, "Factors Merge Error!", format(Sys.time()), "\n\t", e$message, "\n", file = "log/factorErrors.log", append = TRUE); matrix(ncol = 52)})
+	# Special treatment for dumned "600018.SH"
+	if ((symbol == "600018") & (end > ymd(20060930))) {
+		facs.0 <- .calcFactors(symbol, channel, ymd(20060930))
+		facs[index(facs.0), ] <- facs.0
+	}
+	return(facs)
 #	data.frame(Symbol = symbol.f, facs)
 }
 

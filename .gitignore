@@ -15,7 +15,7 @@
 /*.Rcheck/
 
 # RStudio files
-.Rproj.user/
+.Rproj.user
 
 # Spark files
 metastore_db/
@@ -31,9 +31,6 @@ vignettes/*.pdf
 # Test files
 *.csv
 test/*
-
-# Error log files
-factorErrors.log
 
 # =========================
 # Operating System Files

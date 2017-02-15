@@ -18,9 +18,6 @@
 #
 #   .calcFactors: Calculate Stock Factors (Implementation)
 
-# Load Supplementary Functions
-source(".SupFun.R")
-
 # Calculate Value Factors
 .calcValue <- function (symbol, channel, end) {
 	if (missing(end)) {
@@ -58,14 +55,27 @@ source(".SupFun.R")
 		end.i <- val.idx[i]
 		start.i <- firstof(year(end.i) - 2)
 		val.inc.d <- val.inc.d_[ymd(val.inc.d_[, 1]) <= end.i, -1]
-		if (NROW(val.inc.d) == 0) next
+		if (NROW(val.inc.d) == 0) {
+			next
+		}
+		else {
+			val.inc.d <- .newest.report(val.inc.d)
+		}
 		val.bal.d <- val.bal.d_[ymd(val.bal.d_[, 1]) <= end.i, -1]
-		if (NROW(val.bal.d) == 0) next
+		if (NROW(val.bal.d) == 0) {
+			next
+		}
+		else {
+			val.bal.d <- .newest.report(val.bal.d)
+		}
 		val.cf.d <- val.cf.d_[ymd(val.cf.d_[, 1]) <= end.i, -1]
-		if (NROW(val.cf.d) == 0) next
-		val.inc.d <- .newest.report(val.inc.d)
-		val.bal.d <- .newest.report(val.bal.d)
-		val.cf.d <- .newest.report(val.cf.d)
+		if (NROW(val.cf.d) == 0) {
+			val.cf.d[1, ] <- NA
+			val.cf.d <- xts(val.cf.d[-1:-3], last(index(val.inc.d)))
+		}
+		else {
+			val.cf.d <- .newest.report(val.cf.d)
+		}
 		val.rep.d <- merge(val.inc.d, val.bal.d, val.cf.d)
 		val.rep.d <- val.rep.d[paste0(start.i, "/"), ]
 		val.rep.d <- .report.na.fill(val.rep.d, seasonal = c(rep(TRUE, 3), rep(FALSE, 3), rep(TRUE, 2)))

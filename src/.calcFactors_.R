@@ -18,9 +18,6 @@
 #
 #   .calcFactors0: Calculate Stock Factors One Period (Implementation)
 
-# Load Supplementary Functions
-source(".SupFun.R")
-
 # Calculate Value Factors
 .calcValue_ <- function (symbol, channel, end) {
 	if (missing(end)) {

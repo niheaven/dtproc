@@ -309,10 +309,12 @@ getName <- function(symbol, channel, date) {
 	name <- dbGetQuery(channel, paste0("SELECT SYMBOL, SESNAME, BEGINDATE, ENDDATE 
 		FROM TQ_OA_STCODE WHERE SYMBOL IN (", 
 		toString(paste0("'", symbol, "'")), ") AND SETYPE = '101'"))
-	name[name[, 4] == "19000101", 4] <- "20991231"
-	name[, 3] <- ymd(name[, 3])
-	name[, 4] <- ymd(name[, 4])
-	name <- name[(name[, 3] <= date) & (name[, 4] >= date), 1:2]
+	if (NROW(name) > 1) {
+		name[name[, 4] == "19000101", 4] <- "20991231"
+		name[, 3] <- ymd(name[, 3])
+		name[, 4] <- ymd(name[, 4])
+		name <- name[(name[, 3] <= date) & (name[, 4] >= date), ]
+	}
 	name <- data.frame(name[, 2], row.names = fixCode(name[, 1]))
 	as.character(name[fixCode(symbol), ])
 }
@@ -329,10 +331,12 @@ getName <- function(symbol, channel, date) {
 	code <- dbGetQuery(channel, paste0("SELECT SYMBOL, COMPCODE, SECODE, 
 		BEGINDATE, ENDDATE FROM TQ_OA_STCODE WHERE SYMBOL = '", 
 		as.character(symbol), "' AND SETYPE = '101'"))
-	code[code[, 5] == "19000101", 5] <- "20991231"
-	code[, 4] <- ymd(code[, 4])
-	code[, 5] <- ymd(code[, 5])
-	code <- code[(code[, 4] <= date) & (code[, 5] >= date), 1:3]
+	if (NROW(code) > 1) {
+		code[code[, 5] == "19000101", 5] <- "20991231"
+		code[, 4] <- ymd(code[, 4])
+		code[, 5] <- ymd(code[, 5])
+		code <- code[(code[, 4] <= date) & (code[, 5] >= date), ]
+	}
 	code <- data.frame(code[, 2:3], row.names = fixCode(code[, 1]))
 	code[fixCode(symbol), ]
 }

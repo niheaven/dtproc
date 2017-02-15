@@ -18,16 +18,34 @@
 #
 #   writeFactors: Write Stock Factors to Database
 
-# Load calcFactors
-source("calcFactors.R")
-
-# Calculate and Write Factors to Dababase
-cwFactors_ <- function (symbol.list, con_data, con_factors, end) {
+# Calculate and Write Factors to Dababase, One Stock and Multiple Periods
+cwFactors <- function (symbol, con_data, con_factors, table.name, end) {
 	if (missing(end)) {
 		end <- rollback(today())
 	}
 	else {
 		end <- ymd(end)
+	}
+	if (nchar(symbol) == 9) {
+		symbol.f <- symbol
+		symbol <- strtrim(symbol, 6)
+	}
+	else {
+		symbol.f <- fixCode(symbol)
+	}
+	facs <- .calcFactors(symbol, con_data, end)
+	facs.df <- data.frame(Date = index(facs), Symbol = symbol.f, facs)
+	append.trigger <- dbExistsTable(con_factors, table.name)
+	dbWriteTable(con_factors, table.name, facs.df, row.names = FALSE, append = append.trigger)
+}
+
+# Calculate and Write Factors to Dababase, Multiple Stocks and One Period
+cwFactors_ <- function (symbol.list, con_data, con_factors, table.name, date) {
+	if (missing(date)) {
+		date <- rollback(today())
+	}
+	else {
+		date <- ymd(date)
 	}
 	if (nchar(symbol.list[1]) == 9) {
 		symbol.list.f <- symbol.list
@@ -36,10 +54,10 @@ cwFactors_ <- function (symbol.list, con_data, con_factors, end) {
 	else {
 		symbol.list.f <- fixCode(symbol.list)
 	}
-	symbol.name <- getName(symbol.list, con_data, end)
-	facs <- calcFactors_(symbol.list, con_data, end)
-	facs.df <- data.frame(Date = end, Symbol = symbol.list.f, facs)
-	dbWriteTable(con_factors, TABLE.NAME, facs.df, row.names = FALSE, append = TRUE)
+	facs <- calcFactors_(symbol.list, con_data, date)
+	facs.df <- data.frame(Date = date, Symbol = symbol.list.f, facs)
+	append.trigger <- dbExistsTable(con_factors, table.name)
+	dbWriteTable(con_factors, table.name, facs.df, row.names = FALSE, append = append.trigger)
 }
 
 # Write Factors for One Year Data
