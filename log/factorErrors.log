@@ -1,0 +1,8 @@
+2016-12-31 000991.SZ Value Factors Calc Error! 2017-02-15 23:59:07 
+	 'NA' not allowed in 'index' 
+2016-12-31 000991.SZ Growth Factors Calc Error! 2017-02-15 23:59:07 
+	 'NA' not allowed in 'index' 
+2016-12-31 000991.SZ Quality Factors Calc Error! 2017-02-15 23:59:08 
+	 'NA' not allowed in 'index' 
+2016-12-31 000991.SZ Momentum Factors Calc Error! 2017-02-15 23:59:08 
+	 no applicable method for 'index<-' applied to an object of class "data.frame" 
