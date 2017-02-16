@@ -55,7 +55,7 @@ if (!tryCatch(dbIsValid(ch_factors), error = function(e) FALSE))
 main.stock <- function (con_data, con_factors, table.name = TABLE.STOCK, end = "20161231") {
 	end <- ymd(end)
 	code.a <- dbGetQuery(con_data, paste0("SELECT SYMBOL FROM TQ_OA_STCODE WHERE BEGINDATE <= '", 
-		format(end, "%Y%m%d"), "' AND BEGINDATE != '19000101' AND SETYPE = '101' ORDER BY BEGINDATE"))
+		format(end, "%Y%m%d"), "' AND BEGINDATE != '19000101' AND SETYPE = '101' ORDER BY SYMBOL"))
 	code.a <- code.a[!duplicated(code.a), 1]
 	code.a.f <- fixCode(code.a)
 	i.start <- sum(as.numeric(code.a) <= as.numeric(S.END)) + 1
