@@ -12,3 +12,9 @@
 	 'NA' not allowed in 'index' 
 2016-12-31 002257.SZ Momentum Factors Calc Error! 2017-02-16 16:57:51 
 	 no applicable method for 'index<-' applied to an object of class "data.frame" 
+2016-12-31 002525.SZ Growth Factors Calc Error! 2017-02-16 18:52:21 
+	 'NA' not allowed in 'index' 
+2016-12-31 002525.SZ Quality Factors Calc Error! 2017-02-16 18:52:22 
+	 'NA' not allowed in 'index' 
+2016-12-31 002525.SZ Momentum Factors Calc Error! 2017-02-16 18:52:22 
+	 no applicable method for 'index<-' applied to an object of class "data.frame" 

@@ -35,7 +35,7 @@ TABLE.STOCK <- "FACTORS_STOCK"
 # Next Period for main.period
 START <- ymd("19970430")
 # Last C/W Stock for main.stock
-S.END <- "002257"
+S.END <- "002545"
 
 # source("getPrice.R", encoding = 'UTF-8')
 source("src/.SupFun.R", chdir = TRUE, encoding = 'UTF-8')
@@ -55,11 +55,17 @@ if (!tryCatch(dbIsValid(ch_factors), error = function(e) FALSE))
 main.stock <- function (con_data, con_factors, table.name = TABLE.STOCK, end = "20161231") {
 	end <- ymd(end)
 	code.a <- dbGetQuery(con_data, paste0("SELECT SYMBOL FROM TQ_OA_STCODE WHERE BEGINDATE <= '", 
-		format(end, "%Y%m%d"), "' AND BEGINDATE != '19000101' AND SETYPE = '101' ORDER BY SYMBOL"))
+		format(end, "%Y%m%d"), "' AND SETYPE = '101' ORDER BY SYMBOL"))
 	code.a <- code.a[!duplicated(code.a), 1]
 	code.a.f <- fixCode(code.a)
 	i.start <- sum(as.numeric(code.a) <= as.numeric(S.END)) + 1
 	for (i in i.start:length(code.a)) {
+  	# Throw away broken symbols
+	  if ((NROW(dbGetQuery(con_data, paste0("SELECT TRADEDATE FROM TQ_SK_DQUOTEINDIC WHERE SYMBOL = '", code.a[i], "' 
+		  AND TRADEDATE <= '", format(end, "%Y%m%d"), "'")))) == 0) {
+	    cat("Damn!", code.a.f[i], "(", i, "/", length(code.a), ")", "HAS NOT BEEN LISTED! So Skip the Symbol!\n")
+	    next
+	  }
 		cwres <- tryCatch(cwFactors(code.a[i], con_data, con_factors, table.name, end), error = function(e) {cat(format(Sys.time()), code.a[i], "Factors C/W Error!", "\n\t", e$message, "\n", file = "log/factorErrors.log", append = TRUE)})
 		if (isTRUE(cwres))
 			cat("End Date:", format(end), "(", i, "/", length(code.a), ")", code.a.f[i], "Factors C/W Okay.", format(Sys.time()), "\n", file = paste0("log/all", format(end, "%Y%m%d"), ".log"), append = TRUE)
