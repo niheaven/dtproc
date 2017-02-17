@@ -24,6 +24,11 @@
 	x[is.nan(x)] <- NA
 	x
 }
+# cat with sep = "\t"
+# Forked from base::cat
+catt <- function (...) {
+	cat(..., sep = "\t")
+}
 
 # Last Day of Months
 # Forked from vignette of package:lubridate

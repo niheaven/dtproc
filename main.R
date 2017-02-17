@@ -35,7 +35,7 @@ TABLE.STOCK <- "FACTORS_STOCK"
 # Next Period for main.period
 START <- ymd("19970430")
 # Last C/W Stock for main.stock
-S.END <- "002545"
+S.END <- "000000"
 
 # source("getPrice.R", encoding = 'UTF-8')
 source("src/.SupFun.R", chdir = TRUE, encoding = 'UTF-8')
@@ -63,15 +63,19 @@ main.stock <- function (con_data, con_factors, table.name = TABLE.STOCK, end = "
   	# Throw away broken symbols
 	  if ((NROW(dbGetQuery(con_data, paste0("SELECT TRADEDATE FROM TQ_SK_DQUOTEINDIC WHERE SYMBOL = '", code.a[i], "' 
 		  AND TRADEDATE <= '", format(end, "%Y%m%d"), "'")))) == 0) {
-	    cat("Damn!", code.a.f[i], "(", i, "/", length(code.a), ")", "HAS NOT BEEN LISTED! So Skip the Symbol!\n")
+	    catt("End Date:", format(end), "(", i, "/", length(code.a), ")", code.a.f[i], "Is Not Been Listed!", format(Sys.time()), "\n", file = paste0("log/all", format(end, "%Y%m%d"), ".log"), append = TRUE)
+	    cat("Damn!", code.a.f[i], "(", i, "/", length(code.a), ")", "is not been Listed! So Skip the Symbol!\n")
 	    next
 	  }
 		cwres <- tryCatch(cwFactors(code.a[i], con_data, con_factors, table.name, end), error = function(e) {cat(format(Sys.time()), code.a[i], "Factors C/W Error!", "\n\t", e$message, "\n", file = "log/factorErrors.log", append = TRUE)})
-		if (isTRUE(cwres))
-			cat("End Date:", format(end), "(", i, "/", length(code.a), ")", code.a.f[i], "Factors C/W Okay.", format(Sys.time()), "\n", file = paste0("log/all", format(end, "%Y%m%d"), ".log"), append = TRUE)
-		else
-			cat("End Date:", format(end), "(", i, "/", length(code.a), ")", code.a.f[i], "Factors C/W Error!", format(Sys.time()), "\n", file = paste0("log/all", format(end, "%Y%m%d"), ".log"), append = TRUE)
-		cat("Well Done! You've Got", code.a.f[i], "(", i, "/", length(code.a), ")", "Factors Writen to Database!\n")
+		if (isTRUE(cwres)) {
+			catt("End Date:", format(end), "(", i, "/", length(code.a), ")", code.a.f[i], "Factors C/W Okay.", format(Sys.time()), "\n", file = paste0("log/all", format(end, "%Y%m%d"), ".log"), append = TRUE)
+			cat("Well Done! You've Got", code.a.f[i], "(", i, "/", length(code.a), ")", "Factors Writen to Database!\n")
+		}
+		else {
+			catt("End Date:", format(end), "(", i, "/", length(code.a), ")", code.a.f[i], "Factors C/W Error!", format(Sys.time()), "\n", file = paste0("log/all", format(end, "%Y%m%d"), ".log"), append = TRUE)
+			cat("Damn!", code.a.f[i], "(", i, "/", length(code.a), ")", "Factors Writen to Database Failed!\n")
+		}
 	}
 	cat("CONGUATULATION! FINALLLY ALL DONE!\n")
 }
