@@ -212,9 +212,11 @@ last.day <- function (date) {
 	x0 <- xts(x[x["REPORTTYPE"] == 3, -1:-3], 
 		as.yearqtr(paste0(t(x[x["REPORTTYPE"] == 3, "REPORTYEAR"]), 
 		"-", t(x[x["REPORTTYPE"] == 3, "REPORTDATETYPE"]))))
+	x0 <- x0[!duplicated(index(x0))]
 	x <- xts(x[x["REPORTTYPE"] == 1, -1:-3], 
 		as.yearqtr(paste0(t(x[x["REPORTTYPE"] == 1, "REPORTYEAR"]), 
 		"-", t(x[x["REPORTTYPE"] == 1, "REPORTDATETYPE"]))))
+	x <- x[!duplicated(index(x))]
 	if (NROW(x0) != 0) {
 		x <- merge(x, xts(, index(x0)))
 		x[index(x0), ] <- x0
