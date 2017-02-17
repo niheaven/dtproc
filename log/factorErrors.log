@@ -4,3 +4,997 @@
 	 'to' must be of length 1 
 2016-12-31 600167.SH Factors Merge Error! 2017-02-17 13:59:04 
 	 improper length of one or more arguments to merge.xts 
+2017-01-31 000003.SZ Value Factors Calc Error! 2017-02-17 19:58:12 
+	 'NA' not allowed in 'index' 
+2017-01-31 000003.SZ Growth Factors Calc Error! 2017-02-17 19:58:13 
+	 'NA' not allowed in 'index' 
+2017-01-31 000003.SZ Quality Factors Calc Error! 2017-02-17 19:58:14 
+	 'NA' not allowed in 'index' 
+2017-01-31 000003.SZ Factors Merge Error! 2017-02-17 19:58:14 
+	 improper length of one or more arguments to merge.xts 
+2017-02-17 19:58:14 000003 Factors C/W Error! 
+	 Unknown column 'X1' in 'field list' [1054] 
+2017-01-31 000013.SZ Value Factors Calc Error! 2017-02-17 19:58:54 
+	 'NA' not allowed in 'index' 
+2017-01-31 000013.SZ Growth Factors Calc Error! 2017-02-17 19:58:55 
+	 'NA' not allowed in 'index' 
+2017-01-31 000013.SZ Quality Factors Calc Error! 2017-02-17 19:58:55 
+	 'NA' not allowed in 'index' 
+2017-01-31 000013.SZ Factors Merge Error! 2017-02-17 19:58:56 
+	 improper length of one or more arguments to merge.xts 
+2017-02-17 19:58:56 000013 Factors C/W Error! 
+	 Unknown column 'X1' in 'field list' [1054] 
+2017-01-31 000015.SZ Value Factors Calc Error! 2017-02-17 19:59:02 
+	 'NA' not allowed in 'index' 
+2017-01-31 000015.SZ Growth Factors Calc Error! 2017-02-17 19:59:02 
+	 'NA' not allowed in 'index' 
+2017-01-31 000015.SZ Quality Factors Calc Error! 2017-02-17 19:59:03 
+	 'NA' not allowed in 'index' 
+2017-01-31 000015.SZ Factors Merge Error! 2017-02-17 19:59:04 
+	 improper length of one or more arguments to merge.xts 
+2017-02-17 19:59:04 000015 Factors C/W Error! 
+	 Unknown column 'X1' in 'field list' [1054] 
+2017-01-31 000003.SZ Value Factors Calc Error! 2017-02-17 20:02:41 
+	 'NA' not allowed in 'index' 
+2017-01-31 000003.SZ Growth Factors Calc Error! 2017-02-17 20:02:42 
+	 'NA' not allowed in 'index' 
+2017-01-31 000003.SZ Quality Factors Calc Error! 2017-02-17 20:02:43 
+	 'NA' not allowed in 'index' 
+2017-01-31 000003.SZ Factors Merge Error! 2017-02-17 20:02:43 
+	 improper length of one or more arguments to merge.xts 
+2017-02-17 20:02:43 000003 Factors C/W Error! 
+	 Unknown column 'X1' in 'field list' [1054] 
+2017-01-31 000003.SZ Value Factors Calc Error! 2017-02-17 20:03:24 
+	 'NA' not allowed in 'index' 
+2017-01-31 000003.SZ Growth Factors Calc Error! 2017-02-17 20:03:25 
+	 'NA' not allowed in 'index' 
+2017-01-31 000003.SZ Quality Factors Calc Error! 2017-02-17 20:03:26 
+	 'NA' not allowed in 'index' 
+2017-01-31 000003.SZ Factors Merge Error! 2017-02-17 20:03:26 
+	 improper length of one or more arguments to merge.xts 
+2017-02-17 20:03:26 000003 Factors C/W Error! 
+	 Unknown column 'X1' in 'field list' [1054] 
+2017-01-31 000013.SZ Value Factors Calc Error! 2017-02-17 20:04:04 
+	 'NA' not allowed in 'index' 
+2017-01-31 000013.SZ Growth Factors Calc Error! 2017-02-17 20:04:04 
+	 'NA' not allowed in 'index' 
+2017-01-31 000013.SZ Quality Factors Calc Error! 2017-02-17 20:04:05 
+	 'NA' not allowed in 'index' 
+2017-01-31 000013.SZ Factors Merge Error! 2017-02-17 20:04:06 
+	 improper length of one or more arguments to merge.xts 
+2017-02-17 20:04:06 000013 Factors C/W Error! 
+	 Unknown column 'X1' in 'field list' [1054] 
+2017-01-31 000015.SZ Value Factors Calc Error! 2017-02-17 20:04:11 
+	 'NA' not allowed in 'index' 
+2017-01-31 000015.SZ Growth Factors Calc Error! 2017-02-17 20:04:12 
+	 'NA' not allowed in 'index' 
+2017-01-31 000015.SZ Quality Factors Calc Error! 2017-02-17 20:04:13 
+	 'NA' not allowed in 'index' 
+2017-01-31 000015.SZ Factors Merge Error! 2017-02-17 20:04:14 
+	 improper length of one or more arguments to merge.xts 
+2017-02-17 20:04:14 000015 Factors C/W Error! 
+	 Unknown column 'X1' in 'field list' [1054] 
+2017-01-31 000024.SZ Value Factors Calc Error! 2017-02-17 20:04:47 
+	 'NA' not allowed in 'index' 
+2017-01-31 000024.SZ Growth Factors Calc Error! 2017-02-17 20:04:48 
+	 'NA' not allowed in 'index' 
+2017-01-31 000024.SZ Quality Factors Calc Error! 2017-02-17 20:04:49 
+	 'NA' not allowed in 'index' 
+2017-01-31 000024.SZ Factors Merge Error! 2017-02-17 20:04:50 
+	 improper length of one or more arguments to merge.xts 
+2017-02-17 20:04:50 000024 Factors C/W Error! 
+	 Unknown column 'X1' in 'field list' [1054] 
+2017-01-31 000033.SZ Value Factors Calc Error! 2017-02-17 20:05:24 
+	 'NA' not allowed in 'index' 
+2017-01-31 000033.SZ Growth Factors Calc Error! 2017-02-17 20:05:25 
+	 'NA' not allowed in 'index' 
+2017-01-31 000033.SZ Quality Factors Calc Error! 2017-02-17 20:05:25 
+	 'NA' not allowed in 'index' 
+2017-01-31 000033.SZ Factors Merge Error! 2017-02-17 20:05:26 
+	 improper length of one or more arguments to merge.xts 
+2017-02-17 20:05:26 000033 Factors C/W Error! 
+	 Unknown column 'X1' in 'field list' [1054] 
+2017-01-31 000047.SZ Value Factors Calc Error! 2017-02-17 20:06:12 
+	 'NA' not allowed in 'index' 
+2017-01-31 000047.SZ Growth Factors Calc Error! 2017-02-17 20:06:13 
+	 'NA' not allowed in 'index' 
+2017-01-31 000047.SZ Quality Factors Calc Error! 2017-02-17 20:06:13 
+	 'NA' not allowed in 'index' 
+2017-01-31 000047.SZ Factors Merge Error! 2017-02-17 20:06:14 
+	 improper length of one or more arguments to merge.xts 
+2017-02-17 20:06:14 000047 Factors C/W Error! 
+	 Unknown column 'X1' in 'field list' [1054] 
+2017-01-31 000155.SZ Value Factors Calc Error! 2017-02-17 20:07:56 
+	 'NA' not allowed in 'index' 
+2017-01-31 000155.SZ Growth Factors Calc Error! 2017-02-17 20:07:56 
+	 'NA' not allowed in 'index' 
+2017-01-31 000155.SZ Quality Factors Calc Error! 2017-02-17 20:07:57 
+	 'NA' not allowed in 'index' 
+2017-01-31 000155.SZ Factors Merge Error! 2017-02-17 20:07:58 
+	 improper length of one or more arguments to merge.xts 
+2017-02-17 20:07:58 000155 Factors C/W Error! 
+	 Unknown column 'X1' in 'field list' [1054] 
+2017-01-31 000405.SZ Value Factors Calc Error! 2017-02-17 20:08:48 
+	 'NA' not allowed in 'index' 
+2017-01-31 000405.SZ Growth Factors Calc Error! 2017-02-17 20:08:49 
+	 'NA' not allowed in 'index' 
+2017-01-31 000405.SZ Quality Factors Calc Error! 2017-02-17 20:08:50 
+	 'NA' not allowed in 'index' 
+2017-01-31 000405.SZ Factors Merge Error! 2017-02-17 20:08:50 
+	 improper length of one or more arguments to merge.xts 
+2017-02-17 20:08:50 000405 Factors C/W Error! 
+	 Unknown column 'X1' in 'field list' [1054] 
+2017-01-31 000406.SZ Value Factors Calc Error! 2017-02-17 20:08:52 
+	 'NA' not allowed in 'index' 
+2017-01-31 000406.SZ Growth Factors Calc Error! 2017-02-17 20:08:52 
+	 'NA' not allowed in 'index' 
+2017-01-31 000406.SZ Quality Factors Calc Error! 2017-02-17 20:08:53 
+	 'NA' not allowed in 'index' 
+2017-01-31 000406.SZ Factors Merge Error! 2017-02-17 20:08:54 
+	 improper length of one or more arguments to merge.xts 
+2017-02-17 20:08:54 000406 Factors C/W Error! 
+	 Unknown column 'X1' in 'field list' [1054] 
+2017-01-31 000412.SZ Value Factors Calc Error! 2017-02-17 20:09:15 
+	 'NA' not allowed in 'index' 
+2017-01-31 000412.SZ Growth Factors Calc Error! 2017-02-17 20:09:16 
+	 'NA' not allowed in 'index' 
+2017-01-31 000412.SZ Quality Factors Calc Error! 2017-02-17 20:09:16 
+	 'NA' not allowed in 'index' 
+2017-01-31 000412.SZ Factors Merge Error! 2017-02-17 20:09:17 
+	 improper length of one or more arguments to merge.xts 
+2017-02-17 20:09:17 000412 Factors C/W Error! 
+	 Unknown column 'X1' in 'field list' [1054] 
+2017-01-31 000508.SZ Value Factors Calc Error! 2017-02-17 20:10:52 
+	 'NA' not allowed in 'index' 
+2017-01-31 000508.SZ Growth Factors Calc Error! 2017-02-17 20:10:53 
+	 'NA' not allowed in 'index' 
+2017-01-31 000508.SZ Quality Factors Calc Error! 2017-02-17 20:10:54 
+	 'NA' not allowed in 'index' 
+2017-01-31 000508.SZ Factors Merge Error! 2017-02-17 20:10:54 
+	 improper length of one or more arguments to merge.xts 
+2017-02-17 20:10:54 000508 Factors C/W Error! 
+	 Unknown column 'X1' in 'field list' [1054] 
+2017-01-31 000515.SZ Value Factors Calc Error! 2017-02-17 20:11:15 
+	 'NA' not allowed in 'index' 
+2017-01-31 000515.SZ Growth Factors Calc Error! 2017-02-17 20:11:16 
+	 'NA' not allowed in 'index' 
+2017-01-31 000515.SZ Quality Factors Calc Error! 2017-02-17 20:11:17 
+	 'NA' not allowed in 'index' 
+2017-01-31 000515.SZ Factors Merge Error! 2017-02-17 20:11:18 
+	 improper length of one or more arguments to merge.xts 
+2017-02-17 20:11:18 000515 Factors C/W Error! 
+	 Unknown column 'X1' in 'field list' [1054] 
+2017-01-31 000522.SZ Value Factors Calc Error! 2017-02-17 20:11:43 
+	 'NA' not allowed in 'index' 
+2017-01-31 000522.SZ Growth Factors Calc Error! 2017-02-17 20:11:43 
+	 'NA' not allowed in 'index' 
+2017-01-31 000522.SZ Quality Factors Calc Error! 2017-02-17 20:11:44 
+	 'NA' not allowed in 'index' 
+2017-01-31 000522.SZ Factors Merge Error! 2017-02-17 20:11:45 
+	 improper length of one or more arguments to merge.xts 
+2017-02-17 20:11:45 000522 Factors C/W Error! 
+	 Unknown column 'X1' in 'field list' [1054] 
+2017-01-31 000527.SZ Value Factors Calc Error! 2017-02-17 20:12:02 
+	 'NA' not allowed in 'index' 
+2017-01-31 000527.SZ Growth Factors Calc Error! 2017-02-17 20:12:03 
+	 'NA' not allowed in 'index' 
+2017-01-31 000527.SZ Quality Factors Calc Error! 2017-02-17 20:12:04 
+	 'NA' not allowed in 'index' 
+2017-01-31 000527.SZ Factors Merge Error! 2017-02-17 20:12:05 
+	 improper length of one or more arguments to merge.xts 
+2017-02-17 20:12:05 000527 Factors C/W Error! 
+	 Unknown column 'X1' in 'field list' [1054] 
+2017-01-31 000535.SZ Value Factors Calc Error! 2017-02-17 20:12:34 
+	 'NA' not allowed in 'index' 
+2017-01-31 000535.SZ Growth Factors Calc Error! 2017-02-17 20:12:35 
+	 'NA' not allowed in 'index' 
+2017-01-31 000535.SZ Quality Factors Calc Error! 2017-02-17 20:12:36 
+	 'NA' not allowed in 'index' 
+2017-01-31 000535.SZ Factors Merge Error! 2017-02-17 20:12:36 
+	 improper length of one or more arguments to merge.xts 
+2017-02-17 20:12:36 000535 Factors C/W Error! 
+	 Unknown column 'X1' in 'field list' [1054] 
+2017-01-31 000542.SZ Value Factors Calc Error! 2017-02-17 20:13:02 
+	 'NA' not allowed in 'index' 
+2017-01-31 000542.SZ Growth Factors Calc Error! 2017-02-17 20:13:02 
+	 'NA' not allowed in 'index' 
+2017-01-31 000542.SZ Quality Factors Calc Error! 2017-02-17 20:13:03 
+	 'NA' not allowed in 'index' 
+2017-01-31 000542.SZ Factors Merge Error! 2017-02-17 20:13:04 
+	 improper length of one or more arguments to merge.xts 
+2017-02-17 20:13:04 000542 Factors C/W Error! 
+	 Unknown column 'X1' in 'field list' [1054] 
+2017-01-31 000549.SZ Value Factors Calc Error! 2017-02-17 20:13:29 
+	 'NA' not allowed in 'index' 
+2017-01-31 000549.SZ Growth Factors Calc Error! 2017-02-17 20:13:30 
+	 'NA' not allowed in 'index' 
+2017-01-31 000549.SZ Quality Factors Calc Error! 2017-02-17 20:13:31 
+	 'NA' not allowed in 'index' 
+2017-01-31 000549.SZ Factors Merge Error! 2017-02-17 20:13:32 
+	 improper length of one or more arguments to merge.xts 
+2017-02-17 20:13:32 000549 Factors C/W Error! 
+	 Unknown column 'X1' in 'field list' [1054] 
+2017-01-31 000556.SZ Value Factors Calc Error! 2017-02-17 20:13:57 
+	 'NA' not allowed in 'index' 
+2017-01-31 000556.SZ Growth Factors Calc Error! 2017-02-17 20:13:58 
+	 'NA' not allowed in 'index' 
+2017-01-31 000556.SZ Quality Factors Calc Error! 2017-02-17 20:13:59 
+	 'NA' not allowed in 'index' 
+2017-01-31 000556.SZ Factors Merge Error! 2017-02-17 20:13:59 
+	 improper length of one or more arguments to merge.xts 
+2017-02-17 20:13:59 000556 Factors C/W Error! 
+	 Unknown column 'X1' in 'field list' [1054] 
+2017-01-31 000562.SZ Value Factors Calc Error! 2017-02-17 20:14:21 
+	 'NA' not allowed in 'index' 
+2017-01-31 000562.SZ Growth Factors Calc Error! 2017-02-17 20:14:21 
+	 'NA' not allowed in 'index' 
+2017-01-31 000562.SZ Quality Factors Calc Error! 2017-02-17 20:14:22 
+	 'NA' not allowed in 'index' 
+2017-01-31 000562.SZ Factors Merge Error! 2017-02-17 20:14:23 
+	 improper length of one or more arguments to merge.xts 
+2017-02-17 20:14:23 000562 Factors C/W Error! 
+	 Unknown column 'X1' in 'field list' [1054] 
+2017-01-31 000569.SZ Value Factors Calc Error! 2017-02-17 20:14:49 
+	 'NA' not allowed in 'index' 
+2017-01-31 000569.SZ Growth Factors Calc Error! 2017-02-17 20:14:49 
+	 'NA' not allowed in 'index' 
+2017-01-31 000569.SZ Quality Factors Calc Error! 2017-02-17 20:14:50 
+	 'NA' not allowed in 'index' 
+2017-01-31 000569.SZ Factors Merge Error! 2017-02-17 20:14:51 
+	 improper length of one or more arguments to merge.xts 
+2017-02-17 20:14:51 000569 Factors C/W Error! 
+	 Unknown column 'X1' in 'field list' [1054] 
+2017-01-31 000578.SZ Value Factors Calc Error! 2017-02-17 20:15:12 
+	 'NA' not allowed in 'index' 
+2017-01-31 000578.SZ Growth Factors Calc Error! 2017-02-17 20:15:13 
+	 'NA' not allowed in 'index' 
+2017-01-31 000578.SZ Quality Factors Calc Error! 2017-02-17 20:15:14 
+	 'NA' not allowed in 'index' 
+2017-01-31 000578.SZ Factors Merge Error! 2017-02-17 20:15:15 
+	 improper length of one or more arguments to merge.xts 
+2017-02-17 20:15:15 000578 Factors C/W Error! 
+	 Unknown column 'X1' in 'field list' [1054] 
+2017-01-31 000583.SZ Value Factors Calc Error! 2017-02-17 20:15:24 
+	 'NA' not allowed in 'index' 
+2017-01-31 000583.SZ Growth Factors Calc Error! 2017-02-17 20:15:25 
+	 'NA' not allowed in 'index' 
+2017-01-31 000583.SZ Quality Factors Calc Error! 2017-02-17 20:15:26 
+	 'NA' not allowed in 'index' 
+2017-01-31 000583.SZ Factors Merge Error! 2017-02-17 20:15:26 
+	 improper length of one or more arguments to merge.xts 
+2017-02-17 20:15:26 000583 Factors C/W Error! 
+	 Unknown column 'X1' in 'field list' [1054] 
+2017-01-31 000588.SZ Value Factors Calc Error! 2017-02-17 20:15:43 
+	 'NA' not allowed in 'index' 
+2017-01-31 000588.SZ Growth Factors Calc Error! 2017-02-17 20:15:44 
+	 'NA' not allowed in 'index' 
+2017-01-31 000588.SZ Quality Factors Calc Error! 2017-02-17 20:15:45 
+	 'NA' not allowed in 'index' 
+2017-01-31 000588.SZ Factors Merge Error! 2017-02-17 20:15:46 
+	 improper length of one or more arguments to merge.xts 
+2017-02-17 20:15:46 000588 Factors C/W Error! 
+	 Unknown column 'X1' in 'field list' [1054] 
+2017-01-31 000594.SZ Value Factors Calc Error! 2017-02-17 20:16:07 
+	 'NA' not allowed in 'index' 
+2017-01-31 000594.SZ Growth Factors Calc Error! 2017-02-17 20:16:08 
+	 'NA' not allowed in 'index' 
+2017-01-31 000594.SZ Quality Factors Calc Error! 2017-02-17 20:16:08 
+	 'NA' not allowed in 'index' 
+2017-01-31 000594.SZ Factors Merge Error! 2017-02-17 20:16:09 
+	 improper length of one or more arguments to merge.xts 
+2017-02-17 20:16:09 000594 Factors C/W Error! 
+	 Unknown column 'X1' in 'field list' [1054] 
+2017-01-31 000602.SZ Value Factors Calc Error! 2017-02-17 20:16:38 
+	 'NA' not allowed in 'index' 
+2017-01-31 000602.SZ Growth Factors Calc Error! 2017-02-17 20:16:39 
+	 'NA' not allowed in 'index' 
+2017-01-31 000602.SZ Quality Factors Calc Error! 2017-02-17 20:16:40 
+	 'NA' not allowed in 'index' 
+2017-01-31 000602.SZ Factors Merge Error! 2017-02-17 20:16:41 
+	 improper length of one or more arguments to merge.xts 
+2017-02-17 20:16:41 000602 Factors C/W Error! 
+	 Unknown column 'X1' in 'field list' [1054] 
+2017-01-31 000618.SZ Value Factors Calc Error! 2017-02-17 20:17:33 
+	 'NA' not allowed in 'index' 
+2017-01-31 000618.SZ Growth Factors Calc Error! 2017-02-17 20:17:34 
+	 'NA' not allowed in 'index' 
+2017-01-31 000618.SZ Quality Factors Calc Error! 2017-02-17 20:17:34 
+	 'NA' not allowed in 'index' 
+2017-01-31 000618.SZ Factors Merge Error! 2017-02-17 20:17:35 
+	 improper length of one or more arguments to merge.xts 
+2017-02-17 20:17:35 000618 Factors C/W Error! 
+	 Unknown column 'X1' in 'field list' [1054] 
+2017-01-31 000621.SZ Value Factors Calc Error! 2017-02-17 20:17:44 
+	 'NA' not allowed in 'index' 
+2017-01-31 000621.SZ Growth Factors Calc Error! 2017-02-17 20:17:45 
+	 'NA' not allowed in 'index' 
+2017-01-31 000621.SZ Quality Factors Calc Error! 2017-02-17 20:17:46 
+	 'NA' not allowed in 'index' 
+2017-01-31 000621.SZ Factors Merge Error! 2017-02-17 20:17:46 
+	 improper length of one or more arguments to merge.xts 
+2017-02-17 20:17:46 000621 Factors C/W Error! 
+	 Unknown column 'X1' in 'field list' [1054] 
+2017-01-31 000653.SZ Value Factors Calc Error! 2017-02-17 20:19:02 
+	 'NA' not allowed in 'index' 
+2017-01-31 000653.SZ Growth Factors Calc Error! 2017-02-17 20:19:03 
+	 'NA' not allowed in 'index' 
+2017-01-31 000653.SZ Quality Factors Calc Error! 2017-02-17 20:19:04 
+	 'NA' not allowed in 'index' 
+2017-01-31 000653.SZ Factors Merge Error! 2017-02-17 20:19:04 
+	 improper length of one or more arguments to merge.xts 
+2017-02-17 20:19:04 000653 Factors C/W Error! 
+	 Unknown column 'X1' in 'field list' [1054] 
+2017-01-31 000658.SZ Value Factors Calc Error! 2017-02-17 20:19:17 
+	 'NA' not allowed in 'index' 
+2017-01-31 000658.SZ Growth Factors Calc Error! 2017-02-17 20:19:18 
+	 'NA' not allowed in 'index' 
+2017-01-31 000658.SZ Quality Factors Calc Error! 2017-02-17 20:19:19 
+	 'NA' not allowed in 'index' 
+2017-01-31 000658.SZ Factors Merge Error! 2017-02-17 20:19:20 
+	 improper length of one or more arguments to merge.xts 
+2017-02-17 20:19:20 000658 Factors C/W Error! 
+	 Unknown column 'X1' in 'field list' [1054] 
+2017-01-31 000660.SZ Value Factors Calc Error! 2017-02-17 20:19:25 
+	 'NA' not allowed in 'index' 
+2017-01-31 000660.SZ Growth Factors Calc Error! 2017-02-17 20:19:26 
+	 'NA' not allowed in 'index' 
+2017-01-31 000660.SZ Quality Factors Calc Error! 2017-02-17 20:19:26 
+	 'NA' not allowed in 'index' 
+2017-01-31 000660.SZ Factors Merge Error! 2017-02-17 20:19:27 
+	 improper length of one or more arguments to merge.xts 
+2017-02-17 20:19:27 000660 Factors C/W Error! 
+	 Unknown column 'X1' in 'field list' [1054] 
+2017-01-31 000675.SZ Value Factors Calc Error! 2017-02-17 20:20:15 
+	 'NA' not allowed in 'index' 
+2017-01-31 000675.SZ Growth Factors Calc Error! 2017-02-17 20:20:16 
+	 'NA' not allowed in 'index' 
+2017-01-31 000675.SZ Quality Factors Calc Error! 2017-02-17 20:20:17 
+	 'NA' not allowed in 'index' 
+2017-01-31 000675.SZ Factors Merge Error! 2017-02-17 20:20:17 
+	 improper length of one or more arguments to merge.xts 
+2017-02-17 20:20:17 000675 Factors C/W Error! 
+	 Unknown column 'X1' in 'field list' [1054] 
+2017-01-31 000689.SZ Value Factors Calc Error! 2017-02-17 20:21:06 
+	 'NA' not allowed in 'index' 
+2017-01-31 000689.SZ Growth Factors Calc Error! 2017-02-17 20:21:06 
+	 'NA' not allowed in 'index' 
+2017-01-31 000689.SZ Quality Factors Calc Error! 2017-02-17 20:21:07 
+	 'NA' not allowed in 'index' 
+2017-01-31 000689.SZ Factors Merge Error! 2017-02-17 20:21:08 
+	 improper length of one or more arguments to merge.xts 
+2017-02-17 20:21:08 000689 Factors C/W Error! 
+	 Unknown column 'X1' in 'field list' [1054] 
+2017-01-31 000699.SZ Value Factors Calc Error! 2017-02-17 20:21:37 
+	 'NA' not allowed in 'index' 
+2017-01-31 000699.SZ Growth Factors Calc Error! 2017-02-17 20:21:37 
+	 'NA' not allowed in 'index' 
+2017-01-31 000699.SZ Quality Factors Calc Error! 2017-02-17 20:21:38 
+	 'NA' not allowed in 'index' 
+2017-01-31 000699.SZ Factors Merge Error! 2017-02-17 20:21:39 
+	 improper length of one or more arguments to merge.xts 
+2017-02-17 20:21:39 000699 Factors C/W Error! 
+	 Unknown column 'X1' in 'field list' [1054] 
+2017-01-31 000730.SZ Value Factors Calc Error! 2017-02-17 20:23:21 
+	 'NA' not allowed in 'index' 
+2017-01-31 000730.SZ Growth Factors Calc Error! 2017-02-17 20:23:22 
+	 'NA' not allowed in 'index' 
+2017-01-31 000730.SZ Quality Factors Calc Error! 2017-02-17 20:23:23 
+	 'NA' not allowed in 'index' 
+2017-01-31 000730.SZ Factors Merge Error! 2017-02-17 20:23:24 
+	 improper length of one or more arguments to merge.xts 
+2017-02-17 20:23:24 000730 Factors C/W Error! 
+	 Unknown column 'X1' in 'field list' [1054] 
+2017-01-31 000763.SZ Value Factors Calc Error! 2017-02-17 20:24:47 
+	 'NA' not allowed in 'index' 
+2017-01-31 000763.SZ Growth Factors Calc Error! 2017-02-17 20:24:48 
+	 'NA' not allowed in 'index' 
+2017-01-31 000763.SZ Quality Factors Calc Error! 2017-02-17 20:24:49 
+	 'NA' not allowed in 'index' 
+2017-01-31 000763.SZ Factors Merge Error! 2017-02-17 20:24:49 
+	 improper length of one or more arguments to merge.xts 
+2017-02-17 20:24:49 000763 Factors C/W Error! 
+	 Unknown column 'X1' in 'field list' [1054] 
+2017-01-31 000765.SZ Value Factors Calc Error! 2017-02-17 20:24:51 
+	 'NA' not allowed in 'index' 
+2017-01-31 000765.SZ Growth Factors Calc Error! 2017-02-17 20:24:51 
+	 'NA' not allowed in 'index' 
+2017-01-31 000765.SZ Quality Factors Calc Error! 2017-02-17 20:24:52 
+	 'NA' not allowed in 'index' 
+2017-01-31 000765.SZ Factors Merge Error! 2017-02-17 20:24:53 
+	 improper length of one or more arguments to merge.xts 
+2017-02-17 20:24:53 000765 Factors C/W Error! 
+	 Unknown column 'X1' in 'field list' [1054] 
+2017-01-31 000769.SZ Value Factors Calc Error! 2017-02-17 20:25:06 
+	 'NA' not allowed in 'index' 
+2017-01-31 000769.SZ Growth Factors Calc Error! 2017-02-17 20:25:07 
+	 'NA' not allowed in 'index' 
+2017-01-31 000769.SZ Quality Factors Calc Error! 2017-02-17 20:25:08 
+	 'NA' not allowed in 'index' 
+2017-01-31 000769.SZ Factors Merge Error! 2017-02-17 20:25:08 
+	 improper length of one or more arguments to merge.xts 
+2017-02-17 20:25:08 000769 Factors C/W Error! 
+	 Unknown column 'X1' in 'field list' [1054] 
+2017-01-31 000787.SZ Value Factors Calc Error! 2017-02-17 20:25:45 
+	 'NA' not allowed in 'index' 
+2017-01-31 000787.SZ Growth Factors Calc Error! 2017-02-17 20:25:46 
+	 'NA' not allowed in 'index' 
+2017-01-31 000787.SZ Quality Factors Calc Error! 2017-02-17 20:25:46 
+	 'NA' not allowed in 'index' 
+2017-01-31 000787.SZ Factors Merge Error! 2017-02-17 20:25:47 
+	 improper length of one or more arguments to merge.xts 
+2017-02-17 20:25:47 000787 Factors C/W Error! 
+	 Unknown column 'X1' in 'field list' [1054] 
+2017-01-31 000805.SZ Value Factors Calc Error! 2017-02-17 20:26:47 
+	 'NA' not allowed in 'index' 
+2017-01-31 000805.SZ Growth Factors Calc Error! 2017-02-17 20:26:48 
+	 'NA' not allowed in 'index' 
+2017-01-31 000805.SZ Quality Factors Calc Error! 2017-02-17 20:26:48 
+	 'NA' not allowed in 'index' 
+2017-01-31 000805.SZ Factors Merge Error! 2017-02-17 20:26:49 
+	 improper length of one or more arguments to merge.xts 
+2017-02-17 20:26:49 000805 Factors C/W Error! 
+	 Unknown column 'X1' in 'field list' [1054] 
+2017-01-31 000817.SZ Value Factors Calc Error! 2017-02-17 20:27:25 
+	 'NA' not allowed in 'index' 
+2017-01-31 000817.SZ Growth Factors Calc Error! 2017-02-17 20:27:26 
+	 'NA' not allowed in 'index' 
+2017-01-31 000817.SZ Quality Factors Calc Error! 2017-02-17 20:27:27 
+	 'NA' not allowed in 'index' 
+2017-01-31 000817.SZ Factors Merge Error! 2017-02-17 20:27:27 
+	 improper length of one or more arguments to merge.xts 
+2017-02-17 20:27:27 000817 Factors C/W Error! 
+	 Unknown column 'X1' in 'field list' [1054] 
+2017-01-31 000827.SZ Value Factors Calc Error! 2017-02-17 20:28:00 
+	 'NA' not allowed in 'index' 
+2017-01-31 000827.SZ Growth Factors Calc Error! 2017-02-17 20:28:01 
+	 'NA' not allowed in 'index' 
+2017-01-31 000827.SZ Quality Factors Calc Error! 2017-02-17 20:28:01 
+	 'NA' not allowed in 'index' 
+2017-01-31 000827.SZ Factors Merge Error! 2017-02-17 20:28:02 
+	 improper length of one or more arguments to merge.xts 
+2017-02-17 20:28:02 000827 Factors C/W Error! 
+	 Unknown column 'X1' in 'field list' [1054] 
+2017-01-31 000832.SZ Value Factors Calc Error! 2017-02-17 20:28:19 
+	 'NA' not allowed in 'index' 
+2017-01-31 000832.SZ Growth Factors Calc Error! 2017-02-17 20:28:19 
+	 'NA' not allowed in 'index' 
+2017-01-31 000832.SZ Quality Factors Calc Error! 2017-02-17 20:28:20 
+	 'NA' not allowed in 'index' 
+2017-01-31 000832.SZ Factors Merge Error! 2017-02-17 20:28:21 
+	 improper length of one or more arguments to merge.xts 
+2017-02-17 20:28:21 000832 Factors C/W Error! 
+	 Unknown column 'X1' in 'field list' [1054] 
+2017-01-31 000866.SZ Value Factors Calc Error! 2017-02-17 20:29:28 
+	 'NA' not allowed in 'index' 
+2017-01-31 000866.SZ Growth Factors Calc Error! 2017-02-17 20:29:29 
+	 'NA' not allowed in 'index' 
+2017-01-31 000866.SZ Quality Factors Calc Error! 2017-02-17 20:29:30 
+	 'NA' not allowed in 'index' 
+2017-01-31 000866.SZ Factors Merge Error! 2017-02-17 20:29:30 
+	 improper length of one or more arguments to merge.xts 
+2017-02-17 20:29:30 000866 Factors C/W Error! 
+	 Unknown column 'X1' in 'field list' [1054] 
+2017-01-31 000956.SZ Value Factors Calc Error! 2017-02-17 20:33:40 
+	 'NA' not allowed in 'index' 
+2017-01-31 000956.SZ Growth Factors Calc Error! 2017-02-17 20:33:40 
+	 'NA' not allowed in 'index' 
+2017-01-31 000956.SZ Quality Factors Calc Error! 2017-02-17 20:33:41 
+	 'NA' not allowed in 'index' 
+2017-01-31 000956.SZ Factors Merge Error! 2017-02-17 20:33:42 
+	 improper length of one or more arguments to merge.xts 
+2017-02-17 20:33:42 000956 Factors C/W Error! 
+	 Unknown column 'X1' in 'field list' [1054] 
+2017-01-31 300186.SZ Value Factors Calc Error! 2017-02-17 21:37:15 
+	 'NA' not allowed in 'index' 
+2017-01-31 300186.SZ Growth Factors Calc Error! 2017-02-17 21:37:16 
+	 'NA' not allowed in 'index' 
+2017-01-31 300186.SZ Quality Factors Calc Error! 2017-02-17 21:37:16 
+	 'NA' not allowed in 'index' 
+2017-01-31 300186.SZ Factors Merge Error! 2017-02-17 21:37:17 
+	 improper length of one or more arguments to merge.xts 
+2017-02-17 21:37:17 300186 Factors C/W Error! 
+	 Unknown column 'X1' in 'field list' [1054] 
+2017-01-31 300372.SZ Value Factors Calc Error! 2017-02-17 21:48:12 
+	 'NA' not allowed in 'index' 
+2017-01-31 300372.SZ Growth Factors Calc Error! 2017-02-17 21:48:13 
+	 'NA' not allowed in 'index' 
+2017-01-31 300372.SZ Quality Factors Calc Error! 2017-02-17 21:48:14 
+	 'NA' not allowed in 'index' 
+2017-01-31 300372.SZ Factors Merge Error! 2017-02-17 21:48:14 
+	 improper length of one or more arguments to merge.xts 
+2017-02-17 21:48:15 300372 Factors C/W Error! 
+	 Unknown column 'X1' in 'field list' [1054] 
+2017-01-31 600001.SH Value Factors Calc Error! 2017-02-17 22:01:10 
+	 'NA' not allowed in 'index' 
+2017-01-31 600001.SH Growth Factors Calc Error! 2017-02-17 22:01:11 
+	 'NA' not allowed in 'index' 
+2017-01-31 600001.SH Quality Factors Calc Error! 2017-02-17 22:01:11 
+	 'NA' not allowed in 'index' 
+2017-01-31 600001.SH Factors Merge Error! 2017-02-17 22:01:12 
+	 improper length of one or more arguments to merge.xts 
+2017-02-17 22:01:12 600001 Factors C/W Error! 
+	 Unknown column 'X1' in 'field list' [1054] 
+2017-01-31 600002.SH Value Factors Calc Error! 2017-02-17 22:01:14 
+	 'NA' not allowed in 'index' 
+2017-01-31 600002.SH Growth Factors Calc Error! 2017-02-17 22:01:14 
+	 'NA' not allowed in 'index' 
+2017-01-31 600002.SH Quality Factors Calc Error! 2017-02-17 22:01:15 
+	 'NA' not allowed in 'index' 
+2017-01-31 600002.SH Factors Merge Error! 2017-02-17 22:01:16 
+	 improper length of one or more arguments to merge.xts 
+2017-02-17 22:01:16 600002 Factors C/W Error! 
+	 Unknown column 'X1' in 'field list' [1054] 
+2017-01-31 600003.SH Value Factors Calc Error! 2017-02-17 22:01:17 
+	 'NA' not allowed in 'index' 
+2017-01-31 600003.SH Growth Factors Calc Error! 2017-02-17 22:01:18 
+	 'NA' not allowed in 'index' 
+2017-01-31 600003.SH Quality Factors Calc Error! 2017-02-17 22:01:19 
+	 'NA' not allowed in 'index' 
+2017-01-31 600003.SH Factors Merge Error! 2017-02-17 22:01:20 
+	 improper length of one or more arguments to merge.xts 
+2017-02-17 22:01:20 600003 Factors C/W Error! 
+	 Unknown column 'X1' in 'field list' [1054] 
+2006-09-30 600018.SH Value Factors Calc Error! 2017-02-17 22:02:12 
+	 'NA' not allowed in 'index' 
+2006-09-30 600018.SH Growth Factors Calc Error! 2017-02-17 22:02:13 
+	 'NA' not allowed in 'index' 
+2006-09-30 600018.SH Quality Factors Calc Error! 2017-02-17 22:02:14 
+	 'NA' not allowed in 'index' 
+2006-09-30 600018.SH Factors Merge Error! 2017-02-17 22:02:15 
+	 improper length of one or more arguments to merge.xts 
+2017-01-31 600065.SH Value Factors Calc Error! 2017-02-17 22:04:22 
+	 'NA' not allowed in 'index' 
+2017-01-31 600065.SH Growth Factors Calc Error! 2017-02-17 22:04:23 
+	 'NA' not allowed in 'index' 
+2017-01-31 600065.SH Quality Factors Calc Error! 2017-02-17 22:04:24 
+	 'NA' not allowed in 'index' 
+2017-01-31 600065.SH Factors Merge Error! 2017-02-17 22:04:24 
+	 improper length of one or more arguments to merge.xts 
+2017-02-17 22:04:25 600065 Factors C/W Error! 
+	 Unknown column 'X1' in 'field list' [1054] 
+2017-01-31 600087.SH Value Factors Calc Error! 2017-02-17 22:05:48 
+	 'NA' not allowed in 'index' 
+2017-01-31 600087.SH Growth Factors Calc Error! 2017-02-17 22:05:49 
+	 'NA' not allowed in 'index' 
+2017-01-31 600087.SH Quality Factors Calc Error! 2017-02-17 22:05:50 
+	 'NA' not allowed in 'index' 
+2017-01-31 600087.SH Factors Merge Error! 2017-02-17 22:05:51 
+	 improper length of one or more arguments to merge.xts 
+2017-02-17 22:05:51 600087 Factors C/W Error! 
+	 Unknown column 'X1' in 'field list' [1054] 
+2017-01-31 600092.SH Value Factors Calc Error! 2017-02-17 22:06:08 
+	 'NA' not allowed in 'index' 
+2017-01-31 600092.SH Growth Factors Calc Error! 2017-02-17 22:06:09 
+	 'NA' not allowed in 'index' 
+2017-01-31 600092.SH Quality Factors Calc Error! 2017-02-17 22:06:09 
+	 'NA' not allowed in 'index' 
+2017-01-31 600092.SH Factors Merge Error! 2017-02-17 22:06:10 
+	 improper length of one or more arguments to merge.xts 
+2017-02-17 22:06:10 600092 Factors C/W Error! 
+	 Unknown column 'X1' in 'field list' [1054] 
+2017-01-31 600102.SH Value Factors Calc Error! 2017-02-17 22:06:46 
+	 'NA' not allowed in 'index' 
+2017-01-31 600102.SH Growth Factors Calc Error! 2017-02-17 22:06:47 
+	 'NA' not allowed in 'index' 
+2017-01-31 600102.SH Quality Factors Calc Error! 2017-02-17 22:06:48 
+	 'NA' not allowed in 'index' 
+2017-01-31 600102.SH Factors Merge Error! 2017-02-17 22:06:49 
+	 improper length of one or more arguments to merge.xts 
+2017-02-17 22:06:49 600102 Factors C/W Error! 
+	 Unknown column 'X1' in 'field list' [1054] 
+2017-01-31 600181.SH Value Factors Calc Error! 2017-02-17 22:11:21 
+	 'NA' not allowed in 'index' 
+2017-01-31 600181.SH Growth Factors Calc Error! 2017-02-17 22:11:22 
+	 'NA' not allowed in 'index' 
+2017-01-31 600181.SH Quality Factors Calc Error! 2017-02-17 22:11:23 
+	 'NA' not allowed in 'index' 
+2017-01-31 600181.SH Factors Merge Error! 2017-02-17 22:11:23 
+	 improper length of one or more arguments to merge.xts 
+2017-02-17 22:11:23 600181 Factors C/W Error! 
+	 Unknown column 'X1' in 'field list' [1054] 
+2017-01-31 600205.SH Value Factors Calc Error! 2017-02-17 22:12:47 
+	 'NA' not allowed in 'index' 
+2017-01-31 600205.SH Growth Factors Calc Error! 2017-02-17 22:12:48 
+	 'NA' not allowed in 'index' 
+2017-01-31 600205.SH Quality Factors Calc Error! 2017-02-17 22:12:49 
+	 'NA' not allowed in 'index' 
+2017-01-31 600205.SH Factors Merge Error! 2017-02-17 22:12:50 
+	 improper length of one or more arguments to merge.xts 
+2017-02-17 22:12:50 600205 Factors C/W Error! 
+	 Unknown column 'X1' in 'field list' [1054] 
+2017-01-31 600253.SH Value Factors Calc Error! 2017-02-17 22:15:39 
+	 'NA' not allowed in 'index' 
+2017-01-31 600253.SH Growth Factors Calc Error! 2017-02-17 22:15:40 
+	 'NA' not allowed in 'index' 
+2017-01-31 600253.SH Quality Factors Calc Error! 2017-02-17 22:15:41 
+	 'NA' not allowed in 'index' 
+2017-01-31 600253.SH Factors Merge Error! 2017-02-17 22:15:41 
+	 improper length of one or more arguments to merge.xts 
+2017-02-17 22:15:42 600253 Factors C/W Error! 
+	 Unknown column 'X1' in 'field list' [1054] 
+2017-01-31 600263.SH Value Factors Calc Error! 2017-02-17 22:16:14 
+	 'NA' not allowed in 'index' 
+2017-01-31 600263.SH Growth Factors Calc Error! 2017-02-17 22:16:15 
+	 'NA' not allowed in 'index' 
+2017-01-31 600263.SH Quality Factors Calc Error! 2017-02-17 22:16:15 
+	 'NA' not allowed in 'index' 
+2017-01-31 600263.SH Factors Merge Error! 2017-02-17 22:16:16 
+	 improper length of one or more arguments to merge.xts 
+2017-02-17 22:16:16 600263 Factors C/W Error! 
+	 Unknown column 'X1' in 'field list' [1054] 
+2017-01-31 600286.SH Value Factors Calc Error! 2017-02-17 22:17:36 
+	 'NA' not allowed in 'index' 
+2017-01-31 600286.SH Growth Factors Calc Error! 2017-02-17 22:17:37 
+	 'NA' not allowed in 'index' 
+2017-01-31 600286.SH Quality Factors Calc Error! 2017-02-17 22:17:38 
+	 'NA' not allowed in 'index' 
+2017-01-31 600286.SH Factors Merge Error! 2017-02-17 22:17:38 
+	 improper length of one or more arguments to merge.xts 
+2017-02-17 22:17:38 600286 Factors C/W Error! 
+	 Unknown column 'X1' in 'field list' [1054] 
+2017-01-31 600296.SH Value Factors Calc Error! 2017-02-17 22:18:11 
+	 'NA' not allowed in 'index' 
+2017-01-31 600296.SH Growth Factors Calc Error! 2017-02-17 22:18:12 
+	 'NA' not allowed in 'index' 
+2017-01-31 600296.SH Quality Factors Calc Error! 2017-02-17 22:18:12 
+	 'NA' not allowed in 'index' 
+2017-01-31 600296.SH Factors Merge Error! 2017-02-17 22:18:13 
+	 improper length of one or more arguments to merge.xts 
+2017-02-17 22:18:13 600296 Factors C/W Error! 
+	 Unknown column 'X1' in 'field list' [1054] 
+2017-01-31 600357.SH Value Factors Calc Error! 2017-02-17 22:21:32 
+	 'NA' not allowed in 'index' 
+2017-01-31 600357.SH Growth Factors Calc Error! 2017-02-17 22:21:33 
+	 'NA' not allowed in 'index' 
+2017-01-31 600357.SH Quality Factors Calc Error! 2017-02-17 22:21:33 
+	 'NA' not allowed in 'index' 
+2017-01-31 600357.SH Factors Merge Error! 2017-02-17 22:21:34 
+	 improper length of one or more arguments to merge.xts 
+2017-02-17 22:21:34 600357 Factors C/W Error! 
+	 Unknown column 'X1' in 'field list' [1054] 
+2017-01-31 600472.SH Value Factors Calc Error! 2017-02-17 22:26:50 
+	 'NA' not allowed in 'index' 
+2017-01-31 600472.SH Growth Factors Calc Error! 2017-02-17 22:26:50 
+	 'NA' not allowed in 'index' 
+2017-01-31 600472.SH Quality Factors Calc Error! 2017-02-17 22:26:51 
+	 'NA' not allowed in 'index' 
+2017-01-31 600472.SH Factors Merge Error! 2017-02-17 22:26:52 
+	 improper length of one or more arguments to merge.xts 
+2017-02-17 22:26:52 600472 Factors C/W Error! 
+	 Unknown column 'X1' in 'field list' [1054] 
+2017-01-31 600553.SH Value Factors Calc Error! 2017-02-17 22:31:14 
+	 'NA' not allowed in 'index' 
+2017-01-31 600553.SH Growth Factors Calc Error! 2017-02-17 22:31:15 
+	 'NA' not allowed in 'index' 
+2017-01-31 600553.SH Quality Factors Calc Error! 2017-02-17 22:31:16 
+	 'NA' not allowed in 'index' 
+2017-01-31 600553.SH Factors Merge Error! 2017-02-17 22:31:17 
+	 improper length of one or more arguments to merge.xts 
+2017-02-17 22:31:17 600553 Factors C/W Error! 
+	 Unknown column 'X1' in 'field list' [1054] 
+2017-01-31 600591.SH Value Factors Calc Error! 2017-02-17 22:33:29 
+	 'NA' not allowed in 'index' 
+2017-01-31 600591.SH Growth Factors Calc Error! 2017-02-17 22:33:30 
+	 'NA' not allowed in 'index' 
+2017-01-31 600591.SH Quality Factors Calc Error! 2017-02-17 22:33:31 
+	 'NA' not allowed in 'index' 
+2017-01-31 600591.SH Factors Merge Error! 2017-02-17 22:33:31 
+	 improper length of one or more arguments to merge.xts 
+2017-02-17 22:33:31 600591 Factors C/W Error! 
+	 Unknown column 'X1' in 'field list' [1054] 
+2017-01-31 600607.SH Value Factors Calc Error! 2017-02-17 22:34:32 
+	 'NA' not allowed in 'index' 
+2017-01-31 600607.SH Growth Factors Calc Error! 2017-02-17 22:34:33 
+	 'NA' not allowed in 'index' 
+2017-01-31 600607.SH Quality Factors Calc Error! 2017-02-17 22:34:34 
+	 'NA' not allowed in 'index' 
+2017-01-31 600607.SH Factors Merge Error! 2017-02-17 22:34:35 
+	 improper length of one or more arguments to merge.xts 
+2017-02-17 22:34:35 600607 Factors C/W Error! 
+	 Unknown column 'X1' in 'field list' [1054] 
+2017-01-31 600625.SH Value Factors Calc Error! 2017-02-17 22:35:46 
+	 'NA' not allowed in 'index' 
+2017-01-31 600625.SH Growth Factors Calc Error! 2017-02-17 22:35:46 
+	 'NA' not allowed in 'index' 
+2017-01-31 600625.SH Quality Factors Calc Error! 2017-02-17 22:35:47 
+	 'NA' not allowed in 'index' 
+2017-01-31 600625.SH Factors Merge Error! 2017-02-17 22:35:48 
+	 improper length of one or more arguments to merge.xts 
+2017-02-17 22:35:48 600625 Factors C/W Error! 
+	 Unknown column 'X1' in 'field list' [1054] 
+2017-01-31 600627.SH Value Factors Calc Error! 2017-02-17 22:35:53 
+	 'NA' not allowed in 'index' 
+2017-01-31 600627.SH Growth Factors Calc Error! 2017-02-17 22:35:54 
+	 'NA' not allowed in 'index' 
+2017-01-31 600627.SH Quality Factors Calc Error! 2017-02-17 22:35:55 
+	 'NA' not allowed in 'index' 
+2017-01-31 600627.SH Factors Merge Error! 2017-02-17 22:35:56 
+	 improper length of one or more arguments to merge.xts 
+2017-02-17 22:35:56 600627 Factors C/W Error! 
+	 Unknown column 'X1' in 'field list' [1054] 
+2017-01-31 600631.SH Value Factors Calc Error! 2017-02-17 22:36:09 
+	 'NA' not allowed in 'index' 
+2017-01-31 600631.SH Growth Factors Calc Error! 2017-02-17 22:36:10 
+	 'NA' not allowed in 'index' 
+2017-01-31 600631.SH Quality Factors Calc Error! 2017-02-17 22:36:11 
+	 'NA' not allowed in 'index' 
+2017-01-31 600631.SH Factors Merge Error! 2017-02-17 22:36:12 
+	 improper length of one or more arguments to merge.xts 
+2017-02-17 22:36:12 600631 Factors C/W Error! 
+	 Unknown column 'X1' in 'field list' [1054] 
+2017-01-31 600632.SH Value Factors Calc Error! 2017-02-17 22:36:13 
+	 'NA' not allowed in 'index' 
+2017-01-31 600632.SH Growth Factors Calc Error! 2017-02-17 22:36:14 
+	 'NA' not allowed in 'index' 
+2017-01-31 600632.SH Quality Factors Calc Error! 2017-02-17 22:36:15 
+	 'NA' not allowed in 'index' 
+2017-01-31 600632.SH Factors Merge Error! 2017-02-17 22:36:16 
+	 improper length of one or more arguments to merge.xts 
+2017-02-17 22:36:16 600632 Factors C/W Error! 
+	 Unknown column 'X1' in 'field list' [1054] 
+2017-01-31 600646.SH Value Factors Calc Error! 2017-02-17 22:37:10 
+	 'NA' not allowed in 'index' 
+2017-01-31 600646.SH Growth Factors Calc Error! 2017-02-17 22:37:11 
+	 'NA' not allowed in 'index' 
+2017-01-31 600646.SH Quality Factors Calc Error! 2017-02-17 22:37:12 
+	 'NA' not allowed in 'index' 
+2017-01-31 600646.SH Factors Merge Error! 2017-02-17 22:37:12 
+	 improper length of one or more arguments to merge.xts 
+2017-02-17 22:37:12 600646 Factors C/W Error! 
+	 Unknown column 'X1' in 'field list' [1054] 
+2017-01-31 600656.SH Value Factors Calc Error! 2017-02-17 22:37:50 
+	 'NA' not allowed in 'index' 
+2017-01-31 600656.SH Growth Factors Calc Error! 2017-02-17 22:37:51 
+	 'NA' not allowed in 'index' 
+2017-01-31 600656.SH Quality Factors Calc Error! 2017-02-17 22:37:52 
+	 'NA' not allowed in 'index' 
+2017-01-31 600656.SH Factors Merge Error! 2017-02-17 22:37:53 
+	 improper length of one or more arguments to merge.xts 
+2017-02-17 22:37:53 600656 Factors C/W Error! 
+	 Unknown column 'X1' in 'field list' [1054] 
+2017-01-31 600659.SH Value Factors Calc Error! 2017-02-17 22:38:03 
+	 'NA' not allowed in 'index' 
+2017-01-31 600659.SH Growth Factors Calc Error! 2017-02-17 22:38:03 
+	 'NA' not allowed in 'index' 
+2017-01-31 600659.SH Quality Factors Calc Error! 2017-02-17 22:38:04 
+	 'NA' not allowed in 'index' 
+2017-01-31 600659.SH Factors Merge Error! 2017-02-17 22:38:05 
+	 improper length of one or more arguments to merge.xts 
+2017-02-17 22:38:05 600659 Factors C/W Error! 
+	 Unknown column 'X1' in 'field list' [1054] 
+2017-01-31 600669.SH Value Factors Calc Error! 2017-02-17 22:38:43 
+	 'NA' not allowed in 'index' 
+2017-01-31 600669.SH Growth Factors Calc Error! 2017-02-17 22:38:44 
+	 'NA' not allowed in 'index' 
+2017-01-31 600669.SH Quality Factors Calc Error! 2017-02-17 22:38:45 
+	 'NA' not allowed in 'index' 
+2017-01-31 600669.SH Factors Merge Error! 2017-02-17 22:38:45 
+	 improper length of one or more arguments to merge.xts 
+2017-02-17 22:38:45 600669 Factors C/W Error! 
+	 Unknown column 'X1' in 'field list' [1054] 
+2017-01-31 600670.SH Value Factors Calc Error! 2017-02-17 22:38:47 
+	 'NA' not allowed in 'index' 
+2017-01-31 600670.SH Growth Factors Calc Error! 2017-02-17 22:38:48 
+	 'NA' not allowed in 'index' 
+2017-01-31 600670.SH Quality Factors Calc Error! 2017-02-17 22:38:48 
+	 'NA' not allowed in 'index' 
+2017-01-31 600670.SH Factors Merge Error! 2017-02-17 22:38:49 
+	 improper length of one or more arguments to merge.xts 
+2017-02-17 22:38:49 600670 Factors C/W Error! 
+	 Unknown column 'X1' in 'field list' [1054] 
+2017-01-31 600672.SH Value Factors Calc Error! 2017-02-17 22:38:55 
+	 'NA' not allowed in 'index' 
+2017-01-31 600672.SH Growth Factors Calc Error! 2017-02-17 22:38:55 
+	 'NA' not allowed in 'index' 
+2017-01-31 600672.SH Quality Factors Calc Error! 2017-02-17 22:38:56 
+	 'NA' not allowed in 'index' 
+2017-01-31 600672.SH Factors Merge Error! 2017-02-17 22:38:57 
+	 improper length of one or more arguments to merge.xts 
+2017-02-17 22:38:57 600672 Factors C/W Error! 
+	 Unknown column 'X1' in 'field list' [1054] 
+2017-01-31 600700.SH Value Factors Calc Error! 2017-02-17 22:40:48 
+	 'NA' not allowed in 'index' 
+2017-01-31 600700.SH Growth Factors Calc Error! 2017-02-17 22:40:48 
+	 'NA' not allowed in 'index' 
+2017-01-31 600700.SH Quality Factors Calc Error! 2017-02-17 22:40:49 
+	 'NA' not allowed in 'index' 
+2017-01-31 600700.SH Factors Merge Error! 2017-02-17 22:40:50 
+	 improper length of one or more arguments to merge.xts 
+2017-02-17 22:40:50 600700 Factors C/W Error! 
+	 Unknown column 'X1' in 'field list' [1054] 
+2017-01-31 600709.SH Value Factors Calc Error! 2017-02-17 22:41:23 
+	 'NA' not allowed in 'index' 
+2017-01-31 600709.SH Growth Factors Calc Error! 2017-02-17 22:41:24 
+	 'NA' not allowed in 'index' 
+2017-01-31 600709.SH Quality Factors Calc Error! 2017-02-17 22:41:24 
+	 'NA' not allowed in 'index' 
+2017-01-31 600709.SH Factors Merge Error! 2017-02-17 22:41:25 
+	 improper length of one or more arguments to merge.xts 
+2017-02-17 22:41:25 600709 Factors C/W Error! 
+	 Unknown column 'X1' in 'field list' [1054] 
+2017-01-31 600710.SH Value Factors Calc Error! 2017-02-17 22:41:26 
+	 'NA' not allowed in 'index' 
+2017-01-31 600710.SH Growth Factors Calc Error! 2017-02-17 22:41:27 
+	 'NA' not allowed in 'index' 
+2017-01-31 600710.SH Quality Factors Calc Error! 2017-02-17 22:41:28 
+	 'NA' not allowed in 'index' 
+2017-01-31 600710.SH Factors Merge Error! 2017-02-17 22:41:29 
+	 improper length of one or more arguments to merge.xts 
+2017-02-17 22:41:29 600710 Factors C/W Error! 
+	 Unknown column 'X1' in 'field list' [1054] 
+2017-01-31 600732.SH Value Factors Calc Error! 2017-02-17 22:42:54 
+	 'NA' not allowed in 'index' 
+2017-01-31 600732.SH Growth Factors Calc Error! 2017-02-17 22:42:55 
+	 'NA' not allowed in 'index' 
+2017-01-31 600732.SH Quality Factors Calc Error! 2017-02-17 22:42:56 
+	 'NA' not allowed in 'index' 
+2017-01-31 600732.SH Factors Merge Error! 2017-02-17 22:42:57 
+	 improper length of one or more arguments to merge.xts 
+2017-02-17 22:42:57 600732 Factors C/W Error! 
+	 Unknown column 'X1' in 'field list' [1054] 
+2017-01-31 600752.SH Value Factors Calc Error! 2017-02-17 22:44:14 
+	 'NA' not allowed in 'index' 
+2017-01-31 600752.SH Growth Factors Calc Error! 2017-02-17 22:44:15 
+	 'NA' not allowed in 'index' 
+2017-01-31 600752.SH Quality Factors Calc Error! 2017-02-17 22:44:15 
+	 'NA' not allowed in 'index' 
+2017-01-31 600752.SH Factors Merge Error! 2017-02-17 22:44:16 
+	 improper length of one or more arguments to merge.xts 
+2017-02-17 22:44:16 600752 Factors C/W Error! 
+	 Unknown column 'X1' in 'field list' [1054] 
+2017-01-31 600762.SH Value Factors Calc Error! 2017-02-17 22:44:53 
+	 'NA' not allowed in 'index' 
+2017-01-31 600762.SH Growth Factors Calc Error! 2017-02-17 22:44:54 
+	 'NA' not allowed in 'index' 
+2017-01-31 600762.SH Quality Factors Calc Error! 2017-02-17 22:44:55 
+	 'NA' not allowed in 'index' 
+2017-01-31 600762.SH Factors Merge Error! 2017-02-17 22:44:56 
+	 improper length of one or more arguments to merge.xts 
+2017-02-17 22:44:56 600762 Factors C/W Error! 
+	 Unknown column 'X1' in 'field list' [1054] 
+2017-01-31 600772.SH Value Factors Calc Error! 2017-02-17 22:45:33 
+	 'NA' not allowed in 'index' 
+2017-01-31 600772.SH Growth Factors Calc Error! 2017-02-17 22:45:34 
+	 'NA' not allowed in 'index' 
+2017-01-31 600772.SH Quality Factors Calc Error! 2017-02-17 22:45:35 
+	 'NA' not allowed in 'index' 
+2017-01-31 600772.SH Factors Merge Error! 2017-02-17 22:45:35 
+	 improper length of one or more arguments to merge.xts 
+2017-02-17 22:45:36 600772 Factors C/W Error! 
+	 Unknown column 'X1' in 'field list' [1054] 
+2017-01-31 600786.SH Value Factors Calc Error! 2017-02-17 22:46:30 
+	 'NA' not allowed in 'index' 
+2017-01-31 600786.SH Growth Factors Calc Error! 2017-02-17 22:46:30 
+	 'NA' not allowed in 'index' 
+2017-01-31 600786.SH Quality Factors Calc Error! 2017-02-17 22:46:31 
+	 'NA' not allowed in 'index' 
+2017-01-31 600786.SH Factors Merge Error! 2017-02-17 22:46:32 
+	 improper length of one or more arguments to merge.xts 
+2017-02-17 22:46:32 600786 Factors C/W Error! 
+	 Unknown column 'X1' in 'field list' [1054] 
+2017-01-31 600788.SH Value Factors Calc Error! 2017-02-17 22:46:37 
+	 'NA' not allowed in 'index' 
+2017-01-31 600788.SH Growth Factors Calc Error! 2017-02-17 22:46:38 
+	 'NA' not allowed in 'index' 
+2017-01-31 600788.SH Quality Factors Calc Error! 2017-02-17 22:46:39 
+	 'NA' not allowed in 'index' 
+2017-01-31 600788.SH Factors Merge Error! 2017-02-17 22:46:40 
+	 improper length of one or more arguments to merge.xts 
+2017-02-17 22:46:40 600788 Factors C/W Error! 
+	 Unknown column 'X1' in 'field list' [1054] 
+2017-01-31 600799.SH Value Factors Calc Error! 2017-02-17 22:47:21 
+	 'NA' not allowed in 'index' 
+2017-01-31 600799.SH Growth Factors Calc Error! 2017-02-17 22:47:22 
+	 'NA' not allowed in 'index' 
+2017-01-31 600799.SH Quality Factors Calc Error! 2017-02-17 22:47:23 
+	 'NA' not allowed in 'index' 
+2017-01-31 600799.SH Factors Merge Error! 2017-02-17 22:47:24 
+	 improper length of one or more arguments to merge.xts 
+2017-02-17 22:47:24 600799 Factors C/W Error! 
+	 Unknown column 'X1' in 'field list' [1054] 
+2017-01-31 600813.SH Value Factors Calc Error! 2017-02-17 22:48:18 
+	 'NA' not allowed in 'index' 
+2017-01-31 600813.SH Growth Factors Calc Error! 2017-02-17 22:48:19 
+	 'NA' not allowed in 'index' 
+2017-01-31 600813.SH Quality Factors Calc Error! 2017-02-17 22:48:19 
+	 'NA' not allowed in 'index' 
+2017-01-31 600813.SH Factors Merge Error! 2017-02-17 22:48:20 
+	 improper length of one or more arguments to merge.xts 
+2017-02-17 22:48:20 600813 Factors C/W Error! 
+	 Unknown column 'X1' in 'field list' [1054] 
+2017-01-31 600832.SH Value Factors Calc Error! 2017-02-17 22:49:34 
+	 'NA' not allowed in 'index' 
+2017-01-31 600832.SH Growth Factors Calc Error! 2017-02-17 22:49:35 
+	 'NA' not allowed in 'index' 
+2017-01-31 600832.SH Quality Factors Calc Error! 2017-02-17 22:49:36 
+	 'NA' not allowed in 'index' 
+2017-01-31 600832.SH Factors Merge Error! 2017-02-17 22:49:37 
+	 improper length of one or more arguments to merge.xts 
+2017-02-17 22:49:37 600832 Factors C/W Error! 
+	 Unknown column 'X1' in 'field list' [1054] 
+2017-01-31 600840.SH Value Factors Calc Error! 2017-02-17 22:50:06 
+	 'NA' not allowed in 'index' 
+2017-01-31 600840.SH Growth Factors Calc Error! 2017-02-17 22:50:07 
+	 'NA' not allowed in 'index' 
+2017-01-31 600840.SH Quality Factors Calc Error! 2017-02-17 22:50:08 
+	 'NA' not allowed in 'index' 
+2017-01-31 600840.SH Factors Merge Error! 2017-02-17 22:50:09 
+	 improper length of one or more arguments to merge.xts 
+2017-02-17 22:50:09 600840 Factors C/W Error! 
+	 Unknown column 'X1' in 'field list' [1054] 
+2017-01-31 600842.SH Value Factors Calc Error! 2017-02-17 22:50:14 
+	 'NA' not allowed in 'index' 
+2017-01-31 600842.SH Growth Factors Calc Error! 2017-02-17 22:50:15 
+	 'NA' not allowed in 'index' 
+2017-01-31 600842.SH Quality Factors Calc Error! 2017-02-17 22:50:16 
+	 'NA' not allowed in 'index' 
+2017-01-31 600842.SH Factors Merge Error! 2017-02-17 22:50:17 
+	 improper length of one or more arguments to merge.xts 
+2017-02-17 22:50:17 600842 Factors C/W Error! 
+	 Unknown column 'X1' in 'field list' [1054] 
+2017-01-31 600849.SH Growth Factors Calc Error! 2017-02-17 22:50:43 
+	 'NA' not allowed in 'index' 
+2017-01-31 600849.SH Quality Factors Calc Error! 2017-02-17 22:50:43 
+	 'NA' not allowed in 'index' 
+2017-02-17 22:50:44 600849 Factors C/W Error! 
+	 Unknown column 'gro' in 'field list' [1054] 
+2017-01-31 600852.SH Value Factors Calc Error! 2017-02-17 22:50:54 
+	 'NA' not allowed in 'index' 
+2017-01-31 600852.SH Growth Factors Calc Error! 2017-02-17 22:50:54 
+	 'NA' not allowed in 'index' 
+2017-01-31 600852.SH Quality Factors Calc Error! 2017-02-17 22:50:55 
+	 'NA' not allowed in 'index' 
+2017-01-31 600852.SH Factors Merge Error! 2017-02-17 22:50:56 
+	 improper length of one or more arguments to merge.xts 
+2017-02-17 22:50:56 600852 Factors C/W Error! 
+	 Unknown column 'X1' in 'field list' [1054] 
+2017-01-31 600878.SH Value Factors Calc Error! 2017-02-17 22:52:38 
+	 'NA' not allowed in 'index' 
+2017-01-31 600878.SH Growth Factors Calc Error! 2017-02-17 22:52:39 
+	 'NA' not allowed in 'index' 
+2017-01-31 600878.SH Quality Factors Calc Error! 2017-02-17 22:52:40 
+	 'NA' not allowed in 'index' 
+2017-01-31 600878.SH Factors Merge Error! 2017-02-17 22:52:41 
+	 improper length of one or more arguments to merge.xts 
+2017-02-17 22:52:41 600878 Factors C/W Error! 
+	 Unknown column 'X1' in 'field list' [1054] 
+2017-01-31 600899.SH Value Factors Calc Error! 2017-02-17 22:54:02 
+	 'NA' not allowed in 'index' 
+2017-01-31 600899.SH Growth Factors Calc Error! 2017-02-17 22:54:03 
+	 'NA' not allowed in 'index' 
+2017-01-31 600899.SH Quality Factors Calc Error! 2017-02-17 22:54:04 
+	 'NA' not allowed in 'index' 
+2017-01-31 600899.SH Factors Merge Error! 2017-02-17 22:54:05 
+	 improper length of one or more arguments to merge.xts 
+2017-02-17 22:54:05 600899 Factors C/W Error! 
+	 Unknown column 'X1' in 'field list' [1054] 
+2017-01-31 600991.SH Value Factors Calc Error! 2017-02-17 22:56:17 
+	 'NA' not allowed in 'index' 
+2017-01-31 600991.SH Growth Factors Calc Error! 2017-02-17 22:56:18 
+	 'NA' not allowed in 'index' 
+2017-01-31 600991.SH Quality Factors Calc Error! 2017-02-17 22:56:19 
+	 'NA' not allowed in 'index' 
+2017-01-31 600991.SH Factors Merge Error! 2017-02-17 22:56:20 
+	 improper length of one or more arguments to merge.xts 
+2017-02-17 22:56:20 600991 Factors C/W Error! 
+	 Unknown column 'X1' in 'field list' [1054] 
+2017-01-31 601268.SH Value Factors Calc Error! 2017-02-17 23:00:33 
+	 'NA' not allowed in 'index' 
+2017-01-31 601268.SH Growth Factors Calc Error! 2017-02-17 23:00:34 
+	 'NA' not allowed in 'index' 
+2017-01-31 601268.SH Quality Factors Calc Error! 2017-02-17 23:00:35 
+	 'NA' not allowed in 'index' 
+2017-01-31 601268.SH Factors Merge Error! 2017-02-17 23:00:35 
+	 improper length of one or more arguments to merge.xts 
+2017-02-17 23:00:35 601268 Factors C/W Error! 
+	 Unknown column 'X1' in 'field list' [1054] 
+2017-01-31 601299.SH Value Factors Calc Error! 2017-02-17 23:00:40 
+	 'NA' not allowed in 'index' 
+2017-01-31 601299.SH Growth Factors Calc Error! 2017-02-17 23:00:41 
+	 'NA' not allowed in 'index' 
+2017-01-31 601299.SH Quality Factors Calc Error! 2017-02-17 23:00:42 
+	 'NA' not allowed in 'index' 
+2017-01-31 601299.SH Factors Merge Error! 2017-02-17 23:00:43 
+	 improper length of one or more arguments to merge.xts 
+2017-02-17 23:00:43 601299 Factors C/W Error! 
+	 Unknown column 'X1' in 'field list' [1054] 
