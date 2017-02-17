@@ -68,7 +68,12 @@
 		else {
 			val.bal.d <- .newest.report(val.bal.d)
 		}
-		val.cf.d <- val.cf.d_[ymd(val.cf.d_[, 1]) <= end.i, -1]
+		if (NROW(val.cf.d_) == 0) {
+			val.cf.d <- val.cf.d_[, -1]
+		}
+		else {
+			val.cf.d <- val.cf.d_[ymd(val.cf.d_[, 1]) <= end.i, -1]
+		}
 		if (NROW(val.cf.d) == 0) {
 			val.cf.d[1, ] <- NA
 			val.cf.d <- xts(val.cf.d[-1:-3], last(index(val.inc.d)))

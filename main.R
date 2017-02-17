@@ -33,9 +33,11 @@ TABLE.PERIOD <- "FACTORS_PERIOD"
 TABLE.STOCK <- "FACTORS_STOCK"
 
 # Next Period for main.period
-START <- ymd("19970430")
+P.START <- ymd("19970430")
 # Last C/W Stock for main.stock
 S.END <- "000000"
+# First Period for main.stock
+START <- ymd(19941231)
 
 # source("getPrice.R", encoding = 'UTF-8')
 source("src/.SupFun.R", chdir = TRUE, encoding = 'UTF-8')
@@ -85,8 +87,8 @@ main.period <- function (con_data, con_factors, table.name = TABLE.PERIOD, end =
 	end <- ymd(end)
 	idx.sh <- "000002.SH"
 	idx.sz <- "399107.SZ"
-	dmon <-  as.yearmon(end) - as.yearmon(START)
-	date.list <- START %m+% months(0:(12*dmon))
+	dmon <-  as.yearmon(end) - as.yearmon(P.START)
+	date.list <- P.START %m+% months(0:(12*dmon))
 	for (i in 1:length(date.list)) {
 		# For Shanghai's Stocks
 		code.sh <- getIndexComp.W(idx.sh, ch_data_w, date.list[i])
