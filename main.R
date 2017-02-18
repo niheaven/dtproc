@@ -64,7 +64,7 @@ main.stock <- function (con_data, con_factors, table.name = TABLE.STOCK, end = "
 	for (i in i.start:length(code.a)) {
   	# Throw away broken symbols
 	  if ((NROW(dbGetQuery(con_data, paste0("SELECT TRADEDATE FROM TQ_SK_DQUOTEINDIC WHERE SYMBOL = '", code.a[i], "' 
-		  AND TRADEDATE <= '", format(end, "%Y%m%d"), "'")))) == 0) {
+		  AND TRADEDATE > '", format(rollback(START), "%Y%m%d"), "' AND TRADEDATE <= '", format(end, "%Y%m%d"), "'")))) == 0) {
 	    catt("End Date:", format(end), "(", i, "/", length(code.a), ")", code.a.f[i], "Is Not Been Listed!", format(Sys.time()), "\n", file = paste0("log/all", format(end, "%Y%m%d"), ".log"), append = TRUE)
 	    cat("Damn!", code.a.f[i], "(", i, "/", length(code.a), ")", "is not been Listed! So Skip the Symbol!\n")
 	    next

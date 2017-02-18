@@ -998,3 +998,23 @@
 	 improper length of one or more arguments to merge.xts 
 2017-02-17 23:00:43 601299 Factors C/W Error! 
 	 Unknown column 'X1' in 'field list' [1054] 
+2017-02-17 23:47:43 000001 Factors C/W Error! 
+	 Duplicate entry '2017-01-31-000001.SZ' for key 'PRIMARY' [1062] 
+2017-02-17 23:47:47 000002 Factors C/W Error! 
+	 Duplicate entry '2017-01-31-000002.SZ' for key 'PRIMARY' [1062] 
+2017-02-17 23:47:51 000004 Factors C/W Error! 
+	 Duplicate entry '2017-01-31-000004.SZ' for key 'PRIMARY' [1062] 
+2017-02-17 23:47:55 000005 Factors C/W Error! 
+	 Duplicate entry '2017-01-31-000005.SZ' for key 'PRIMARY' [1062] 
+2017-02-17 23:47:59 000006 Factors C/W Error! 
+	 Duplicate entry '2017-01-31-000006.SZ' for key 'PRIMARY' [1062] 
+2017-02-17 23:48:03 000007 Factors C/W Error! 
+	 Duplicate entry '2017-01-31-000007.SZ' for key 'PRIMARY' [1062] 
+2006-09-30 600018.SH Value Factors Calc Error! 2017-02-18 01:45:24 
+	 'NA' not allowed in 'index' 
+2006-09-30 600018.SH Growth Factors Calc Error! 2017-02-18 01:45:25 
+	 'NA' not allowed in 'index' 
+2006-09-30 600018.SH Quality Factors Calc Error! 2017-02-18 01:45:25 
+	 'NA' not allowed in 'index' 
+2006-09-30 600018.SH Factors Merge Error! 2017-02-18 01:45:26 
+	 improper length of one or more arguments to merge.xts 

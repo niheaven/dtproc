@@ -71,7 +71,7 @@ source(".calcFactors_.R")
 	tech <- tryCatch(.calcTech(symbol, channel, end), error = function(e) {cat(format(end), symbol.f, "Tech Factors Calc Error!", format(Sys.time()), "\n\t", e$message, "\n", file = "log/factorErrors.log", append = TRUE); matrix(ncol = 11)})
 	facs <- tryCatch(merge.xts(val, gro, qua, mom, tech), error = function(e) {cat(format(end), symbol.f, "Factors Merge Error!", format(Sys.time()), "\n\t", e$message, "\n", file = "log/factorErrors.log", append = TRUE); matrix(ncol = 52)})
 	# Special treatment for dumned "600018.SH"
-	if ((symbol == "600018") & (end > ymd(20060930))) {
+	if ((symbol == "600018") & (end > ymd(20060930)) & (START <= ymd(20060930))) {
 		facs.0 <- .calcFactors(symbol, channel, ymd(20060930))
 		facs[index(facs.0), ] <- facs.0
 	}
