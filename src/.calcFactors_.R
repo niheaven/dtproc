@@ -32,21 +32,21 @@
 		REPORTTYPE, BASICEPS, PARENETP, BIZINCO FROM TQ_FIN_PROINCSTATEMENTNEW 
 		WHERE COMPCODE = '", code[1], "' AND REPORTTYPE IN ('1', '3') 
 		AND DECLAREDATE <= '", format(end, "%Y%m%d"), "' AND DECLAREDATE > '", 
-		format(start, "%Y%m%d"), "'ORDER BY DECLAREDATE")
+		format(start, "%Y%m%d"), "' ORDER BY DECLAREDATE")
 	val.inc.d <- dbGetQuery(channel, val.inc.q)
 	val.inc.d <- .newest.report(val.inc.d[, -1])
 	val.bal.q <- paste0("SELECT DECLAREDATE, REPORTYEAR, REPORTDATETYPE, 
 		REPORTTYPE, PARESHARRIGH, TOTALNONCLIAB, CURFDS FROM TQ_FIN_PROBALSHEETNEW 
 		WHERE COMPCODE = '", code[1], "' AND REPORTTYPE IN ('1', '3') 
 		AND DECLAREDATE <= '", format(end, "%Y%m%d"), "' AND DECLAREDATE > '", 
-		format(start, "%Y%m%d"), "'ORDER BY DECLAREDATE")
+		format(start, "%Y%m%d"), "' ORDER BY DECLAREDATE")
 	val.bal.d <- dbGetQuery(channel, val.bal.q)
 	val.bal.d <- .newest.report(val.bal.d[, -1])
 	val.cf.q <- paste0("SELECT DECLAREDATE, REPORTYEAR, REPORTDATETYPE, 
 		REPORTTYPE, MANANETR, ACQUASSETCASH FROM TQ_FIN_PROCFSTATEMENTNEW 
 		WHERE COMPCODE = '", code[1], "' AND REPORTTYPE IN ('1', '3') 
 		AND DECLAREDATE <= '", format(end, "%Y%m%d"), "' AND DECLAREDATE > '", 
-		format(start, "%Y%m%d"), "'ORDER BY DECLAREDATE")
+		format(start, "%Y%m%d"), "' ORDER BY DECLAREDATE")
 	val.cf.d <- dbGetQuery(channel, val.cf.q)
 	if (NROW(val.cf.d) == 0) {
 		val.cf.d[1, ] <- NA
