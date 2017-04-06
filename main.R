@@ -18,12 +18,9 @@
 #
 #   main: Main Source File
 
-if(!require(DBI))
-	install.packages("DBI")
-if(!require(quantmod))
-	install.packages("quantmod")
-if(!require(lubridate))
-	install.packages("lubridate")
+pacman::p_load(DBI, 
+               quantmod, 
+               lubridate)
 if(!requireNamespace("moments"))
 	install.packages("moments")
 
@@ -35,9 +32,9 @@ TABLE.STOCK <- "FACTORS_STOCK"
 # Next Period for main.period
 P.START <- ymd("19970430")
 # Last C/W Stock for main.stock
-S.END <- "000000"
+S.END <- "300221"
 # First Period for main.stock
-START <- ymd(20170228)
+START <- ymd(20170331)
 
 # source("getPrice.R", encoding = 'UTF-8')
 source("src/.SupFun.R", chdir = TRUE, encoding = 'UTF-8')
@@ -69,6 +66,8 @@ main.stock <- function (con_data, con_factors, table.name = TABLE.STOCK, end = "
 	    cat("Damn!", code.a.f[i], "(", i, "/", length(code.a), ")", "is not been Listed! So Skip the Symbol!\n")
 	    next
 	  }
+#	  dbDisconnect(ch_factors)
+#	    ch_factors <- dbConnect(RMySQL::MySQL(), dbname = "factors", default.file = "dbi/.my.cnf")
 		cwres <- tryCatch(cwFactors(code.a[i], con_data, con_factors, table.name, end), error = function(e) {cat(format(Sys.time()), code.a[i], "Factors C/W Error!", "\n\t", e$message, "\n", file = "log/factorErrors.log", append = TRUE)})
 		if (isTRUE(cwres)) {
 			catt("End Date:", format(end), "(", i, "/", length(code.a), ")", code.a.f[i], "Factors C/W Okay.", format(Sys.time()), "\n", file = paste0("log/all", format(end, "%Y%m%d"), ".log"), append = TRUE)
