@@ -26,15 +26,16 @@ if(!requireNamespace("moments"))
 
 
 # Table Name for main.*
-TABLE.PERIOD <- "FACTORS_PERIOD"
+# TABLE.PERIOD <- "FACTORS_PERIOD"
 TABLE.STOCK <- "FACTORS_STOCK"
 
 # Next Period for main.period
 P.START <- ymd("19970430")
+
 # Last C/W Stock for main.stock
-S.END <- "300221"
+S.END <- "000000"
 # First Period for main.stock
-START <- ymd(20170331)
+START <- ymd(20170430)
 
 # source("getPrice.R", encoding = 'UTF-8')
 source("src/.SupFun.R", chdir = TRUE, encoding = 'UTF-8')
@@ -48,7 +49,7 @@ if (!tryCatch(dbIsValid(ch_data), error = function(e) FALSE))
 if (!tryCatch(dbIsValid(ch_data_w), error = function(e) FALSE))
 	ch_data_w <- dbConnect(RSQLServer::SQLServer(), "DBSERVER", file = "dbi/sql.yaml", database = "WDF")
 if (!tryCatch(dbIsValid(ch_factors), error = function(e) FALSE))
-	ch_factors <- dbConnect(RMySQL::MySQL(), dbname = "factors", default.file = "dbi/.my.cnf")
+	ch_factors <- dbConnect(RMySQL::MySQL(), dbname = "factors", default.file = "dbi/my.cnf")
 
 # Main Function for One Stock per Routine
 main.stock <- function (con_data, con_factors, table.name = TABLE.STOCK, end = "20161231") {
@@ -81,7 +82,7 @@ main.stock <- function (con_data, con_factors, table.name = TABLE.STOCK, end = "
 	cat("CONGUATULATION! FINALLLY ALL DONE!\n")
 }
 
-# Main Function for One Period per Routine
+# Deprecated. Main Function for One Period per Routine
 main.period <- function (con_data, con_factors, table.name = TABLE.PERIOD, end = "20161231") {
 	end <- ymd(end)
 	idx.sh <- "000002.SH"
