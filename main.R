@@ -33,9 +33,9 @@ TABLE.STOCK <- "FACTORS_STOCK"
 P.START <- ymd("19970430")
 
 # Last C/W Stock for main.stock
-S.END <- "000000"
+S.END <- "300297"
 # First Period for main.stock
-START <- ymd(20170430)
+START <- ymd(20170531)
 
 # source("getPrice.R", encoding = 'UTF-8')
 source("src/.SupFun.R", chdir = TRUE, encoding = 'UTF-8')
