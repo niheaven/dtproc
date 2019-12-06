@@ -1018,3 +1018,724 @@
 	 'NA' not allowed in 'index' 
 2006-09-30 600018.SH Factors Merge Error! 2017-02-18 01:45:26 
 	 improper length of one or more arguments to merge.xts 
+2017-05-31 000001.SZ Value Factors Calc Error! 2017-06-01 11:22:35 
+	 Unable to retrieve result set for SELECT TRADEDATE, LCLOSE, TCLOSE, TOTMKTCAP FROM TQ_QT_SKDAILYPRICE 
+		WHERE SECODE = '2010000937' AND TRADEDATE <= '20170531' ORDER BY TRADEDATE: I/O Error: Connection reset 
+2017-05-31 000001.SZ Growth Factors Calc Error! 2017-06-01 11:22:35 
+	 Unable to create prepared statement SELECT SYMBOL, COMPCODE, SECODE, 
+		BEGINDATE, ENDDATE FROM TQ_OA_STCODE WHERE SYMBOL = '000001' AND SETYPE = '101': Invalid state, the Connection object is closed. 
+2017-05-31 000001.SZ Quality Factors Calc Error! 2017-06-01 11:22:35 
+	 Unable to create prepared statement SELECT SYMBOL, COMPCODE, SECODE, 
+		BEGINDATE, ENDDATE FROM TQ_OA_STCODE WHERE SYMBOL = '000001' AND SETYPE = '101': Invalid state, the Connection object is closed. 
+2017-05-31 000001.SZ Momentum Factors Calc Error! 2017-06-01 11:22:35 
+	 Unable to create prepared statement SELECT TRADEDATE, TCLOSEAF 
+		FROM TQ_SK_DQUOTEINDIC WHERE SYMBOL = '000001' 
+		AND TRADEDATE <= '20170531' ORDER BY TRADEDATE: Invalid state, the Connection object is closed. 
+2017-05-31 000001.SZ Tech Factors Calc Error! 2017-06-01 11:22:36 
+	 Unable to create prepared statement SELECT TRADEDATE, EXTCLOSE, TCLOSE, TCLOSEAF, AMOUNT, VOL, MKTSHARE 
+		FROM TQ_SK_DQUOTEINDIC WHERE SYMBOL = '000001' 
+		AND TRADEDATE <= '20170531' ORDER BY TRADEDATE: Invalid state, the Connection object is closed. 
+2017-05-31 000001.SZ Factors Merge Error! 2017-06-01 11:22:36 
+	 no xts object to merge 
+2017-06-01 11:22:37 000001 Factors C/W Error! 
+	 could not run statement: Lost connection to MySQL server during query 
+2017-06-01 11:33:16 000001 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:33:25 000002 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:33:32 000004 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:33:39 000005 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:33:45 000006 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:33:51 000007 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:33:57 000008 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:34:03 000009 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:34:10 000010 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:34:16 000011 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:34:21 000012 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:34:28 000014 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:34:35 000016 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:34:41 000017 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:34:47 000018 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:34:52 000019 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:34:58 000020 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:35:04 000021 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:35:10 000022 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:35:16 000023 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:35:22 000025 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:35:28 000026 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:35:33 000027 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:35:39 000028 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:35:45 000029 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:35:51 000030 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:35:57 000031 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:36:03 000032 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:36:09 000033 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:36:15 000034 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:36:21 000035 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:36:26 000036 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:36:32 000037 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:36:38 000038 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:36:44 000039 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:36:50 000040 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:36:55 000042 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:37:01 000043 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:37:07 000045 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:37:13 000046 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:37:20 000048 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:37:25 000049 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:37:31 000050 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:37:36 000055 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:37:42 000056 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:37:48 000058 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:37:54 000059 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:37:59 000060 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:38:06 000061 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:38:11 000062 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:38:17 000063 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:38:22 000065 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:38:28 000066 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:38:34 000068 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:38:39 000069 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:38:45 000070 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:38:50 000078 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:38:56 000088 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:39:01 000089 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:39:07 000090 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:39:13 000096 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:39:18 000099 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:39:24 000100 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:39:29 000150 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:39:35 000151 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:39:40 000153 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:39:46 000156 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:39:52 000157 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:39:57 000158 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:40:03 000159 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:40:08 000166 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:40:15 000301 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:40:20 000333 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:40:25 000338 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:40:31 000400 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:40:36 000401 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:40:42 000402 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:40:47 000403 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:40:54 000404 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:41:01 000407 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:41:07 000408 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:41:13 000409 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:41:19 000410 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:41:24 000411 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:41:31 000413 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:41:36 000415 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:41:42 000416 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:41:48 000417 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:41:54 000418 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:42:00 000419 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:42:05 000420 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:42:11 000421 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:42:17 000422 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:42:22 000423 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:42:28 000425 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:42:34 000426 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:42:39 000428 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:42:45 000429 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:42:50 000430 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:42:56 000488 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:43:01 000498 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:43:08 000501 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:43:14 000502 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:43:20 000503 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:43:26 000504 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:43:32 000505 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:43:38 000506 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:43:44 000507 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:43:51 000509 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:43:57 000510 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:44:02 000511 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:44:08 000513 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:44:14 000514 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:44:21 000516 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:44:27 000517 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:44:33 000518 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:44:39 000519 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:44:45 000520 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:44:50 000521 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:44:57 000523 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:45:04 000524 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:45:10 000525 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:45:15 000526 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:45:23 000528 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:45:28 000529 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:45:34 000530 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:45:40 000531 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:45:45 000532 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:45:51 000533 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:45:57 000534 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:46:04 000536 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:46:10 000537 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:46:15 000538 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:46:21 000539 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:46:26 000540 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:46:33 000541 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:46:39 000543 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:46:46 000544 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:46:52 000545 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:46:58 000546 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:47:04 000547 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:47:09 000548 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:47:16 000550 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:47:21 000551 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:47:28 000552 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:47:34 000553 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:47:39 000554 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:47:45 000555 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:47:51 000557 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:47:57 000558 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:48:03 000559 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:48:10 000560 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:48:16 000561 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:48:22 000563 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:48:28 000564 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:48:34 000565 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:48:43 000566 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:48:48 000567 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:48:54 000568 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:49:01 000570 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:49:07 000571 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:49:12 000572 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:49:19 000573 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:49:25 000576 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:49:32 000581 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:49:37 000582 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:49:44 000584 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:49:50 000585 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:49:56 000586 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:50:02 000587 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:50:09 000589 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:50:14 000590 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:50:20 000591 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:50:26 000592 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:50:31 000593 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:50:38 000595 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:50:43 000596 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:50:49 000597 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:50:54 000598 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:51:00 000599 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:51:06 000600 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:51:12 000601 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:51:18 000603 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:51:23 000605 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:51:29 000606 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:51:35 000607 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:51:40 000608 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:51:46 000609 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:51:51 000610 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:51:57 000611 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:52:02 000612 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:52:09 000613 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:52:16 000615 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:52:22 000616 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:52:28 000617 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:52:34 000619 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:52:39 000620 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:52:45 000622 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:52:52 000623 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:52:57 000625 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:53:03 000626 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:53:08 000627 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:53:14 000628 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:53:19 000629 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:53:25 000630 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:53:30 000631 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:53:36 000632 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:53:41 000633 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:53:47 000635 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:53:53 000636 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:53:59 000637 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:54:04 000638 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:54:10 000639 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:54:15 000650 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:54:21 000651 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:54:27 000652 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:54:33 000655 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:54:39 000656 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:54:45 000657 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:54:51 000659 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:54:58 000661 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:55:06 000662 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:55:11 000663 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:55:17 000665 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:55:23 000666 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:55:28 000667 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:55:34 000668 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:55:39 000669 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:55:45 000670 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:55:50 000671 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:55:55 000672 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:56:02 000673 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:56:08 000676 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:56:14 000677 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:56:20 000678 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:56:25 000679 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:56:31 000680 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:56:36 000681 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:56:41 000682 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:56:47 000683 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:56:53 000685 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:56:58 000686 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:57:04 000687 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:57:09 000688 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:57:15 000690 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:57:21 000691 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:57:26 000692 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:57:31 000693 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:57:37 000695 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:57:42 000697 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:57:48 000698 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:57:54 000700 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:58:00 000701 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:58:06 000702 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:58:12 000703 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:58:18 000705 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:58:23 000707 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:58:29 000708 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:58:35 000709 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:58:42 000710 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:58:48 000711 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:58:54 000712 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:58:59 000713 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:59:05 000715 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:59:12 000716 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:59:18 000717 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:59:24 000718 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:59:30 000719 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:59:35 000720 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:59:41 000721 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:59:46 000722 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:59:52 000723 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 11:59:59 000725 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 12:00:05 000726 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 12:00:11 000727 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 12:00:17 000728 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 12:00:23 000729 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 12:00:29 000731 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 12:00:35 000732 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 12:00:40 000733 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 12:00:46 000735 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 12:00:54 000736 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 12:00:59 000737 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 12:01:05 000738 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 12:01:11 000739 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 12:01:19 000750 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 12:01:25 000751 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 12:01:31 000752 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 12:01:36 000753 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 12:01:42 000755 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 12:01:48 000756 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 12:01:53 000757 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 12:01:59 000758 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 12:02:04 000759 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 12:02:10 000760 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 12:02:16 000761 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 12:02:22 000762 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 12:02:30 000766 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 12:02:35 000767 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 12:02:41 000768 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 12:02:47 000776 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 12:02:53 000777 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 12:03:01 000778 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 12:03:06 000779 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 12:03:12 000780 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 12:03:18 000782 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 12:03:23 000783 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 12:03:28 000785 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 12:03:34 000786 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 12:03:40 000788 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 12:03:46 000789 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 12:03:51 000790 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 12:03:57 000791 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 12:04:02 000792 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 12:04:08 000793 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 12:04:13 000795 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 12:04:19 000796 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 12:04:26 000797 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 12:04:32 000798 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 12:04:37 000799 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 12:04:43 000800 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 12:04:48 000801 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 12:04:54 000802 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 12:04:59 000803 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 12:05:07 000806 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 12:05:12 000807 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 12:05:18 000809 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 12:05:23 000810 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 12:05:30 000811 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 12:05:35 000812 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 12:05:41 000813 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 12:05:46 000815 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 12:05:52 000816 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 12:05:59 000818 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 12:06:05 000819 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 12:06:11 000820 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 12:06:17 000821 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 12:06:22 000822 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 12:06:28 000823 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 12:06:34 000825 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 12:06:44 000826 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 12:07:37 000001 Factors C/W Error! 
+	 could not run statement: Table 'factors_stock' already exists 
+2017-06-01 12:08:11 000001 Factors C/W Error! 
+	 could not run statement: Table 'factors_stock' already exists 
+2017-06-01 12:09:46 000001 Factors C/W Error! 
+	 could not run statement: Table 'factors_stock' already exists 
+2017-06-01 12:17:49 000001 Factors C/W Error! 
+	 could not run statement: Table 'factors_stock' already exists 
+2017-06-01 14:38:49 300298 Factors C/W Error! 
+	 could not run statement: Lost connection to MySQL server during query 
+2017-06-01 14:40:51 300299 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 14:43:41 300298 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-06-01 14:43:47 300299 Factors C/W Error! 
+	 could not run statement: MySQL server has gone away 
+2017-07-02 16:12:45 000001 Factors C/W Error! 
+	 could not run statement: Lost connection to MySQL server during query 
